@@ -27,7 +27,7 @@ p{
 	height: 50px;
 	border-radius: 125px;
 	background-color: orangered;
-	transition-duration: 500ms;
+	transition-duration: 100ms;
 	transition-timing-function: ease-in-out;
 }
 .slideButtonV{
@@ -39,7 +39,7 @@ p{
 
 	border-radius: 125px;
 	background-color: palegreen;
-	transition-duration: 500ms;
+	transition-duration: 50ms;
 	transition-timing-function: ease-in-out;
 }
 .slideButtonH{
@@ -51,7 +51,7 @@ p{
 
 	border-radius: 125px;
 	background-color: palegreen;
-	transition-duration: 500ms;
+	transition-duration: 50ms;
 	transition-timing-function: ease-in-out;
 }
 #sliderR{
