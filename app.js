@@ -3,19 +3,18 @@
 var	pexelsAPI;
 
 var slideState = true;
-function Slide(){
-//	slideButton.style.left = "20px";
+function Slide(direction){
 slideState = !slideState;
-	if(slideState == false){
-		$('input')[0].style.left = '25px';
-		$('input')[0].value = 'go right';
+	var positionX = $('#slider')[0].
+//	if(slideState == false){
+//		$('#slider')[0].style.left = '25px';
+//		$('div')[1].value = 'go right';
+//	}
+//	else{
+//		$('div')[1].style.left = '550px';
+//		$('div')[1].value = 'go left';
+//	}
 
-	}
-	else{
-		$('input')[0].style.left = '550px';
-		$('input')[0].value = 'go left';
-
-	}
 }
 
 

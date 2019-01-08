@@ -5,15 +5,22 @@
     <title>javascript stuff</title>
 </head>
 	<body>
-		<h1>Fun With JavaScript</h1>
-		<div class="roundedDiv">
-			<p>This.
-			</p>
-			<input id="slider" class="slide" onclick="Slide();" Value="slider" type="button" />
-		</div>
-	<footer>
-		@Benjamin.Website 2019
-	</footer>
+		<h1>JavaScript Slider Banana</h1>
+
+<!--		main-->
+		<div id="slider" class="slide" onclick="Slide();"></div>
+
+<!--		right-->
+		<div id="sliderR" class="slideButtonV" onclick="Slide(r);"></div>
+<!--		down-->
+		<div id="sliderD" class="slideButtonH" onclick="Slide(d);"></div>
+<!--		left-->
+		<div id="sliderL" class="slideButtonV" onclick="Slide(l);"></div>
+<!--		up-->
+		<div id="sliderU" class="slideButtonH" onclick="Slide(u);"></div>
+
+		<a href="https://www.pexels.com/"><img class="pexelsLogo" src="images/pexels2x-55493e5c9ae2025ef763e735064deee0a368f537950481d2d4e04e9f0ab02473.png"></a>
+
 	<script src="app.js"></script>
 	<script
   src="https://code.jquery.com/jquery-3.3.1.js"
