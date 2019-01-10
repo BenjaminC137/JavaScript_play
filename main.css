@@ -1,12 +1,36 @@
-html{
-		font-family:monospace;
+.add{
+	position: fixed;
+	right: 5px;
+	top: 5px;
+	display: block;
+	width: 10vw;
+	height: 100px;
+
+	border-radius: 125px;
+	background-color: ghostwhite;
+	transition-duration: 50ms;
+	transition-timing-function: ease-in-out;
+}
+.bad-guy{
+	position: fixed;
+	left: 25vw;
+	top: 25vh;
+	display: block;
+	width: 50px;
+	height: 50px;
+	border-radius: 125px;
+	background-color: gray;
+	transition-duration: 100ms;
+	transition-timing-function: ease-in-out;
 }
 body{
 	background-color: beige
 }
-
 h1{
 	text-shadow: 5px 5px 50px;
+}
+html{
+		font-family: monospace;
 }
 p{
 	font-family: fantasy;
@@ -20,8 +44,8 @@ p{
 }
 .slide{
 	position: fixed;
-	left: 250px;
-	top: 250px;
+	left: 50vw;
+	top: 50vh;
 	display: block;
 	width: 50px;
 	height: 50px;

@@ -1,6 +1,13 @@
-//var slideButton = document.getElementById('slider');
-//var slideLeft = window.getComputedStyle(slideButton).left;
+function Banana(color, size, speed){
+	this.color = color;
+	this.size = size;
+	this.speed = speed;
+}
+var banana1 = new Banana('black', '250px', '2');
+var banana2 = new Banana('grey', '150px', '5');
+
 var	pexelsAPI;
+
 function Slide(direction){
 
 //	console.log(direction);
@@ -9,9 +16,9 @@ function Slide(direction){
 	var sliderLeft = window.getComputedStyle(slider).left;
 	var sliderTop = window.getComputedStyle(slider).top;
 //	console.log(sliderLeft);
-	positionX = Number(sliderLeft.replace("px", ""));
+	var positionX = Number(sliderLeft.replace("px", ""));
 	console.log(positionX);
-	positionY = Number(sliderTop.replace("px", ""));
+	var positionY = Number(sliderTop.replace("px", ""));
 
 	if(positionX < 100){ // if hit left
 		positionX = 101;
@@ -72,7 +79,29 @@ function Slide(direction){
 //	}
 
 }
+function Add(number){
+//	$('body')[0].innerHTML.prepend = ("<div id="slider" class="slide" onclick="Slide();"></div>")
 
+
+  // create a new div element
+  var newDiv = document.createElement("div");
+//  // and give it some content
+//  var newClass = document.createAttribute("class");
+//	newClass.value = "slide";
+  // add the text node to the newly created div
+  newDiv.setAttribute("class", "bad-guy");
+
+  // add the newly created element and its content into the DOM
+  var currentDiv = document.getElementById("slider");
+  document.body.insertBefore(newDiv, currentDiv);
+
+	var addDiv = document.getElementById("add");
+	var newClick = ("Add(" + (number + 1) + ")");
+	addDiv.setAttribute("onclick", newClick);
+
+//	var currentBanana = 'banana' += number;
+//	var currentColor = currentBanana.color;
+}
 var settings = {
   "async": true,
   "crossDomain": true,
