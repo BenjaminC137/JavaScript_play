@@ -21,7 +21,6 @@ var currentId;
 var directionBadGuy = 'r';
 var done;
 
-
 function Slide(direction){
 //	console.log(direction);
 	var slider = document.querySelector('#slider');
@@ -132,65 +131,37 @@ function SlideSquare(id, speed){
 	console.log(positionX);
 	var positionY = Number(badGuyTop.replace("px", ""));
 
-	if(positionX < 100){ // if hit left
-		positionX = 101;
-		positionX += "px"
-		badGuy.style.left = positionX;
-	}
+	Move(directionBadGuy);
+	function Move(directionBadGuy){
+		if(directionBadGuy == 'r'){
+			positionX = '75vw';
+			badGuy.style.left = positionX;
+			badGuy.addEventListener("transitionend", function(event) {
+				Move('d');
+			}, false)
+		}
+		if(directionBadGuy == 'd'){
+			positionY = '75vh';
+			badGuy.style.top = positionY;
+			badGuy.addEventListener("transitionend", function(event) {
+				Move('l');
+			}, false)
 
-	if(positionX > window.innerWidth - 100){ // if hit right
-		positionX = window.innerWidth - 105;
-		positionX += "px"
-		badGuy.style.left = positionX;
-	}
-
-	if(positionY < 100){ // if hit top
-		positionY = 101;
-		positionY += "px"
-		badGuy.style.top = positionY;
-	}
-
-	if(positionY > window.innerHeight - 170){ // if hit bottom
-		positionY = window.innerHeight - 176;
-		positionY += "px"
-		badGuy.style.top = positionY;
-	}
-
-	if(directionBadGuy == 'r'){
-//		positionX = positionX + 25;
-		positionX = 75;
-		positionX += "vw";
-		console.log(positionX);
-		badGuy.style.left = positionX;
-
-		badGuy.addEventListener("transitionend", function(event) {
-			console.log("Done!");
-			directionBadGuy = 'd';
-		}, false)
-	}
-	if(directionBadGuy == 'd'){
-//		positionY = positionY + 100;
-		positionY = 75;
-		positionY += "vh";
-		console.log(positionY);
-		badGuy.style.top = positionY;
-		directionBadGuy = 'l';
-
-	}
-	if(directionBadGuy == 'l'){
-//		positionX = positionX - 100;
-		positionX = 25;
-		positionX += "vw";
-		console.log(positionX);
-		badGuy.style.left = positionX;
-		directionBadGuy = 'u';
-	}
-	if(directionBadGuy == 'u'){
-		positionY = positionY - 100;
-		positionY += "px";
-		console.log(positionY);
-		badGuy.style.top = positionY;
-		directionBadGuy = 'r';
+		}
+		if(directionBadGuy == 'l'){
+			positionX = '25vw';
+			badGuy.style.left = positionX;
+			badGuy.addEventListener("transitionend", function(event) {
+				Move('u');
+			}, false)
+		}
+		if(directionBadGuy == 'u'){
+			positionY = '25vh';
+			badGuy.style.top = positionY;
+			badGuy.addEventListener("transitionend", function(event) {
+				Move('r');
+			}, false)
+		}
 	}
 }
 var settings = {

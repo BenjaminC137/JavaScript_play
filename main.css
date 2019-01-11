@@ -20,7 +20,7 @@
 	height: 50px;
 	border-radius: 125px;
 	background-color: gray;
-	transition-duration: 100ms;
+	transition-duration: 2000ms;
 	transition-timing-function: ease-in-out;
 }
 body{
