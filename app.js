@@ -1,15 +1,28 @@
-function Banana(color, size, speed){
-	this.color = color;
-	this.size = size;
-	this.speed = speed;
-}
-var banana1 = new Banana('black', '250px', '2');
-var banana2 = new Banana('grey', '150px', '5');
+//function Banana(color, size, speed){
+//	this.color = color;
+//	this.size = size;
+//	this.speed = speed;
+//}
+//var banana1 = new Banana('red', '250px', '2');
+//var banana2 = new Banana('grey', '150px', '5');
 
+const bananas = [
+	{id: 1, color: 'red', size: 10, speed: 2},
+	{id: 2, color: 'pink', size: 2, speed: 5},
+	{id: 3, color: 'orange', size: 15, speed: 0.5},
+	{id: 4, color: 'white', size: 3, speed: 4}
+];
+var banana;
+var currentColor;
+var currentSize;
+var currentSpeed;
 var	pexelsAPI;
+var currentId;
+var directionBadGuy = 'r';
+var done;
+
 
 function Slide(direction){
-
 //	console.log(direction);
 	var slider = document.querySelector('#slider');
 //	console.log(slider);
@@ -80,27 +93,105 @@ function Slide(direction){
 
 }
 function Add(number){
-//	$('body')[0].innerHTML.prepend = ("<div id="slider" class="slide" onclick="Slide();"></div>")
-
+	const currentBanana = bananas.find( banana => banana.id === number);
+	console.log(currentBanana)
+	currentId = currentBanana['id'];
+	currentColor = currentBanana['color'];
+	currentSize = currentBanana['size'];
+	currentSpeed = currentBanana['speed'];
+	console.log(currentColor);
 
   // create a new div element
-  var newDiv = document.createElement("div");
-//  // and give it some content
-//  var newClass = document.createAttribute("class");
-//	newClass.value = "slide";
-  // add the text node to the newly created div
-  newDiv.setAttribute("class", "bad-guy");
+	var newDiv = document.createElement("div");
+	newDiv.setAttribute("class", "bad-guy");
+	newDiv.setAttribute("id", "badGuy" + number);
+	newDiv.style.backgroundColor = currentColor;
+//	newDiv.style.transition =  '200ms';
+	newDiv.style.width = currentSize += 'vw';
 
-  // add the newly created element and its content into the DOM
-  var currentDiv = document.getElementById("slider");
-  document.body.insertBefore(newDiv, currentDiv);
+	// add the newly created element and its content into the DOM
+	var currentDiv = document.getElementById("slider");
+	document.body.insertBefore(newDiv, currentDiv);
 
 	var addDiv = document.getElementById("add");
 	var newClick = ("Add(" + (number + 1) + ")");
 	addDiv.setAttribute("onclick", newClick);
 
-//	var currentBanana = 'banana' += number;
-//	var currentColor = currentBanana.color;
+	SlideSquare(currentId, currentSpeed);
+}
+function SlideSquare(id, speed){
+	var badGuyId = 'badGuy';
+	badGuyId += id;
+//	console.log(badGuyId);
+	var badGuy = document.getElementById(badGuyId);
+	console.log(badGuy);
+	var badGuyLeft = window.getComputedStyle(badGuy).left;
+	var badGuyTop = window.getComputedStyle(badGuy).top;
+	console.log(badGuyLeft);
+	var positionX = Number(badGuyLeft.replace("px", ""));
+	console.log(positionX);
+	var positionY = Number(badGuyTop.replace("px", ""));
+
+	if(positionX < 100){ // if hit left
+		positionX = 101;
+		positionX += "px"
+		badGuy.style.left = positionX;
+	}
+
+	if(positionX > window.innerWidth - 100){ // if hit right
+		positionX = window.innerWidth - 105;
+		positionX += "px"
+		badGuy.style.left = positionX;
+	}
+
+	if(positionY < 100){ // if hit top
+		positionY = 101;
+		positionY += "px"
+		badGuy.style.top = positionY;
+	}
+
+	if(positionY > window.innerHeight - 170){ // if hit bottom
+		positionY = window.innerHeight - 176;
+		positionY += "px"
+		badGuy.style.top = positionY;
+	}
+
+	if(directionBadGuy == 'r'){
+//		positionX = positionX + 25;
+		positionX = 75;
+		positionX += "vw";
+		console.log(positionX);
+		badGuy.style.left = positionX;
+
+		badGuy.addEventListener("transitionend", function(event) {
+			console.log("Done!");
+			directionBadGuy = 'd';
+		}, false)
+	}
+	if(directionBadGuy == 'd'){
+//		positionY = positionY + 100;
+		positionY = 75;
+		positionY += "vh";
+		console.log(positionY);
+		badGuy.style.top = positionY;
+		directionBadGuy = 'l';
+
+	}
+	if(directionBadGuy == 'l'){
+//		positionX = positionX - 100;
+		positionX = 25;
+		positionX += "vw";
+		console.log(positionX);
+		badGuy.style.left = positionX;
+		directionBadGuy = 'u';
+	}
+	if(directionBadGuy == 'u'){
+		positionY = positionY - 100;
+		positionY += "px";
+		console.log(positionY);
+		badGuy.style.top = positionY;
+		directionBadGuy = 'r';
+	}
 }
 var settings = {
   "async": true,
