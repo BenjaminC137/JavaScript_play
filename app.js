@@ -146,7 +146,6 @@ function SlideSquare(id, speed){
 			badGuy.addEventListener("transitionend", function(event) {
 				Move('l');
 			}, false)
-
 		}
 		if(directionBadGuy == 'l'){
 			positionX = '25vw';
