@@ -22,10 +22,14 @@ var directionBadGuy = 'r';
 var done;
 
 function Slide(direction){
+//	console.log(direction);
 	var slider = document.querySelector('#slider');
+//	console.log(slider);
 	var sliderLeft = window.getComputedStyle(slider).left;
 	var sliderTop = window.getComputedStyle(slider).top;
+//	console.log(sliderLeft);
 	var positionX = Number(sliderLeft.replace("px", ""));
+	console.log(positionX);
 	var positionY = Number(sliderTop.replace("px", ""));
 
 	if(positionX < 100){ // if hit left
@@ -33,16 +37,19 @@ function Slide(direction){
 		positionX += "px"
 		slider.style.left = positionX;
 	}
+
 	if(positionX > window.innerWidth - 100){ // if hit right
 		positionX = window.innerWidth - 105;
 		positionX += "px"
 		slider.style.left = positionX;
 	}
+
 	if(positionY < 100){ // if hit top
 		positionY = 101;
 		positionY += "px"
 		slider.style.top = positionY;
 	}
+
 	if(positionY > window.innerHeight - 170){ // if hit bottom
 		positionY = window.innerHeight - 176;
 		positionY += "px"
@@ -52,43 +59,36 @@ function Slide(direction){
 	if(direction == 'r'){
 		positionX = positionX + 100;
 		positionX += "px";
+		console.log(positionX);
 		slider.style.left = positionX;
-
-		SlideSquare(1, 1, 'd');
-		SlideSquare(2, 1, 'r');
-		SlideSquare(3, 1, 'l');
-		SlideSquare(4, 1, 'r');
 	}
 	if(direction == 'd'){
 		positionY = positionY + 100;
 		positionY += "px";
+		console.log(positionY);
 		slider.style.top = positionY;
-
-		SlideSquare(1, 1, 'r');
-		SlideSquare(2, 1, 'u');
-		SlideSquare(3, 1, 'r');
-		SlideSquare(4, 1, 'l');
 	}
 	if(direction == 'l'){
 		positionX = positionX - 100;
 		positionX += "px";
+		console.log(positionX);
 		slider.style.left = positionX;
-
-		SlideSquare(1, 1, 'l');
-		SlideSquare(2, 1, 'r');
-		SlideSquare(3, 1, 'd');
-		SlideSquare(4, 1, 'r');
 	}
 	if(direction == 'u'){
 		positionY = positionY - 100;
 		positionY += "px";
+		console.log(positionY);
 		slider.style.top = positionY;
-
-		SlideSquare(1, 1, 'u');
-		SlideSquare(2, 1, 'd');
-		SlideSquare(3, 1, 'u');
-		SlideSquare(4, 1, 'l');
 	}
+
+//	if(slideState == false){
+//		$('#slider')[0].style.left = '25px';
+//		$('div')[1].value = 'go right';
+//	}
+//	else{
+//		$('div')[1].style.left = '550px';
+//		$('div')[1].value = 'go left';
+//	}
 
 }
 function Add(number){
@@ -118,13 +118,17 @@ function Add(number){
 
 	SlideSquare(currentId, currentSpeed);
 }
-function SlideSquare(id, speed, directionBadGuy){
+function SlideSquare(id, speed){
 	var badGuyId = 'badGuy';
 	badGuyId += id;
+//	console.log(badGuyId);
 	var badGuy = document.getElementById(badGuyId);
+	console.log(badGuy);
 	var badGuyLeft = window.getComputedStyle(badGuy).left;
 	var badGuyTop = window.getComputedStyle(badGuy).top;
+	console.log(badGuyLeft);
 	var positionX = Number(badGuyLeft.replace("px", ""));
+	console.log(positionX);
 	var positionY = Number(badGuyTop.replace("px", ""));
 
 	Move(directionBadGuy);
@@ -133,28 +137,28 @@ function SlideSquare(id, speed, directionBadGuy){
 			positionX = '75vw';
 			badGuy.style.left = positionX;
 			badGuy.addEventListener("transitionend", function(event) {
-//				Move('d');
+				Move('d');
 			}, false)
 		}
 		if(directionBadGuy == 'd'){
 			positionY = '75vh';
 			badGuy.style.top = positionY;
 			badGuy.addEventListener("transitionend", function(event) {
-//				Move('l');
+				Move('l');
 			}, false)
 		}
 		if(directionBadGuy == 'l'){
 			positionX = '25vw';
 			badGuy.style.left = positionX;
 			badGuy.addEventListener("transitionend", function(event) {
-//				Move('u');
+				Move('u');
 			}, false)
 		}
 		if(directionBadGuy == 'u'){
 			positionY = '25vh';
 			badGuy.style.top = positionY;
 			badGuy.addEventListener("transitionend", function(event) {
-//				Move('r');
+				Move('r');
 			}, false)
 		}
 	}
