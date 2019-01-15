@@ -15,6 +15,10 @@ const bananas = [
 	{id: 6, color: 'orangered', size: 25, speed: 0.5}
 
 ];
+var windowWidth = window.innerWidth;
+var windowHeight = window.innerHeight;
+var distanceH = windowWidth / 25;
+var distanceV = windowHeight / 25;
 var score = 0;
 var banana;
 var currentColor;
@@ -26,6 +30,11 @@ var directionBadGuy = 'r';
 var done;
 var difficulty = 1;
 
+window.onresize = function(event) {
+	windowWidth = window.innerWidth;
+	windowHeight = window.innerHeight;
+	console.log(windowWidth, windowHeight);
+};
 function GetBananaLocation(){
 	var slider = document.querySelector('#slider');
 	var sliderLeft = window.getComputedStyle(slider).left;
@@ -36,6 +45,9 @@ function GetBananaLocation(){
 	return {x: positionX, y: positionY};
 }
 function Slide(direction){
+	distanceW = windowWidth / 18;
+	distanceH = windowWidth / 18;
+
 	var slider = document.querySelector('#slider');
 	var sliderLeft = window.getComputedStyle(slider).left;
 	var sliderTop = window.getComputedStyle(slider).top;
@@ -64,7 +76,8 @@ function Slide(direction){
 	}
 
 	if(direction == 'r'){
-		positionX = positionX + 100;
+		positionX = positionX + distanceW;
+		console.log(windowWidth);
 		positionX += "px";
 		slider.style.left = positionX;
 
@@ -74,12 +87,11 @@ function Slide(direction){
 		SlideSquare(4, 1, 'r');
 
 		SlideSquare(5, 1, 'r');
-		SlideSquare(6, 1, 'r');
-
+		SlideSquare(6, 1, 'd');
 
 	}
 	if(direction == 'd'){
-		positionY = positionY + 100;
+		positionY = positionY + distanceH;
 		positionY += "px";
 		slider.style.top = positionY;
 
@@ -89,10 +101,10 @@ function Slide(direction){
 		SlideSquare(4, 1, 'l');
 
 		SlideSquare(5, 1, 'u');
-		SlideSquare(6, 1, 'd');
+		SlideSquare(6, 1, 'r');
 	}
 	if(direction == 'l'){
-		positionX = positionX - 100;
+		positionX = positionX - distanceW;
 		positionX += "px";
 		slider.style.left = positionX;
 
@@ -105,7 +117,7 @@ function Slide(direction){
 		SlideSquare(6, 1, 'l');
 	}
 	if(direction == 'u'){
-		positionY = positionY - 100;
+		positionY = positionY - distanceH;
 		positionY += "px";
 		slider.style.top = positionY;
 

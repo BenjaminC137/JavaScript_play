@@ -45,8 +45,12 @@ body{
 	align-items: center;
 	text-align:right;
 }
+.data{
+	display: inline-block;
+	width: 30vw;
+}
 h1{
-/*	text-shadow: 5px 5px 50px;*/
+	font-size: 1.5em;
 	position: fixed;
 	bottom: 2vh;
 	left: 2vw;
@@ -105,6 +109,9 @@ p{
 	background-color: palegreen;
 	transition-duration: 50ms;
 	transition-timing-function: ease-in-out;
+}
+#message{
+	color: midnightblue;
 }
 #sliderR{
 	right: 5px;
