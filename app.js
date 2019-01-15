@@ -10,8 +10,9 @@ const bananas = [
 	{id: 1, color: 'red', size: 10, speed: 2},
 	{id: 2, color: 'pink', size: 2, speed: 5},
 	{id: 3, color: 'orange', size: 15, speed: 0.5},
-	{id: 4, color: 'white', size: 3, speed: 4}
+	{id: 4, color: 'white', size: 3, speed: 4} // special one
 ];
+var score = 0;
 var banana;
 var currentColor;
 var currentSize;
@@ -20,7 +21,15 @@ var	pexelsAPI;
 var currentId;
 var directionBadGuy = 'r';
 var done;
+function GetBananaLocation(){
+	var slider = document.querySelector('#slider');
+	var sliderLeft = window.getComputedStyle(slider).left;
+	var sliderTop = window.getComputedStyle(slider).top;
+	var positionX = Number(sliderLeft.replace("px", ""));
+	var positionY = Number(sliderTop.replace("px", ""));
 
+	return {x: positionX, y: positionY};
+}
 function Slide(direction){
 	var slider = document.querySelector('#slider');
 	var sliderLeft = window.getComputedStyle(slider).left;
@@ -75,9 +84,9 @@ function Slide(direction){
 		slider.style.left = positionX;
 
 		SlideSquare(1, 1, 'l');
-		SlideSquare(2, 1, 'r');
+		SlideSquare(2, 1, 'l');
 		SlideSquare(3, 1, 'd');
-		SlideSquare(4, 1, 'r');
+		SlideSquare(4, 1, 'u');
 	}
 	if(direction == 'u'){
 		positionY = positionY - 100;
@@ -87,18 +96,18 @@ function Slide(direction){
 		SlideSquare(1, 1, 'u');
 		SlideSquare(2, 1, 'd');
 		SlideSquare(3, 1, 'u');
-		SlideSquare(4, 1, 'l');
+		SlideSquare(4, 1, 'd');
 	}
 
 }
 function Add(number){
 	const currentBanana = bananas.find( banana => banana.id === number);
-	console.log(currentBanana)
+//	console.log(currentBanana)
 	currentId = currentBanana['id'];
 	currentColor = currentBanana['color'];
 	currentSize = currentBanana['size'];
 	currentSpeed = currentBanana['speed'];
-	console.log(currentColor);
+//	console.log(currentColor);
 
   // create a new div element
 	var newDiv = document.createElement("div");
@@ -134,6 +143,8 @@ function SlideSquare(id, speed, directionBadGuy){
 			badGuy.style.left = positionX;
 			badGuy.addEventListener("transitionend", function(event) {
 //				Move('d');
+//				console.log(id);
+				CheckBanana(id);
 			}, false)
 		}
 		if(directionBadGuy == 'd'){
@@ -141,6 +152,8 @@ function SlideSquare(id, speed, directionBadGuy){
 			badGuy.style.top = positionY;
 			badGuy.addEventListener("transitionend", function(event) {
 //				Move('l');
+				CheckBanana(id);
+
 			}, false)
 		}
 		if(directionBadGuy == 'l'){
@@ -148,6 +161,8 @@ function SlideSquare(id, speed, directionBadGuy){
 			badGuy.style.left = positionX;
 			badGuy.addEventListener("transitionend", function(event) {
 //				Move('u');
+				CheckBanana(id);
+
 			}, false)
 		}
 		if(directionBadGuy == 'u'){
@@ -155,8 +170,11 @@ function SlideSquare(id, speed, directionBadGuy){
 			badGuy.style.top = positionY;
 			badGuy.addEventListener("transitionend", function(event) {
 //				Move('r');
+				CheckBanana(id);
+
 			}, false)
 		}
+//	CheckBanana(id);
 	}
 }
 var settings = {
@@ -170,6 +188,38 @@ var settings = {
     "Postman-Token": "334da920-22c4-4c9c-9de9-f721790e32fd"
   }
 }
+function CheckBanana(id){
+	var badGuyId = 'badGuy';
+	badGuyId += id;
+	var badGuy = document.getElementById(badGuyId);
+	var badGuyLeft = window.getComputedStyle(badGuy).left;
+	var badGuyTop = window.getComputedStyle(badGuy).top;
+	var positionX = Number(badGuyLeft.replace("px", ""));
+	var positionY = Number(badGuyTop.replace("px", ""));
+
+	var bananaLocation = GetBananaLocation();
+//	console.log("banana: ",  bananaLocation.x);
+//	console.log(badGuyId + " : " + positionX);
+//	console.log(bananaLocation.x < positionX + 100);
+if(((bananaLocation.x < positionX + 100) && (bananaLocation.x > positionX - 100)) && ((bananaLocation.y < positionY + 100) && (bananaLocation.y > positionY - 100))){
+	if(id == 2 || id == 4){
+		score = 0;
+		$('#message').html('You slipped!');
+	}
+	else{
+		$('#message').html("You caught " + badGuyId + "!");
+
+//	console.log("You caught " + badGuyId + "!");
+	score ++;
+	console.log()
+//	console.log(score);
+	}
+		$('#score').html(score);
+
+//	box.style.backgroundColor = "orange";
+}
+}
+
 
 function ChangeBackground(){
 	pexelAPI = '563492ad6f91700001000001d287cf6b84eb4d789e2a5b915da35960';
