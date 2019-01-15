@@ -33,7 +33,7 @@
 	height: 50px;
 	border-radius: 125px;
 	background-color: gray;
-	transition-duration: 2000ms;
+	transition-duration: 1000ms;
 	transition-timing-function: ease-in-out;
 }
 body{
@@ -48,6 +48,9 @@ body{
 .data{
 	display: inline-block;
 	width: 30vw;
+	height: 10vh;
+
+/*	text-overflow: hidden;*/
 }
 h1{
 	font-size: 1.5em;

@@ -179,7 +179,7 @@ function SlideSquare(id, speed, directionBadGuy){
 			badGuy.addEventListener("transitionend", function(event) {
 //				Move('d');
 //				console.log(id);
-				CheckBanana(id);
+//				CheckBanana(id);
 			}, false)
 		}
 		if(directionBadGuy == 'd'){
@@ -187,29 +187,29 @@ function SlideSquare(id, speed, directionBadGuy){
 			badGuy.style.top = positionY;
 			badGuy.addEventListener("transitionend", function(event) {
 //				Move('l');
-				CheckBanana(id);
+//				CheckBanana(id);
 
 			}, false)
 		}
 		if(directionBadGuy == 'l'){
-			positionX = '25vw';
+			positionX = '15vw';
 			badGuy.style.left = positionX;
 			badGuy.addEventListener("transitionend", function(event) {
 //				Move('u');
-				CheckBanana(id);
+//				CheckBanana(id);
 
 			}, false)
 		}
 		if(directionBadGuy == 'u'){
-			positionY = '25vh';
+			positionY = '15vh';
 			badGuy.style.top = positionY;
 			badGuy.addEventListener("transitionend", function(event) {
 //				Move('r');
-				CheckBanana(id);
+//				CheckBanana(id);
 
 			}, false)
 		}
-//	CheckBanana(id);
+	CheckBanana(id);
 	}
 }
 var settings = {
@@ -236,25 +236,19 @@ function CheckBanana(id, color){
 //	console.log("banana: ",  bananaLocation.x);
 //	console.log(badGuyId + " : " + positionX);
 //	console.log(bananaLocation.x < positionX + 100);
-if(((bananaLocation.x < positionX + 100) && (bananaLocation.x > positionX - 100)) && ((bananaLocation.y < positionY + 100) && (bananaLocation.y > positionY - 100))){
-	if(id == 2 || id == 4 || id == 5){
-		score = 0;
-		$('#message').html('You slipped on ' + badGuyId + '!');
-	}
-	else{
-		$('#message').html("You caught " + badGuyId + "!");
+	if(((bananaLocation.x < positionX + 100) && (bananaLocation.x > positionX - 100)) && ((bananaLocation.y < positionY + 100) && (bananaLocation.y > positionY - 100))){
+		if(id == 2 || id == 4 || id == 5){
+			score = 0;
+			$('#message').prepend('You slipped on ' + badGuyId + '!<br>');
+		}
+		else{
+			$('#message').prepend("You caught " + badGuyId + "!<br>");
 
-//	console.log("You caught " + badGuyId + "!");
-	score ++;
-	console.log()
-//	console.log(score);
-	}
+			score = score + (1*difficulty);
+		}
 		$('#score').html(score);
-
-//	box.style.backgroundColor = "orange";
+	}
 }
-}
-
 
 function ChangeBackground(){
 	pexelAPI = '563492ad6f91700001000001d287cf6b84eb4d789e2a5b915da35960';
