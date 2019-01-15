@@ -24,6 +24,8 @@ var	pexelsAPI;
 var currentId;
 var directionBadGuy = 'r';
 var done;
+var difficulty = 1;
+
 function GetBananaLocation(){
 	var slider = document.querySelector('#slider');
 	var sliderLeft = window.getComputedStyle(slider).left;
@@ -125,6 +127,10 @@ function Add(number){
 	currentSize = currentBanana['size'];
 	currentSpeed = currentBanana['speed'];
 //	console.log(currentColor);
+	if ([2,4,5].indexOf(number) > -1){
+		difficulty ++;
+		$('#difficulty').html(difficulty);
+	}
 
   // create a new div element
 	var newDiv = document.createElement("div");

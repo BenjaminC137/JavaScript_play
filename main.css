@@ -1,16 +1,28 @@
 .add{
+	text-align: center;
+	font-size: 3em;
 	position: fixed;
 	right: 5px;
 	top: 5px;
 	display: block;
-	width: 10vw;
-	height: 100px;
+	width: 15vw;
+	height: 15vh;
 /*	color: mediumseagreen*/
 
 	border-radius: 125px;
 	background-color: ghostwhite;
 	transition-duration: 50ms;
 	transition-timing-function: ease-in-out;
+}
+.arrow{
+/*	display: inline;*/
+	text-align: center;
+	width: 15vw;
+}
+.arrow2{
+/*	display: inline;*/
+	text-align: center;
+	width: 25vw;
 }
 .bad-guy{
 	position: fixed;
@@ -28,8 +40,16 @@ body{
 	background-color: beige;
 /*	background-color: powderblue*/
 }
+.center{
+	display: flex;
+	align-items: center;
+	text-align:right;
+}
 h1{
-	text-shadow: 5px 5px 50px;
+/*	text-shadow: 5px 5px 50px;*/
+	position: fixed;
+	bottom: 2vh;
+	left: 2vw;
 }
 html{
 		font-family: monospace;
@@ -37,6 +57,7 @@ html{
 p{
 	font-family: fantasy;
 }
+/*
 .pexelsLogo{
 	position: fixed;
 	right: 5px;
@@ -44,6 +65,7 @@ p{
 	width: 75px;
 	filter: invert(1);
 }
+*/
 .slide{
 	position: fixed;
 	left: 50vw;
@@ -57,9 +79,11 @@ p{
 	transition-timing-function: ease-in-out;
 }
 .slideButtonV{
+	text-align: center;
+	font-size: 3em;
 	position: fixed;
-	display: block;
-	top: 50vh;
+/*	display: block;*/
+	top: 40vh;
 	width: 15vw;
 	height: 15vh;
 
@@ -69,9 +93,11 @@ p{
 	transition-timing-function: ease-in-out;
 }
 .slideButtonH{
+	text-align: center;
+	font-size: 3em;
 	position: fixed;
-	display: block;
-	left: 50vw;
+/*	display: block;*/
+	left: 40vw;
 	width: 25vw;
 	height: 10vh;
 
@@ -91,4 +117,9 @@ p{
 }
 #sliderU{
 	top: 5px;
+}
+.status{
+	color: deeppink;
+	font-weight: bolder;
+	font-size: 2em;
 }

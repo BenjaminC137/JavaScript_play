@@ -7,22 +7,23 @@
 </head>
 	<body>
 		<h1>Slider Banana</h1>
-		<h3 style="display: inline">Score:</h3><span id="score">0</span>
+		<h3 style="display: inline">Score:</h3><span id="score" class="status">0</span>
+		<h3 style="display: inline">Difficulty:</h3><span id="difficulty" class="status">1</span>
 <!--		main-->
 		<div id="slider" class="slide"></div>
 		<div id="message">Get green, orange or red to land on you! Don't let pink, white or invisible(beige) land on you.</div>
 
 <!--		right-->
-		<div id="sliderR" class="slideButtonV" onclick="Slide('r');" style="text-align: center; font-size: 5em">→</div>
+		<div id="sliderR" class="slideButtonV center" onclick="Slide('r');"><div class="arrow">→</div></div>
 <!--		down-->
-		<div id="sliderD" class="slideButtonH" onclick="Slide('d');" style="text-align: center; font-size: 5em">↓</div>
+		<div id="sliderD" class="center slideButtonH" onclick="Slide('d');"><div class="arrow2">↓</div></div>
 <!--		left-->
-		<div id="sliderL" class="slideButtonV" onclick="Slide('l');" style="text-align: center; font-size: 5em">←</div>
+		<div id="sliderL" class="slideButtonV center" onclick="Slide('l');"><div class="arrow">←</div></div>
 <!--		up-->
-		<div id="sliderU" class="slideButtonH" onclick="Slide('u');" style="text-align: center; font-size: 5em">↑</div>
+		<div id="sliderU" class="center slideButtonH" onclick="Slide('u');"><div class="arrow2">↑</div></div>
 
 <!--		add-->
-		<div id="add" class="add" onclick="Add(1);" style="text-align: center; font-size: 5em">+</div>
+		<div id="add" class="center add"onclick="Add(1);"><div class="arrow">+</div></div>
 
 <!--
 
