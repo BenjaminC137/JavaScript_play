@@ -7,7 +7,7 @@
 //var banana2 = new Banana('grey', '150px', '5');
 
 const bananas = [
-	{id: 1, color: 'forestgreen', size: 10, speed: 2},
+	{id: 1, color: 'mediumseagreen', size: 10, speed: 2},
 	{id: 2, color: 'pink', size: 2, speed: 5},
 	{id: 3, color: 'orange', size: 15, speed: 0.5},
 	{id: 4, color: 'white', size: 3, speed: 4},
