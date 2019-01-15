@@ -10,7 +10,7 @@ const bananas = [
 	{id: 1, color: 'red', size: 10, speed: 2},
 	{id: 2, color: 'pink', size: 2, speed: 5},
 	{id: 3, color: 'orange', size: 15, speed: 0.5},
-	{id: 4, color: 'white', size: 3, speed: 4} // special one
+	{id: 4, color: 'white', size: 3, speed: 4}
 ];
 var score = 0;
 var banana;
@@ -204,7 +204,7 @@ function CheckBanana(id){
 if(((bananaLocation.x < positionX + 100) && (bananaLocation.x > positionX - 100)) && ((bananaLocation.y < positionY + 100) && (bananaLocation.y > positionY - 100))){
 	if(id == 2 || id == 4){
 		score = 0;
-		$('#message').html('You slipped!');
+		$('#message').html('You slipped on ' + badGuyId + '!');
 	}
 	else{
 		$('#message').html("You caught " + badGuyId + "!");
