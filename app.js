@@ -7,10 +7,13 @@
 //var banana2 = new Banana('grey', '150px', '5');
 
 const bananas = [
-	{id: 1, color: 'red', size: 10, speed: 2},
+	{id: 1, color: 'forestgreen', size: 10, speed: 2},
 	{id: 2, color: 'pink', size: 2, speed: 5},
 	{id: 3, color: 'orange', size: 15, speed: 0.5},
-	{id: 4, color: 'white', size: 3, speed: 4}
+	{id: 4, color: 'white', size: 3, speed: 4},
+	{id: 5, color: 'beige', size: 20, speed: 0.5},
+	{id: 6, color: 'orangered', size: 25, speed: 0.5}
+
 ];
 var score = 0;
 var banana;
@@ -67,6 +70,11 @@ function Slide(direction){
 		SlideSquare(2, 1, 'r');
 		SlideSquare(3, 1, 'l');
 		SlideSquare(4, 1, 'r');
+
+		SlideSquare(5, 1, 'r');
+		SlideSquare(6, 1, 'r');
+
+
 	}
 	if(direction == 'd'){
 		positionY = positionY + 100;
@@ -77,6 +85,9 @@ function Slide(direction){
 		SlideSquare(2, 1, 'u');
 		SlideSquare(3, 1, 'r');
 		SlideSquare(4, 1, 'l');
+
+		SlideSquare(5, 1, 'u');
+		SlideSquare(6, 1, 'd');
 	}
 	if(direction == 'l'){
 		positionX = positionX - 100;
@@ -87,6 +98,9 @@ function Slide(direction){
 		SlideSquare(2, 1, 'l');
 		SlideSquare(3, 1, 'd');
 		SlideSquare(4, 1, 'u');
+
+		SlideSquare(5, 1, 'd');
+		SlideSquare(6, 1, 'l');
 	}
 	if(direction == 'u'){
 		positionY = positionY - 100;
@@ -97,6 +111,9 @@ function Slide(direction){
 		SlideSquare(2, 1, 'd');
 		SlideSquare(3, 1, 'u');
 		SlideSquare(4, 1, 'd');
+
+		SlideSquare(5, 1, 'l');
+		SlideSquare(6, 1, 'u');
 	}
 
 }
@@ -188,7 +205,7 @@ var settings = {
     "Postman-Token": "334da920-22c4-4c9c-9de9-f721790e32fd"
   }
 }
-function CheckBanana(id){
+function CheckBanana(id, color){
 	var badGuyId = 'badGuy';
 	badGuyId += id;
 	var badGuy = document.getElementById(badGuyId);
@@ -202,7 +219,7 @@ function CheckBanana(id){
 //	console.log(badGuyId + " : " + positionX);
 //	console.log(bananaLocation.x < positionX + 100);
 if(((bananaLocation.x < positionX + 100) && (bananaLocation.x > positionX - 100)) && ((bananaLocation.y < positionY + 100) && (bananaLocation.y > positionY - 100))){
-	if(id == 2 || id == 4){
+	if(id == 2 || id == 4 || id == 5){
 		score = 0;
 		$('#message').html('You slipped on ' + badGuyId + '!');
 	}
