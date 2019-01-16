@@ -36,19 +36,17 @@ window.onresize = function(event) {
 	console.log(windowWidth, windowHeight);
 };
 
-
 function GetBananaLocation(){
 	var slider = document.querySelector('#slider');
 	var sliderLeft = window.getComputedStyle(slider).left;
 	var sliderTop = window.getComputedStyle(slider).top;
 	var positionX = Number(sliderLeft.replace("px", ""));
 	var positionY = Number(sliderTop.replace("px", ""));
-
 	return {x: positionX, y: positionY};
 }
 function Slide(direction){
-	distanceW = windowWidth / 18;
-	distanceH = windowWidth / 18;
+	distanceW = windowWidth / 10;
+	distanceH = windowWidth / 10;
 
 	var slider = document.querySelector('#slider');
 	var sliderLeft = window.getComputedStyle(slider).left;
@@ -161,8 +159,6 @@ function Add(number){
 	var addDiv = document.getElementById("add");
 	var newClick = ("Add(" + (number + 1) + ")");
 	addDiv.setAttribute("onclick", newClick);
-
-	SlideSquare(currentId, currentSpeed);
 }
 function SlideSquare(id, speed, directionBadGuy){
 	var badGuyId = 'badGuy';
@@ -177,61 +173,25 @@ function SlideSquare(id, speed, directionBadGuy){
 	function Move(directionBadGuy){
 		if(directionBadGuy == 'r'){
 			positionX = '75vw';
-			badGuy.style.left = positionX;
-//			badGuy.addEventListener("transitionend", function(event) {
-////				Move('d');
-////				console.log(id);
-////				CheckBanana(id);
-//			}, false)
 		}
 		if(directionBadGuy == 'd'){
 			positionY = '75vh';
-			badGuy.style.top = positionY;
-//			badGuy.addEventListener("transitionend", function(event) {
-////				Move('l');
-////				CheckBanana(id);
-//
-//			}, false)
 		}
 		if(directionBadGuy == 'l'){
 			positionX = '15vw';
-			badGuy.style.left = positionX;
-//			badGuy.addEventListener("transitionend", function(event) {
-////				Move('u');
-////				CheckBanana(id);
-//
-//			}, false)
 		}
 		if(directionBadGuy == 'u'){
 			positionY = '15vh';
-			badGuy.style.top = positionY;
-//			badGuy.addEventListener("transitionend", function(event) {
-////				Move('r');
-////				CheckBanana(id);
-//
-//			}, false)
-//		var fart = $('#badGuy1');
-//			console.log(fart);
-//		fart.addEventListener("transitionend", function(event) {
-////				Move('d');
-////				console.log(id);
-//				CheckBanana(id);
-//			}, false)
 		}
-
-	CheckBanana(id);
+		badGuy.style.left = positionX;
+		badGuy.style.top = positionY;
+		function CheckB(event) {
+			CheckBanana(id);
+			badGuy.removeEventListener("transitionend", CheckB, false);
+		}
+		badGuy.addEventListener("transitionend", CheckB, false);
+//			badGuy.removeEventListener("transitionend", CheckB, false);
 	}
-}
-var settings = {
-  "async": true,
-  "crossDomain": true,
-  "url": "https://api.pexels.com/v1/curated?per_page=15&page=1",
-  "method": "GET",
-  "headers": {
-    "Authorization": "563492ad6f91700001000001d287cf6b84eb4d789e2a5b915da35960",
-    "Cache-Control": "no-cache",
-    "Postman-Token": "334da920-22c4-4c9c-9de9-f721790e32fd"
-  }
 }
 function CheckBanana(id, color){
 	var badGuyId = 'badGuy';
@@ -249,17 +209,29 @@ function CheckBanana(id, color){
 	if(((bananaLocation.x < positionX + 100) && (bananaLocation.x > positionX - 100)) && ((bananaLocation.y < positionY + 100) && (bananaLocation.y > positionY - 100))){
 		if(id == 2 || id == 4 || id == 5){
 			score = 0;
-			$('#message').prepend('You slipped on ' + badGuyId + '!<br>');
+			$('#message').prepend('Slipped on ' + badGuyId + '!<br>');
+//		badGuy.removeEventListener("transitionend", CheckB, false);
 		}
 		else{
-			$('#message').prepend("You caught " + badGuyId + "!<br>");
-
+			$('#message').prepend("Caught " + badGuyId + "!<br>");
 			score = score + (1*difficulty);
+//		badGuy.removeEventListener("transitionend", CheckB, false);
 		}
 		$('#score').html(score);
+		badGuy.removeEventListener("transitionend", CheckB, false);
 	}
 }
-
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://api.pexels.com/v1/curated?per_page=15&page=1",
+  "method": "GET",
+  "headers": {
+    "Authorization": "563492ad6f91700001000001d287cf6b84eb4d789e2a5b915da35960",
+    "Cache-Control": "no-cache",
+    "Postman-Token": "334da920-22c4-4c9c-9de9-f721790e32fd"
+  }
+}
 function ChangeBackground(){
 	pexelAPI = '563492ad6f91700001000001d287cf6b84eb4d789e2a5b915da35960';
 	$.ajax(settings).done(function (response) {
