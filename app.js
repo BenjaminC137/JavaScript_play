@@ -35,6 +35,8 @@ window.onresize = function(event) {
 	windowHeight = window.innerHeight;
 	console.log(windowWidth, windowHeight);
 };
+
+
 function GetBananaLocation(){
 	var slider = document.querySelector('#slider');
 	var sliderLeft = window.getComputedStyle(slider).left;
@@ -176,39 +178,47 @@ function SlideSquare(id, speed, directionBadGuy){
 		if(directionBadGuy == 'r'){
 			positionX = '75vw';
 			badGuy.style.left = positionX;
-			badGuy.addEventListener("transitionend", function(event) {
-//				Move('d');
-//				console.log(id);
-//				CheckBanana(id);
-			}, false)
+//			badGuy.addEventListener("transitionend", function(event) {
+////				Move('d');
+////				console.log(id);
+////				CheckBanana(id);
+//			}, false)
 		}
 		if(directionBadGuy == 'd'){
 			positionY = '75vh';
 			badGuy.style.top = positionY;
-			badGuy.addEventListener("transitionend", function(event) {
-//				Move('l');
-//				CheckBanana(id);
-
-			}, false)
+//			badGuy.addEventListener("transitionend", function(event) {
+////				Move('l');
+////				CheckBanana(id);
+//
+//			}, false)
 		}
 		if(directionBadGuy == 'l'){
 			positionX = '15vw';
 			badGuy.style.left = positionX;
-			badGuy.addEventListener("transitionend", function(event) {
-//				Move('u');
-//				CheckBanana(id);
-
-			}, false)
+//			badGuy.addEventListener("transitionend", function(event) {
+////				Move('u');
+////				CheckBanana(id);
+//
+//			}, false)
 		}
 		if(directionBadGuy == 'u'){
 			positionY = '15vh';
 			badGuy.style.top = positionY;
-			badGuy.addEventListener("transitionend", function(event) {
-//				Move('r');
+//			badGuy.addEventListener("transitionend", function(event) {
+////				Move('r');
+////				CheckBanana(id);
+//
+//			}, false)
+//		var fart = $('#badGuy1');
+//			console.log(fart);
+//		fart.addEventListener("transitionend", function(event) {
+////				Move('d');
+////				console.log(id);
 //				CheckBanana(id);
-
-			}, false)
+//			}, false)
 		}
+
 	CheckBanana(id);
 	}
 }
