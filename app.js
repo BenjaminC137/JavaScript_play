@@ -1,11 +1,3 @@
-//function Banana(color, size, speed){
-//	this.color = color;
-//	this.size = size;
-//	this.speed = speed;
-//}
-//var banana1 = new Banana('red', '250px', '2');
-//var banana2 = new Banana('grey', '150px', '5');
-
 const bananas = [
 	{id: 1, color: 'mediumseagreen', size: 10, speed: 2},
 	{id: 2, color: 'pink', size: 2, speed: 5},
@@ -101,7 +93,7 @@ function Slide(direction){
 		SlideSquare(4, 1, 'l');
 
 		SlideSquare(5, 1, 'u');
-		SlideSquare(6, 1, 'r');
+		SlideSquare(6, 1, 'u');
 	}
 	if(direction == 'l'){
 		positionX = positionX - distanceW;
@@ -127,7 +119,7 @@ function Slide(direction){
 		SlideSquare(4, 1, 'd');
 
 		SlideSquare(5, 1, 'l');
-		SlideSquare(6, 1, 'u');
+		SlideSquare(6, 1, 'r');
 	}
 
 }
@@ -193,7 +185,12 @@ function SlideSquare(id, speed, directionBadGuy){
 //			badGuy.removeEventListener("transitionend", CheckB, false);
 	}
 }
-function CheckBanana(id, color){
+function CheckBanana(id){
+	const currentBanana = bananas.find( banana => banana.id === id);
+	currentId = currentBanana['id'];
+	currentColor = currentBanana['color'];
+	currentSize = currentBanana['size'];
+	currentSpeed = currentBanana['speed'];
 	var badGuyId = 'badGuy';
 	badGuyId += id;
 	var badGuy = document.getElementById(badGuyId);
@@ -206,14 +203,17 @@ function CheckBanana(id, color){
 //	console.log("banana: ",  bananaLocation.x);
 //	console.log(badGuyId + " : " + positionX);
 //	console.log(bananaLocation.x < positionX + 100);
-	if(((bananaLocation.x < positionX + 100) && (bananaLocation.x > positionX - 100)) && ((bananaLocation.y < positionY + 100) && (bananaLocation.y > positionY - 100))){
+	console.log(badGuyId);
+	currentSize = (windowWidth / 100) * currentSize;
+	console.log(badGuyId, windowWidth, currentSize);
+	if(((bananaLocation.x < positionX + currentSize) && (bananaLocation.x > positionX)) && ((bananaLocation.y < positionY + 50) && (bananaLocation.y > positionY))){
 		if(id == 2 || id == 4 || id == 5){
 			score = 0;
 			$('#message').prepend('Slipped on ' + badGuyId + '!<br>');
 //		badGuy.removeEventListener("transitionend", CheckB, false);
 		}
 		else{
-			$('#message').prepend("Caught " + badGuyId + "!<br>");
+			$('#message').prepend("Peeled " + badGuyId + "!<br>");
 			score = score + (1*difficulty);
 //		badGuy.removeEventListener("transitionend", CheckB, false);
 		}
