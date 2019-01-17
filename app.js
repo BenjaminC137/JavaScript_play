@@ -181,12 +181,13 @@ function SlideSquare(id, speed, directionBadGuy){
 		}
 		badGuy.style.left = positionX;
 		badGuy.style.top = positionY;
+
+		badGuy.addEventListener("transitionend", CheckB, false);
+//		badGuy.removeEventListener("transitionend", CheckB, false);
 		function CheckB(event) {
 			CheckBanana(id);
 			badGuy.removeEventListener("transitionend", CheckB, false);
 		}
-		badGuy.addEventListener("transitionend", CheckB, false);
-//			badGuy.removeEventListener("transitionend", CheckB, false);
 	}
 }
 function CheckBanana(id){
