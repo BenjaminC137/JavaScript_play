@@ -5,7 +5,6 @@ const bananas = [
 	{id: 4, color: 'white', size: 3, speed: 4},
 	{id: 5, color: 'beige', size: 20, speed: 0.5},
 	{id: 6, color: 'orangered', size: 25, speed: 0.5}
-
 ];
 var windowWidth = window.innerWidth;
 var windowHeight = window.innerHeight;
@@ -74,7 +73,7 @@ function Slide(direction){
 
 	if(direction == 'r'){
 		positionX = positionX + distanceW;
-		console.log(windowWidth);
+//		console.log(windowWidth);
 		positionX += "px";
 		slider.style.left = positionX;
 
@@ -210,8 +209,8 @@ function CheckBanana(id){
 //	console.log(bananaLocation.x < positionX + 100);
 	console.log(badGuyId);
 	currentSize = (windowWidth / 100) * currentSize;
-	console.log(badGuyId, windowWidth, currentSize);
-	if(((bananaLocation.x < positionX + currentSize) && (bananaLocation.x > positionX)) && ((bananaLocation.y < positionY + 50) && (bananaLocation.y > positionY))){
+//	console.log(badGuyId, windowWidth, currentSize);
+	if(((bananaLocation.x < positionX + currentSize) && (bananaLocation.x > positionX - 50)) && ((bananaLocation.y < positionY + 75) && (bananaLocation.y > positionY - 50))){
 		if(id == 2 || id == 4 || id == 5){
 			score = 0;
 			$('#message').prepend('Slipped on ' + badGuyId + '!<br>');
