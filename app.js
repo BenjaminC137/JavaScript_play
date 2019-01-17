@@ -25,7 +25,7 @@ var difficulty = 1;
 window.onresize = function(event) {
 	windowWidth = window.innerWidth;
 	windowHeight = window.innerHeight;
-	console.log(windowWidth, windowHeight);
+//	console.log(windowWidth, windowHeight);
 };
 
 function GetBananaLocation(){
@@ -38,32 +38,37 @@ function GetBananaLocation(){
 }
 function Slide(direction){
 	distanceW = windowWidth / 10;
-	distanceH = windowWidth / 10;
+	distanceH = windowHeight / 10;
 
 	var slider = document.querySelector('#slider');
 	var sliderLeft = window.getComputedStyle(slider).left;
 	var sliderTop = window.getComputedStyle(slider).top;
+	var sliderWidth = window.getComputedStyle(slider).width;
 	var positionX = Number(sliderLeft.replace("px", ""));
 	var positionY = Number(sliderTop.replace("px", ""));
 
-	if(positionX < 100){ // if hit left
-		positionX = 101;
-		positionX += "px"
+	if(positionX < distanceW){ // if hit left
+//		positionX = distanceW;
+//		positionX += "px"
+		positionX = '10vw';
 		slider.style.left = positionX;
 	}
-	if(positionX > window.innerWidth - 100){ // if hit right
-		positionX = window.innerWidth - 105;
-		positionX += "px"
+	if(positionX > window.innerWidth - (distanceW * 2)){ // if hit right
+//		positionX = distanceW;
+//		positionX += "px"
+		positionX = '80vw';
 		slider.style.left = positionX;
 	}
-	if(positionY < 100){ // if hit top
-		positionY = 101;
-		positionY += "px"
+	if(positionY < distanceH){ // if hit top
+//		positionY = distanceH;
+//		positionY += "px"
+		positionY = '10vh';
 		slider.style.top = positionY;
 	}
-	if(positionY > window.innerHeight - 170){ // if hit bottom
-		positionY = window.innerHeight - 176;
-		positionY += "px"
+	if(positionY > window.innerHeight - (distanceH * 2)){ // if hit bottom
+//		positionY = window.innerHeight - 176;
+//		positionY += "px"
+		positionY = '80vh';
 		slider.style.top = positionY;
 	}
 
@@ -158,22 +163,22 @@ function SlideSquare(id, speed, directionBadGuy){
 	var badGuy = document.getElementById(badGuyId);
 	var badGuyLeft = window.getComputedStyle(badGuy).left;
 	var badGuyTop = window.getComputedStyle(badGuy).top;
-	var positionX = Number(badGuyLeft.replace("px", ""));
-	var positionY = Number(badGuyTop.replace("px", ""));
+	var positionX = Number(badGuyLeft);
+	var positionY = Number(badGuyTop);
 
 	Move(directionBadGuy);
 	function Move(directionBadGuy){
 		if(directionBadGuy == 'r'){
-			positionX = '75vw';
+			positionX = '70vw';
 		}
 		if(directionBadGuy == 'd'){
-			positionY = '75vh';
+			positionY = '70vh';
 		}
 		if(directionBadGuy == 'l'){
-			positionX = '15vw';
+			positionX = '20vw';
 		}
 		if(directionBadGuy == 'u'){
-			positionY = '15vh';
+			positionY = '20vh';
 		}
 		badGuy.style.left = positionX;
 		badGuy.style.top = positionY;
