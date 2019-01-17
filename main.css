@@ -36,6 +36,9 @@
 	transition-duration: 1000ms;
 	transition-timing-function: ease-in-out;
 }
+#badGuy5{
+	z-index: 25;
+}
 body{
 	background-color: beige;
 /*	background-color: powderblue*/
@@ -84,6 +87,7 @@ p{
 	background-color: powderblue;
 	transition-duration: 100ms;
 	transition-timing-function: ease-in-out;
+	z-index: 24;
 }
 .slideButtonV{
 	text-align: center;
