@@ -8,8 +8,8 @@ const bananas = [
 ];
 var windowWidth = window.innerWidth;
 var windowHeight = window.innerHeight;
-var distanceH = windowWidth / 25;
-var distanceV = windowHeight / 25;
+var	distanceW = windowWidth / 10;
+var	distanceH = windowHeight / 10;
 var score = 0;
 var banana;
 var currentColor;
@@ -24,9 +24,9 @@ var difficulty = 1;
 window.onresize = function(event) {
 	windowWidth = window.innerWidth;
 	windowHeight = window.innerHeight;
-//	console.log(windowWidth, windowHeight);
+	distanceW = windowWidth / 10;
+	distanceH = windowHeight / 10;
 };
-
 function GetBananaLocation(){
 	var slider = document.querySelector('#slider');
 	var sliderLeft = window.getComputedStyle(slider).left;
@@ -36,9 +36,6 @@ function GetBananaLocation(){
 	return {x: positionX, y: positionY};
 }
 function Slide(direction){
-	distanceW = windowWidth / 10;
-	distanceH = windowHeight / 10;
-
 	var slider = document.querySelector('#slider');
 	var sliderLeft = window.getComputedStyle(slider).left;
 	var sliderTop = window.getComputedStyle(slider).top;
@@ -47,26 +44,18 @@ function Slide(direction){
 	var positionY = Number(sliderTop.replace("px", ""));
 
 	if(positionX < distanceW){ // if hit left
-//		positionX = distanceW;
-//		positionX += "px"
 		positionX = '10vw';
 		slider.style.left = positionX;
 	}
 	if(positionX > window.innerWidth - (distanceW * 2)){ // if hit right
-//		positionX = distanceW;
-//		positionX += "px"
 		positionX = '80vw';
 		slider.style.left = positionX;
 	}
 	if(positionY < distanceH){ // if hit top
-//		positionY = distanceH;
-//		positionY += "px"
 		positionY = '10vh';
 		slider.style.top = positionY;
 	}
 	if(positionY > window.innerHeight - (distanceH * 2)){ // if hit bottom
-//		positionY = window.innerHeight - 176;
-//		positionY += "px"
 		positionY = '80vh';
 		slider.style.top = positionY;
 	}
@@ -223,7 +212,7 @@ function CheckBanana(id){
 //		badGuy.removeEventListener("transitionend", CheckB, false);
 		}
 		$('#score').html(score);
-		badGuy.removeEventListener("transitionend", CheckB, false);
+//		badGuy.removeEventListener("transitionend", CheckB, false);
 	}
 }
 var settings = {
