@@ -1,16 +1,14 @@
 //document.ready = function(event){
 //	$('#scrollDiv').scrollIntoView();
 //};
-$(document).ready(function(){
-//	alert('loaded');
-//    $( "#slider" ).text( "Loaded" );
 
-	var el = $('#scrollDiv')[0];
-	el.scrollIntoView();
+//$(document).ready(function(){
+//	$('#scrollDiv')[0].scrollIntoView(); //works but doesn't register as scrolling down on iOS
+//
+//});
 
-//	var ele = document.getElementById('scrollDiv');
-//	ele.scrollIntoView();
-});
+
+
 const bananas = [
 	{id: 1, color: 'mediumseagreen', size: 10, speed: 2},
 	{id: 2, color: 'pink', size: 2, speed: 5},
@@ -33,6 +31,49 @@ var currentId;
 var directionBadGuy = 'r';
 var done;
 var difficulty = 1;
+
+
+//window.onscroll = function SC(e){
+//	var status = CheckScroll();
+//		console.log(status);
+//
+//	if(status == 'done'){
+////		window.removeEventListener('scroll', SC);
+//////		console.log('done done');
+////		var body = $('body')[0];
+//////		console.log(body);
+////		body.addEventListener("scroll", function(event){
+////			console.log('eventfired');
+////			event.preventDefault();
+////		}, false);
+//	}
+//};
+
+
+//document.querySelector("body").addEventListener("scroll", function(event) {
+//console.log('newfire');
+//         event.preventDefault();
+//}, false);
+
+
+
+//function CheckScroll() {
+//  if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+////	window.removeEventListener('scroll', SC);
+////		console.log('done done');
+//	var body = $('body')[0];
+////		console.log(body);
+//	body.addEventListener("scroll", function(event){
+//		console.log('eventfired');
+//		event.preventDefault();
+//	}, false);
+//
+//	  return 'done';
+//  }
+//	else{
+//		return 'not ready';
+//	}
+//}
 
 window.onresize = function(event) {
 	windowWidth = window.innerWidth;
