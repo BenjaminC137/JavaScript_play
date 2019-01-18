@@ -133,6 +133,8 @@ p{
 	display: inline-block;
 	width: 1px;
 	height: 1px;
+	transition-duration: 50ms;
+	transition-timing-function: ease-in-out;
 }
 #sliderR{
 	right: 5px;

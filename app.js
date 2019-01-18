@@ -4,9 +4,12 @@
 $(document).ready(function(){
 //	alert('loaded');
     $( "#slider" ).text( "Loaded" );
-//	var el = $('#scrollDiv');
-	var ele = document.getElementById('scrollDiv');
-	ele.scrollIntoView();
+
+	var el = $('#scrollDiv')[0];
+	el.scrollIntoView();
+
+//	var ele = document.getElementById('scrollDiv');
+//	ele.scrollIntoView();
 });
 const bananas = [
 	{id: 1, color: 'mediumseagreen', size: 10, speed: 2},
