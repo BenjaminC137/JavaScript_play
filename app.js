@@ -1,3 +1,13 @@
+//document.ready = function(event){
+//	$('#scrollDiv').scrollIntoView();
+//};
+$(document).ready(function(){
+//	alert('loaded');
+    $( "#slider" ).text( "Loaded" );
+//	var el = $('#scrollDiv');
+	var ele = document.getElementById('scrollDiv');
+	ele.scrollIntoView();
+});
 const bananas = [
 	{id: 1, color: 'mediumseagreen', size: 10, speed: 2},
 	{id: 2, color: 'pink', size: 2, speed: 5},

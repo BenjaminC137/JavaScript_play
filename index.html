@@ -3,6 +3,11 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="main.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<script
+	  src="https://code.jquery.com/jquery-3.3.1.js"
+	  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+	  crossorigin="anonymous">
+	</script>
 <!--
 	<link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-icon-60x60.png">
@@ -64,11 +69,14 @@
 
 </head>
 	<body>
+		<div id="scrollDiv"></div>
 		<h1>Slider Banana</h1>
 		<div class="data">
+			<div id="message" style="height: 20vh; overflow: scroll">Get green, orange or red to land on you! Don't let pink, white or invisible(beige) land on you.</div>
+		</div>
+		<div id="stats" >
 			<h3 style="display: inline">Score:</h3><span id="score" class="status">0</span>
 			<h3 style="display: inline">Difficulty:</h3><span id="difficulty" class="status">1</span>
-			<div id="message" style="height: 20vh; overflow: scroll">Get green, orange or red to land on you! Don't let pink, white or invisible(beige) land on you.</div>
 		</div>
 
 <!--		main-->
@@ -91,9 +99,6 @@
 		<a href="https://www.pexels.com/"><img class="pexelsLogo" src="images/pexels2x-55493e5c9ae2025ef763e735064deee0a368f537950481d2d4e04e9f0ab02473.png"></a>
 -->
 	<script src="app.js"></script>
-	<script
-  src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
+
 	</body>
 </html>

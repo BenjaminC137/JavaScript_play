@@ -57,14 +57,16 @@ body{
 	display: inline-block;
 	width: 30vw;
 	height: 10vh;
-
-/*	text-overflow: hidden;*/
+	position: fixed;
+	bottom: 10vh;
 }
 h1{
 	font-size: 1.5em;
 	position: fixed;
-	bottom: 2vh;
-	left: 2vw;
+	top: 1vh;
+	left: 1vw;
+	padding: 0px;
+	margin: 0px;
 }
 html{
 		font-family: monospace;
@@ -125,6 +127,13 @@ p{
 #message{
 	color: midnightblue;
 }
+#scrollDiv{
+	position: relative;
+	top: 110vh;
+	display: inline-block;
+	width: 1px;
+	height: 1px;
+}
 #sliderR{
 	right: 5px;
 }
@@ -136,6 +145,11 @@ p{
 }
 #sliderU{
 	top: 5px;
+}
+#stats{
+	position: fixed;
+	top: 4vh;
+	left: 1vw;
 }
 .status{
 	color: deeppink;
