@@ -3,7 +3,7 @@
 //};
 $(document).ready(function(){
 //	alert('loaded');
-    $( "#slider" ).text( "Loaded" );
+//    $( "#slider" ).text( "Loaded" );
 
 	var el = $('#scrollDiv')[0];
 	el.scrollIntoView();
