@@ -10,7 +10,7 @@
 
 
 const bananas = [
-	{id: 1, color: 'mediumseagreen', size: 10, speed: 2},
+	{id: 1, color: 'mediumseagreen', size: 12, speed: 2},
 	{id: 2, color: 'pink', size: 2, speed: 5},
 	{id: 3, color: 'orange', size: 15, speed: 0.5},
 	{id: 4, color: 'white', size: 3, speed: 4},
@@ -97,22 +97,24 @@ function Slide(direction){
 	var positionX = Number(sliderLeft.replace("px", ""));
 	var positionY = Number(sliderTop.replace("px", ""));
 
-	if(positionX < distanceW){ // if hit left
+	if(positionX < distanceW - 5){ // if hit left
 		positionX = '10vw';
 		slider.style.left = positionX;
 	}
-	if(positionX > window.innerWidth - (distanceW * 2)){ // if hit right
+	if(positionX > distanceW * 8.1){ // if hit right
 		positionX = '80vw';
 		slider.style.left = positionX;
 	}
-	if(positionY < distanceH){ // if hit top
+	if(positionY < distanceH - 5){ // if hit top
 		positionY = '10vh';
 		slider.style.top = positionY;
 	}
-	if(positionY > window.innerHeight - (distanceH * 2)){ // if hit bottom
+//	if(positionY > window.innerHeight - (distanceH * 2)){ // if hit bottom
+	if(positionY > distanceH * 8.1){ // if hit bottom
 		positionY = '80vh';
 		slider.style.top = positionY;
 	}
+//console.log(positionY);
 
 	if(direction == 'r'){
 		positionX = positionX + distanceW;
@@ -182,7 +184,6 @@ function Add(number){
 		difficulty ++;
 		$('#difficulty').html(difficulty);
 	}
-
   // create a new div element
 	var newDiv = document.createElement("div");
 	newDiv.setAttribute("class", "bad-guy");
@@ -251,17 +252,17 @@ function CheckBanana(id){
 //	console.log("banana: ",  bananaLocation.x);
 //	console.log(badGuyId + " : " + positionX);
 //	console.log(bananaLocation.x < positionX + 100);
-	console.log(badGuyId);
+//	console.log(badGuyId);
 	currentSize = (windowWidth / 100) * currentSize;
 //	console.log(badGuyId, windowWidth, currentSize);
 	if(((bananaLocation.x < positionX + currentSize) && (bananaLocation.x > positionX - 50)) && ((bananaLocation.y < positionY + 75) && (bananaLocation.y > positionY - 50))){
 		if(id == 2 || id == 4 || id == 5){
 			score = 0;
-			$('#message').prepend('Slipped on ' + badGuyId + '!<br>');
+			$('#message').prepend("Slipped on <span style='color: " + currentColor + "' class='shadow'>" + currentColor + "</span>!<br>");
 //		badGuy.removeEventListener("transitionend", CheckB, false);
 		}
 		else{
-			$('#message').prepend("Peeled " + badGuyId + "!<br>");
+			$('#message').prepend("Peeled <span style='color: " + currentColor + "' class='shadow'>" + currentColor + "</span>!<br>");
 			score = score + (1*difficulty);
 //		badGuy.removeEventListener("transitionend", CheckB, false);
 		}
