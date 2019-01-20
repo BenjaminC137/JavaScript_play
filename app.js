@@ -272,20 +272,20 @@ function CheckBanana(id){
 	if(((bananaLocation.x < positionX + currentSize) && (bananaLocation.x > positionX - 50)) && ((bananaLocation.y < positionY + currentHeight) && (bananaLocation.y > positionY - 1))){
 		if(id == 2 || id == 4 || id == 5){
 			score = Math.round(score / 2);
-			$('#message').prepend("Slipped on <span style='color: " + currentColor + "' class='shadow'>" + currentColor + "</span>!<br>");
+			$('#message').prepend("Slipped on <span style='color: " + currentColor + "' class='shadow'>" + currentColor + "</span><br>");
 //		badGuy.removeEventListener("transitionend", CheckB, false);
 		}
 		else{
-			$('#message').prepend("Peeled <span style='color: " + currentColor + "' class='shadow'>" + currentColor + "</span>!<br>");
+			$('#message').prepend("Peeled <span style='color: " + currentColor + "' class='shadow'>" + currentColor + "</span><br>");
 			score = score + (1*difficulty);
 			if(score > highScore){
 				highScore = score;
 				$('#highScore').html(highScore);
+				$('#message').prepend("<span class='shadow' style='color: yellow'>New High Score</span><br>");
 			}
 //		badGuy.removeEventListener("transitionend", CheckB, false);
 		}
 		$('#score').html(score);
-		$('#message').prepend("<span class='shadow' style='color: yellow'>New High Score!</span><br>");
 //		badGuy.removeEventListener("transitionend", CheckB, false);
 	}
 }
