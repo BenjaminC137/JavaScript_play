@@ -265,7 +265,7 @@ function CheckBanana(id){
 //	console.log(badGuyId);
 	currentSize = (windowWidth / 100) * currentSize;
 //	console.log(badGuyId, windowWidth, currentSize);
-	if(((bananaLocation.x < positionX + currentSize) && (bananaLocation.x > positionX - 50)) && ((bananaLocation.y < positionY + 75) && (bananaLocation.y > positionY - 50))){
+	if(((bananaLocation.x < positionX + currentSize) && (bananaLocation.x > positionX - 50)) && ((bananaLocation.y < positionY + 50) && (bananaLocation.y > positionY - 25))){
 		if(id == 2 || id == 4 || id == 5){
 			score = 0;
 			$('#message').prepend("Slipped on <span style='color: " + currentColor + "' class='shadow'>" + currentColor + "</span>!<br>");

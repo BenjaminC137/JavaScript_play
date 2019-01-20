@@ -94,7 +94,7 @@ h1{
 }
 html{
 	font-family: monospace;
-	font-size: 18px
+	font-size: 12px
 }
 #message{
 	color: midnightblue;
@@ -193,7 +193,7 @@ p{
 }
 #stats{
 	position: fixed;
-	top: 4vh;
+	top: 5vh;
 	left: 1vw;
 }
 .status{
