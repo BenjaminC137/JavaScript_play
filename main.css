@@ -157,6 +157,7 @@ p{
 	transition-duration: 50ms;
 	transition-timing-function: ease-in-out;
 }
+/*
 #scrollDiv{
 	position: relative;
 	top: 110vh;
@@ -165,6 +166,17 @@ p{
 	height: 1px;
 	transition-duration: 50ms;
 	transition-timing-function: ease-in-out;
+}
+*/
+#scrollMessage{
+	font-size: 4rem;
+	position: absolute;
+	top:35vh;
+	left: 20vh;
+	z-index: 100;
+	display: block;
+	width: 60vw;
+	font-weight: bolder;
 }
 .shadow{
 /*	text-shadow: .5px .5px 0.1px black;*/

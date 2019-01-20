@@ -34,21 +34,20 @@ var done;
 var difficulty = 1;
 
 
-//window.onscroll = function SC(e){
-//	var status = CheckScroll();
+window.onscroll = function SC(e){
+	var status = CheckScroll();
 //		console.log(status);
-//
-//	if(status == 'done'){
-////		window.removeEventListener('scroll', SC);
-//////		console.log('done done');
-////		var body = $('body')[0];
-//////		console.log(body);
-////		body.addEventListener("scroll", function(event){
-////			console.log('eventfired');
-////			event.preventDefault();
-////		}, false);
-//	}
-//};
+	if(status == 'done'){
+//		window.removeEventListener('scroll', SC);
+////		console.log('done done');
+//		var body = $('body')[0];
+////		console.log(body);
+//		body.addEventListener("scroll", function(event){
+//			console.log('eventfired');
+//			event.preventDefault();
+//		}, false);
+	}
+};
 
 
 //document.querySelector("body").addEventListener("scroll", function(event) {
@@ -58,23 +57,23 @@ var difficulty = 1;
 
 
 
-//function CheckScroll() {
-//  if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
-////	window.removeEventListener('scroll', SC);
-////		console.log('done done');
-//	var body = $('body')[0];
-////		console.log(body);
+function CheckScroll() {
+  if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+//	window.removeEventListener('scroll', SC);
+//		console.log('done done');
+	var body = $('body')[0];
+//		console.log(body);
 //	body.addEventListener("scroll", function(event){
 //		console.log('eventfired');
 //		event.preventDefault();
 //	}, false);
-//
-//	  return 'done';
-//  }
-//	else{
-//		return 'not ready';
-//	}
-//}
+	  $('#scrollDiv').text(' ');
+	  return 'done';
+  }
+	else{
+		return 'not ready';
+	}
+}
 
 window.onresize = function(event) {
 	windowWidth = window.innerWidth;
