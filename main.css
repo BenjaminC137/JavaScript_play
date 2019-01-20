@@ -7,6 +7,7 @@
 	display: block;
 	width: 15vw;
 	height: 15vh;
+	z-index: 30;
 /*	color: mediumseagreen*/
 
 	border-radius: 125px;
@@ -24,22 +25,43 @@
 	text-align: center;
 	width: 25vw;
 }
-.bad-guy{
+.bad-guy-start{
 	position: fixed;
-	left: 25vw;
-	top: 25vh;
+	right: 5vw;
+	top: 5vh;
 	display: block;
 	width: 10vw;
 	height: 10vh;
 	border-radius: 125px;
-	background-color: gray;
-	mix-blend-mode:difference;
+/*	background-color: gray;*/
+	mix-blend-mode:exclusion;
+	isolation:isolate;
+
+	transition-duration: 1000ms;
+	transition-timing-function: ease-in-out;
+}
+.bad-guy{
+	position: fixed;
+	left: 20vw;
+	top: 20vh;
+	display: block;
+	width: 10vw;
+	height: 10vh;
+	border-radius: 125px;
+/*	background-color: gray;*/
+	mix-blend-mode:exclusion;
+	isolation:isolate;
+	animation-name: add;
+	animation-duration: 200ms;
+	animation-timing-function: linear;
 
 	transition-duration: 1000ms;
 	transition-timing-function: ease-in-out;
 }
 #badGuy5{
 	z-index: 25;
+	mix-blend-mode:normal;
+/*	isolation:isolate;*/
 }
 body{
 	background-color: beige;
@@ -102,7 +124,7 @@ p{
 	border-radius: 125px;
 	background-color: powderblue;
 /*	background-blend-mode: difference;*/
-	mix-blend-mode: multiply;
+	mix-blend-mode: darken;
 	transition-duration: 100ms;
 	transition-timing-function: ease-in-out;
 	z-index: 24;
@@ -178,4 +200,14 @@ p{
 	color: deeppink;
 	font-weight: bolder;
 	font-size: 2em;
+}
+@keyframes add {
+from {
+	top: 5vh;
+	left: 95vw;
+	}
+to {
+	top: 20vh;
+	left: 20vw;
+	}
 }

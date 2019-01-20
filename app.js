@@ -98,20 +98,20 @@ function Slide(direction){
 	var positionY = Number(sliderTop.replace("px", ""));
 
 	if(positionX < distanceW - 5){ // if hit left
-		positionX = '10vw';
+		positionX = '20vw';
 		slider.style.left = positionX;
 	}
 	if(positionX > distanceW * 8.1){ // if hit right
-		positionX = '80vw';
+		positionX = '70vw';
 		slider.style.left = positionX;
 	}
 	if(positionY < distanceH - 5){ // if hit top
-		positionY = '10vh';
+		positionY = '20vh';
 		slider.style.top = positionY;
 	}
 //	if(positionY > window.innerHeight - (distanceH * 2)){ // if hit bottom
 	if(positionY > distanceH * 8.1){ // if hit bottom
-		positionY = '80vh';
+		positionY = '70vh';
 		slider.style.top = positionY;
 	}
 //console.log(positionY);
@@ -187,6 +187,7 @@ function Add(number){
   // create a new div element
 	var newDiv = document.createElement("div");
 	newDiv.setAttribute("class", "bad-guy");
+//	newDiv.setAttribute("class", "bad-guy");
 	newDiv.setAttribute("id", "badGuy" + number);
 	newDiv.style.backgroundColor = currentColor;
 //	newDiv.style.transition =  '200ms';
@@ -199,7 +200,16 @@ function Add(number){
 	var addDiv = document.getElementById("add");
 	var newClick = ("Add(" + (number + 1) + ")");
 	addDiv.setAttribute("onclick", newClick);
+//	newDiv.setAttribute("class", "bad-guy");
+//	addClassBG(number);
+//	console.log(number);
 }
+//function addClassBG(id){
+//	var badGuyId = 'badGuy';
+//	badGuyId += id;
+//	var badGuy = document.getElementById(badGuyId);
+//	badGuy.setAttribute("class", "bad-guy");
+//}
 function SlideSquare(id, speed, directionBadGuy){
 	var badGuyId = 'badGuy';
 	badGuyId += id;
