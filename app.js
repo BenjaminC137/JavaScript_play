@@ -33,7 +33,6 @@ var directionBadGuy = 'r';
 var done;
 var difficulty = 1;
 
-
 window.onscroll = function SC(e){
 	var status = CheckScroll();
 //		console.log(status);
@@ -48,17 +47,13 @@ window.onscroll = function SC(e){
 //		}, false);
 	}
 };
-
-
 //document.querySelector("body").addEventListener("scroll", function(event) {
 //console.log('newfire');
 //         event.preventDefault();
 //}, false);
 
-
-
 function CheckScroll() {
-  if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
 //	window.removeEventListener('scroll', SC);
 //		console.log('done done');
 	var body = $('body')[0];
@@ -67,14 +62,14 @@ function CheckScroll() {
 //		console.log('eventfired');
 //		event.preventDefault();
 //	}, false);
-	  $('#scrollDiv').text(' ');
+	  setTimeout(function(){ $('#scrollDiv').text(' ');}, 800);
+//	  $('#scrollDiv').text(' ');
 	  return 'done';
   }
 	else{
 		return 'not ready';
 	}
 }
-
 window.onresize = function(event) {
 	windowWidth = window.innerWidth;
 	windowHeight = window.innerHeight;
