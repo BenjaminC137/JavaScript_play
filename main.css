@@ -177,6 +177,12 @@ p{
 	display: block;
 	width: 60vw;
 	font-weight: bolder;
+	background-color: orange;
+	border-style: solid;
+	border-width: thick;
+	text-align: center;
+	padding: 5vw;
+	border-radius: 50px;
 }
 .shadow{
 /*	text-shadow: .5px .5px 0.1px black;*/
