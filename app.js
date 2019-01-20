@@ -111,9 +111,11 @@ function Slide(direction){
 		slider.style.top = positionY;
 	}
 //	if(positionY > window.innerHeight - (distanceH * 2)){ // if hit bottom
-	if(positionY > distanceH * 8.1){ // if hit bottom
+	if(positionY > distanceH * 8.9){ // if hit bottom
 		positionY = '70vh';
 		slider.style.top = positionY;
+//		positionY = '20vh';
+//		slider.style.bottom = positionY;
 	}
 //console.log(positionY);
 
