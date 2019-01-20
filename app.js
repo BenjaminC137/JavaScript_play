@@ -62,7 +62,12 @@ function CheckScroll() {
 //		console.log('eventfired');
 //		event.preventDefault();
 //	}, false);
-	  setTimeout(function(){ $('#scrollDiv').text(' ');}, 800);
+	  setTimeout(function(){
+		  $('#scrollMessage').text(' ');
+		  $('#scrollMessage').removeAttr("id");
+		  $('#scrollDiv').addClass("zScroll");
+	  }, 800);
+//	  $('#scrollMessage').removeAttr("id");
 //	  $('#scrollDiv').text(' ');
 	  return 'done';
   }
