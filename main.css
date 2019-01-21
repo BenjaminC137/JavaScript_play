@@ -64,6 +64,8 @@
 	width: 10vw;
 	height: 10vh;
 	border-radius: 125px;
+	border-color: powderblue;
+	border-style: solid;
 /*	background-color: gray;*/
 /*
 	mix-blend-mode:exclusion;
