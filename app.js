@@ -326,11 +326,64 @@ function CheckBanana(id){
 				$('#highScore').html(highScore);
 				$('#message').prepend("<span class='shadow' style='color: yellow'>New High Score</span><br>");
 			}
-//		badGuy.removeEventListener("transitionend", CheckB, false);
 		}
-		badGuy.remove();
+		Clone(id);
+//		setTimeout(function(){
+//			badGuy.remove();
+//		}, 800);
+//		var old_element = badGuy;
+//		var new_element = old_element.cloneNode(true);
+//		old_element.parentNode.replaceChild(new_element, old_element);
+		var badGuyCloneId = 'badGuyClone';
+		badGuyCloneId += id;
+		var badGuyClone = document.getElementById(badGuyCloneId);
+		setTimeout(function(){
+		badGuyClone.remove();
+		}, 800);
+		setTimeout (function(){
+		badGuyClone.style.top = ('0vh');
+		badGuyClone.style.left = ('100vw');
+		}, 100);
+//		badGuy.remove();
 		$('#difficulty').html(difficulty);
 		$('#score').html(score);
 //		badGuy.removeEventListener("transitionend", CheckB, false);
 	}
+}
+function Clone(id){
+	//get current badguy
+	const currentBanana = bananas.find( banana => banana.id === id);
+	currentId = id;
+	currentColor = currentBanana['color'];
+	currentSize = currentBanana['size'];
+	currentSpeed = currentBanana['speed'];
+	var badGuyId = 'badGuy';
+	badGuyId += id;
+
+	//get badguy location
+	var badGuy = document.getElementById(badGuyId);
+	var badGuyLeft = window.getComputedStyle(badGuy).left;
+	var badGuyTop = window.getComputedStyle(badGuy).top;
+	var positionX = Number(badGuyLeft.replace("px", ""));
+	var positionY = Number(badGuyTop.replace("px", ""));
+
+	//remove current badguy to remove event listners
+	badGuy.remove();
+
+// create clone
+	var newDiv = document.createElement("div");
+	newDiv.setAttribute("class", "bad-guy-clone");
+	newDiv.setAttribute("id", "badGuyClone" + id);
+	newDiv.style.backgroundColor = currentColor;
+//	newDiv.style.transition =  '200ms';
+	newDiv.style.width = currentSize += 'vw';
+	positionX += "px";
+	positionY += "px";
+	newDiv.style.left = positionX;
+	newDiv.style.top = positionY;
+
+	// add the newly created element and its content into the DOM
+	var currentDiv = document.getElementById("slider");
+	document.body.insertBefore(newDiv, currentDiv);
+	console.log(newDiv);
 }
