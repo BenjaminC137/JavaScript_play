@@ -7,12 +7,12 @@
 //
 //});
 const bananas = [
-	{id: 1, color: 'mediumseagreen', size: 12, speed: 2},
+	{id: 1, color: 'Turquoise', size: 12, speed: 2},
 	{id: 2, color: 'pink', size: 2, speed: 5},
 	{id: 3, color: 'orange', size: 15, speed: 0.5},
 	{id: 4, color: 'white', size: 3, speed: 4},
 	{id: 5, color: 'beige', size: 20, speed: 0.5},
-	{id: 6, color: 'orangered', size: 25, speed: 0.5}
+	{id: 6, color: 'crimson', size: 25, speed: 0.5}
 ];
 var highScore = 0;
 var windowWidth = window.innerWidth;
