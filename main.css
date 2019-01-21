@@ -206,7 +206,9 @@ p{
 		2px -1px 0px black
 		;
 
-
+	animation-name: points;
+	animation-duration: 200ms;
+	animation-timing-function: linear;
 }
 #sliderR{
 	right: 0vw;
@@ -246,5 +248,13 @@ from {
 to {
 	top: 20vh;
 	left: 20vw;
+	}
+}
+@keyframes points {
+from {
+	background-color: red;
+	}
+to {
+	background-color: inherit;
 	}
 }

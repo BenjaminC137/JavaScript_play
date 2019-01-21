@@ -308,21 +308,19 @@ function CheckBanana(id){
 //	console.log(badGuyId);
 	currentSize = (windowWidth / 100) * currentSize;
 	currentHeight = (windowHeight / 10);
-//	console.log(badGuyId, windowWidth, currentSize);
 	if(((bananaLocation.x < positionX + currentSize) && (bananaLocation.x > positionX - 50)) && ((bananaLocation.y < positionY + currentHeight) && (bananaLocation.y > positionY - 1))){
 		if(id == 2 || id == 4 || id == 5){
-			score = Math.round(score / 2);
-			$('#message').prepend("Slipped on <span style='color: " + currentColor + "' class='shadow'>" + currentColor + "</span><br>");
+			var pointsLost = Math.round(score / 2);
+			score = pointsLost;
+			$('#message').prepend("Slipped on <span style='color: " + currentColor + "' class='shadow'>" + currentColor + "</span>" + " - " + pointsLost + "<br>");
 			difficulty --;
-//		badGuy.removeEventListener("transitionend", CheckB, false);
 		}
 		else{
-			$('#message').prepend("Peeled <span style='color: " + currentColor + "' class='shadow'>" + currentColor + "</span><br>");
-//			badGuy.remove();
-//			console.log(currentSize);
 			var value = -(currentBanana['size'] / 2) + maxSize;
-			score += (1*difficulty) * value;
-			console.log(badGuyId + ' value: ' + value + "score: " + score);
+			var newPoints = (1*difficulty) * value;
+			$('#message').prepend("Peeled <span style='color: " + currentColor + "' class='shadow'>" + currentColor + "</span>" + " + " + newPoints + "<br>");
+			score += newPoints;
+//			console.log(badGuyId + ' value: ' + value + "score: " + newPoints);
 			if(score > highScore){
 				highScore = score;
 				$('#highScore').html(highScore);
