@@ -2,10 +2,25 @@
 //	$('#scrollDiv').scrollIntoView();
 //};
 
-//$(document).ready(function(){
+$(document).ready(function(){
 //	$('#scrollDiv')[0].scrollIntoView(); //works but doesn't register as scrolling down on iOS
-//
-//});
+//	console.log('ready');
+	if("savedHighScore" in localStorage){
+		highScore = localStorage.getItem('savedHighScore');
+   		console.log('High Score Found! It is: ' + highScore);
+		$('#highScore').html(highScore);
+	}
+	else {
+	   console.log('No High Score Found.');
+	}
+//	try{
+//		highScore = localStorage.getItem('highScore');
+//		console.log('try');
+//	}
+//	catch(error){
+//		console.log('No high score. error: ' + error);
+//	}
+});
 const bananas = [
 	{id: 1, color: 'Turquoise', size: 12, speed: 2},
 	{id: 2, color: 'pink', size: 2, speed: 5},
@@ -323,6 +338,7 @@ function CheckBanana(id){
 //			console.log(badGuyId + ' value: ' + value + "score: " + newPoints);
 			if(score > highScore){
 				highScore = score;
+				localStorage.setItem('savedHighScore', highScore);
 				$('#highScore').html(highScore);
 				$('#message').prepend("<span class='shadow' style='color: yellow'>New High Score</span><br>");
 			}
@@ -384,4 +400,14 @@ function Clone(id){
 	var currentDiv = document.getElementById("slider");
 	document.body.insertBefore(newDiv, currentDiv);
 	console.log(newDiv);
+}
+function ClearHighScore(){
+	if (confirm("Are you sure you want to clear your high score?")) {
+		localStorage.removeItem('savedHighScore');
+		highScore = 0;
+		$('#highScore').html(highScore);
+	}
+	else {
+		console.log('canceled score clearing');
+	}
 }

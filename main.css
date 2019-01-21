@@ -90,6 +90,9 @@ body{
     -ms-user-select: none;
     user-select: none;
 }
+button{
+	background-color: inherit;
+}
 .center{
 	display: flex;
 	align-items: center;
@@ -140,6 +143,11 @@ p{
 	filter: invert(1);
 }
 */
+.reset{
+	color: red;
+	font-weight: bolder;
+	font-size: .75em;
+}
 .slide{
 	position: fixed;
 	right: 20vw;
