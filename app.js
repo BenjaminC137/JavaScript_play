@@ -312,7 +312,7 @@ function CheckBanana(id){
 		if(id == 2 || id == 4 || id == 5){
 			var pointsLost = Math.round(score / 2);
 			score = pointsLost;
-			$('#message').prepend("Slipped on <span style='color: " + currentColor + "' class='shadow'>" + currentColor + "</span>" + " - " + pointsLost + "<br>");
+			$('#message').prepend("<span style='color: " + currentColor + "' class='shadow'>" + currentColor + "</span> slipped on you" + " - " + pointsLost + "<br>");
 			difficulty --;
 		}
 		else{
@@ -339,15 +339,13 @@ function CheckBanana(id){
 		var badGuyClone = document.getElementById(badGuyCloneId);
 		setTimeout(function(){
 		badGuyClone.remove();
-		}, 800);
+		}, 400);
 		setTimeout (function(){
 		badGuyClone.style.top = ('0vh');
-		badGuyClone.style.left = ('100vw');
+		badGuyClone.style.left = ('90vw');
 		}, 100);
-//		badGuy.remove();
 		$('#difficulty').html(difficulty);
 		$('#score').html(score);
-//		badGuy.removeEventListener("transitionend", CheckB, false);
 	}
 }
 function Clone(id){
