@@ -30,6 +30,7 @@ var directionBadGuy = 'r';
 var done;
 var difficulty = 1;
 var nextBanana = -1;
+var maxSize = 1;
 //window.onscroll = function SC(e){
 //	var status = CheckScroll();
 ////		console.log(status);
@@ -201,6 +202,10 @@ function Add(number){
 	currentColor = currentBanana['color'];
 	currentSize = currentBanana['size'];
 	currentSpeed = currentBanana['speed'];
+	if(currentSize > maxSize){
+		maxSize = currentSize;
+//		console.log(maxSize);
+	}
 	if ([2,4,5].indexOf(number) > -1){
 		difficulty ++;
 		$('#difficulty').html(difficulty);
@@ -314,7 +319,10 @@ function CheckBanana(id){
 		else{
 			$('#message').prepend("Peeled <span style='color: " + currentColor + "' class='shadow'>" + currentColor + "</span><br>");
 //			badGuy.remove();
-			score = score + (1*difficulty);
+//			console.log(currentSize);
+			var value = -(currentBanana['size'] / 2) + maxSize;
+			score += (1*difficulty) * value;
+			console.log(badGuyId + ' value: ' + value + "score: " + score);
 			if(score > highScore){
 				highScore = score;
 				$('#highScore').html(highScore);
