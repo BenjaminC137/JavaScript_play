@@ -106,7 +106,7 @@ body{
 h1{
 	font-size: 1.5em;
 	position: fixed;
-	top: 1vh;
+	bottom: 1vh;
 	left: 1vw;
 	padding: 0px;
 	margin: 0px;
@@ -251,7 +251,7 @@ color:
 }
 #stats{
 	position: fixed;
-	top: 5vh;
+	top: 1vh;
 	left: 1vw;
 }
 .status{
