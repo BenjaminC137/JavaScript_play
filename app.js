@@ -6,9 +6,6 @@
 //	$('#scrollDiv')[0].scrollIntoView(); //works but doesn't register as scrolling down on iOS
 //
 //});
-
-
-
 const bananas = [
 	{id: 1, color: 'mediumseagreen', size: 12, speed: 2},
 	{id: 2, color: 'pink', size: 2, speed: 5},
@@ -32,49 +29,47 @@ var currentId;
 var directionBadGuy = 'r';
 var done;
 var difficulty = 1;
-
-window.onscroll = function SC(e){
-	var status = CheckScroll();
-//		console.log(status);
-	if(status == 'done'){
-//		window.removeEventListener('scroll', SC);
-////		console.log('done done');
-//		var body = $('body')[0];
-////		console.log(body);
-//		body.addEventListener("scroll", function(event){
-//			console.log('eventfired');
-//			event.preventDefault();
-//		}, false);
-	}
-};
+var nextBanana = -1;
+//window.onscroll = function SC(e){
+//	var status = CheckScroll();
+////		console.log(status);
+//	if(status == 'done'){
+////		window.removeEventListener('scroll', SC);
+//////		console.log('done done');
+////		var body = $('body')[0];
+//////		console.log(body);
+////		body.addEventListener("scroll", function(event){
+////			console.log('eventfired');
+////			event.preventDefault();
+////		}, false);
+//	}
+//};
 //document.querySelector("body").addEventListener("scroll", function(event) {
 //console.log('newfire');
 //         event.preventDefault();
 //}, false);
 
-function CheckScroll() {
-  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-//	window.removeEventListener('scroll', SC);
-//		console.log('done done');
-	var body = $('body')[0];
-//		console.log(body);
-//	body.addEventListener("scroll", function(event){
-//		console.log('eventfired');
-//		event.preventDefault();
-//	}, false);
-	  setTimeout(function(){
-		  $('#scrollMessage').text(' ');
-		  $('#scrollMessage').removeAttr("id");
-		  $('#scrollDiv').addClass("zScroll");
-	  }, 800);
-//	  $('#scrollMessage').removeAttr("id");
-//	  $('#scrollDiv').text(' ');
-	  return 'done';
-  }
-	else{
-		return 'not ready';
-	}
-}
+//function CheckScroll() {
+//  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+////	window.removeEventListener('scroll', SC);
+////		console.log('done done');
+//	var body = $('body')[0];
+////		console.log(body);
+////	body.addEventListener("scroll", function(event){
+////		console.log('eventfired');
+////		event.preventDefault();
+////	}, false);
+//	  setTimeout(function(){
+//		  $('#scrollMessage').text(' ');
+//		  $('#scrollMessage').removeAttr("id");
+//		  $('#scrollDiv').addClass("zScroll");
+//	  }, 800);
+//	  return 'done';
+//  }
+//	else{
+//		return 'not ready';
+//	}
+//}
 window.onresize = function(event) {
 	windowWidth = window.innerWidth;
 	windowHeight = window.innerHeight;
@@ -97,15 +92,15 @@ function Slide(direction){
 	var positionX = Number(sliderLeft.replace("px", ""));
 	var positionY = Number(sliderTop.replace("px", ""));
 
-	if(positionX < distanceW - 5){ // if hit left
+	if(positionX < (distanceW *2) - 5){ // if hit left
 		positionX = '20vw';
 		slider.style.left = positionX;
 	}
-	if(positionX > distanceW * 8.1){ // if hit right
+	if(positionX > distanceW * 7.1){ // if hit right
 		positionX = '70vw';
 		slider.style.left = positionX;
 	}
-	if(positionY < distanceH - 5){ // if hit top
+	if(positionY < (distanceH * 2) - 5){ // if hit top
 		positionY = '20vh';
 		slider.style.top = positionY;
 	}
@@ -124,7 +119,7 @@ function Slide(direction){
 		positionX += "px";
 		slider.style.left = positionX;
 
-		SlideSquare(1, 1, 'd');
+		SlideSquare(1, 1, 'd')
 		SlideSquare(2, 1, 'r');
 		SlideSquare(3, 1, 'l');
 		SlideSquare(4, 1, 'r');
@@ -175,13 +170,37 @@ function Slide(direction){
 
 }
 function Add(number){
+	var badGuys = $(".bad-guy");
+	if(badGuys.length >= bananas.length){
+		$('#message').prepend('No more bad guys!<br>');
+		return null;
+	}
+
+	if(number == bananas.length + 1){
+		number = 1;
+	}
+	for(var i = 1; i < bananas.length; i++){
+//		console.log(i);
+		var presence = CheckBadGuy(i);
+		if(presence == 'fart'){
+			nextBanana = i;
+			break;
+		}
+		else{
+			nextBanana = -1;
+		}
+//		console.log(nextBanana);
+	}
+
+	if(nextBanana > -1){
+		number = nextBanana;
+	}
+
 	const currentBanana = bananas.find( banana => banana.id === number);
-//	console.log(currentBanana)
 	currentId = currentBanana['id'];
 	currentColor = currentBanana['color'];
 	currentSize = currentBanana['size'];
 	currentSpeed = currentBanana['speed'];
-//	console.log(currentColor);
 	if ([2,4,5].indexOf(number) > -1){
 		difficulty ++;
 		$('#difficulty').html(difficulty);
@@ -189,7 +208,6 @@ function Add(number){
   // create a new div element
 	var newDiv = document.createElement("div");
 	newDiv.setAttribute("class", "bad-guy");
-//	newDiv.setAttribute("class", "bad-guy");
 	newDiv.setAttribute("id", "badGuy" + number);
 	newDiv.style.backgroundColor = currentColor;
 //	newDiv.style.transition =  '200ms';
@@ -215,6 +233,9 @@ function Add(number){
 function SlideSquare(id, speed, directionBadGuy){
 	var badGuyId = 'badGuy';
 	badGuyId += id;
+	if(CheckBadGuy(id) == 'fart'){
+		return null;
+	}
 	var badGuy = document.getElementById(badGuyId);
 	var badGuyLeft = window.getComputedStyle(badGuy).left;
 	var badGuyTop = window.getComputedStyle(badGuy).top;
@@ -246,6 +267,21 @@ function SlideSquare(id, speed, directionBadGuy){
 		}
 	}
 }
+function CheckBadGuy(id){
+	var badGuyId = 'badGuy';
+	badGuyId += id;
+	var badGuy = document.getElementById(badGuyId);
+
+	try{
+		var badGuyLeft = window.getComputedStyle(badGuy).left;
+//		console.log('here');
+		return 'here';
+	}
+	catch(error){
+//		console.log('error');
+	return 'fart';
+	}
+}
 function CheckBanana(id){
 	const currentBanana = bananas.find( banana => banana.id === id);
 	currentId = currentBanana['id'];
@@ -272,10 +308,12 @@ function CheckBanana(id){
 		if(id == 2 || id == 4 || id == 5){
 			score = Math.round(score / 2);
 			$('#message').prepend("Slipped on <span style='color: " + currentColor + "' class='shadow'>" + currentColor + "</span><br>");
+			difficulty --;
 //		badGuy.removeEventListener("transitionend", CheckB, false);
 		}
 		else{
 			$('#message').prepend("Peeled <span style='color: " + currentColor + "' class='shadow'>" + currentColor + "</span><br>");
+//			badGuy.remove();
 			score = score + (1*difficulty);
 			if(score > highScore){
 				highScore = score;
@@ -284,24 +322,9 @@ function CheckBanana(id){
 			}
 //		badGuy.removeEventListener("transitionend", CheckB, false);
 		}
+		badGuy.remove();
+		$('#difficulty').html(difficulty);
 		$('#score').html(score);
 //		badGuy.removeEventListener("transitionend", CheckB, false);
 	}
-}
-var settings = {
-  "async": true,
-  "crossDomain": true,
-  "url": "https://api.pexels.com/v1/curated?per_page=15&page=1",
-  "method": "GET",
-  "headers": {
-    "Authorization": "563492ad6f91700001000001d287cf6b84eb4d789e2a5b915da35960",
-    "Cache-Control": "no-cache",
-    "Postman-Token": "334da920-22c4-4c9c-9de9-f721790e32fd"
-  }
-}
-function ChangeBackground(){
-	pexelAPI = '563492ad6f91700001000001d287cf6b84eb4d789e2a5b915da35960';
-	$.ajax(settings).done(function (response) {
-  console.log(response);
-});
 }
