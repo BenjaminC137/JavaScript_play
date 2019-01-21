@@ -172,7 +172,7 @@ function Slide(direction){
 function Add(number){
 	var badGuys = $(".bad-guy");
 	if(badGuys.length >= bananas.length){
-		$('#message').prepend('No more bad guys!<br>');
+		$('#message').prepend('All bad guys are here!<br>');
 		return null;
 	}
 
