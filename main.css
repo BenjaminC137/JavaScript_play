@@ -65,13 +65,13 @@
 	height: 10vh;
 	border-radius: 125px;
 /*	background-color: gray;*/
+/*
 	mix-blend-mode:exclusion;
 	isolation:isolate;
-/*
-	animation-name: add;
+*/
+	animation-name: clone;
 	animation-duration: 200ms;
 	animation-timing-function: linear;
-*/
 
 	transition-duration: 200ms;
 	transition-timing-function: ease-in-out;
@@ -313,13 +313,23 @@ to {
 	left: 20vw;
 	}
 }
+@keyframes clone{
+	from {
+		width: 10vw;
+		height: 10vh;
+	}
+	to{
+		width: 30vw;
+		height: 30vh;
+	}
+}
 @keyframes points {
-from {
-	background-color: deepskyblue;
-	}
-to {
-	background-color: inherit;
-	}
+	from {
+		background-color: deepskyblue;
+		}
+	to {
+		background-color: inherit;
+		}
 }
 
 @include media-breakpoint-up(sm) {
