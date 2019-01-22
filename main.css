@@ -130,7 +130,7 @@ html{
 	font-size: 1em;
 	border-style: solid;
 	padding: 5px;
-	border-radius: 5px;
+	border-radius: 15px;
 	border-color:crimson
 }
 p{
@@ -242,7 +242,7 @@ p{
 		-1px -1px 1px powderblue,
 		2px -1px 0px black
 		;
-color:
+color: red;
 	animation-name: points;
 	animation-duration: 1000ms;
 	animation-timing-function: linear;
