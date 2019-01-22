@@ -17,8 +17,8 @@ $(document).ready(function(){
 	if(breakpoint == 'small'){
 		iOSBottomBarVh = 20;
 		iOSBottomBarPx = 40;
-		hitBottom = 6.1;
-		$('#sliderD')[0].style.top = '80vh';
+		hitBottom = 7.1;
+		$('#sliderD')[0].style.top = '70vh';
 
 //			(90 - iOSBottomBarVh) + 'vh';
 	}
