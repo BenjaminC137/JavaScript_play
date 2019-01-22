@@ -13,6 +13,20 @@ $(document).ready(function(){
 	else {
 	   console.log('No High Score Found.');
 	}
+
+	if(breakpoint == 'small'){
+		iOSBottomBarVh = 20;
+		iOSBottomBarPx = 40;
+		hitBottom = 5.1;
+		$('#sliderD')[0].style.top = '70vh';
+
+//			(90 - iOSBottomBarVh) + 'vh';
+	}
+	else{
+		iOSBottomBarVh = 0;
+		iOSBottomBarPx = 0;
+		hitBottom = 7.1;
+	}
 //	try{
 //		highScore = localStorage.getItem('highScore');
 //		console.log('try');
@@ -46,6 +60,9 @@ var done;
 var difficulty = 1;
 var nextBanana = -1;
 var maxSize = 1;
+var iOSBottomBarVh = 0;
+var iOSBottomBarPx = 0;
+var hitBottom;
 //window.onscroll = function SC(e){
 //	var status = CheckScroll();
 ////		console.log(status);
@@ -91,6 +108,9 @@ window.onresize = function(event) {
 	windowHeight = window.innerHeight;
 	distanceW = windowWidth / 10;
 	distanceH = windowHeight / 10;
+//	if(breakpoint == 'small'){
+//
+//	}
 };
 function GetBananaLocation(){
 	var slider = document.querySelector('#slider');
@@ -121,8 +141,10 @@ function Slide(direction){
 		slider.style.top = positionY;
 	}
 //	if(positionY > window.innerHeight - (distanceH * 2)){ // if hit bottom
-	if(positionY > distanceH * 7.1){ // if hit bottom
-		positionY = '70vh';
+	if(positionY > distanceH * hitBottom){ // if hit bottom
+//		positionY = '70vh';
+		positionY = (70 - iOSBottomBarVh) + 'vh';
+		console.log(positionY);
 		slider.style.top = positionY;
 //		positionY = '20vh';
 //		slider.style.bottom = positionY;
