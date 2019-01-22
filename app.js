@@ -19,6 +19,8 @@ $(document).ready(function(){
 		iOSBottomBarPx = 40;
 		hitBottom = 6.1;
 		$('#sliderD')[0].style.top = '70vh';
+		$('.zone-center')[0].style.height = '59vh';
+
 
 //			(90 - iOSBottomBarVh) + 'vh';
 	}
