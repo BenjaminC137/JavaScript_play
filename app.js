@@ -33,8 +33,8 @@ $(document).ready(function(){
 		currentBottom = 70;
 	}
 	console.log(window.innerHeight);
-	$('#message').prepend(window.innerHeight + '<br>');
-	$('#message').prepend('distanceH ' + distanceH + '<br>');
+//	$('#message').prepend(window.innerHeight + '<br>');
+//	$('#message').prepend('distanceH ' + distanceH + '<br>');
 //	try{
 //		highScore = localStorage.getItem('highScore');
 //		console.log('try');
@@ -239,7 +239,7 @@ function Slide(direction){
 		SlideSquare(5, 1, 'l');
 		SlideSquare(6, 1, 'r');
 	}
-	$('#message').prepend(positionY + '<br>');
+//	$('#message').prepend(positionY + '<br>');
 
 	if(heightStep > currentBottom){ // if hit bottom
 		positionY = (currentBottom - 10) + 'vh';
@@ -413,7 +413,7 @@ function CheckBanana(id){
 				highScore = score;
 				localStorage.setItem('savedHighScore', highScore);
 				$('#highScore').html(highScore);
-				$('#message').prepend("<span class='shadow' style='color: yellow'>New High Score</span><br>");
+				$('#message').prepend("<span class='shadow' style='color: yellow'>New High Score: </span><span class='shadow' style='color: deeppink'>" + highScore + "</span><br>");
 			}
 		}
 		Clone(id);
