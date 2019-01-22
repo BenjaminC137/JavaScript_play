@@ -411,3 +411,24 @@ function ClearHighScore(){
 		console.log('canceled score clearing');
 	}
 }
+
+
+
+// Setup the breakpoint variable
+var breakpoint;
+
+// Get the current breakpoint
+var getBreakpoint = function () {
+	console.log('got here');
+	return window.getComputedStyle(document.body, ':before').content.replace(/\"/g, '');
+};
+
+// Calculate breakpoint on page load
+breakpoint = getBreakpoint();
+console.log('breakpoint' + breakpoint);
+
+// Recalculate breakpoint on resize
+window.addEventListener('resize', function () {
+	breakpoint = getBreakpoint();
+	console.log('breakpoint' + breakpoint);
+}, false);

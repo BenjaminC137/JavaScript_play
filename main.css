@@ -93,7 +93,7 @@ body{
     user-select: none;
 }
 button{
-	background-color: inherit;
+/*	background-color: inherit;*/
 }
 .center{
 	display: flex;
@@ -130,8 +130,8 @@ html{
 	font-size: 1em;
 	border-style: solid;
 	padding: 5px;
-	border-radius: 15px;
-	border-color:crimson
+	border-radius: 25px;
+	border-color:deeppink;
 }
 p{
 /*	font-family: fantasy;*/
@@ -149,6 +149,7 @@ p{
 	color: red;
 	font-weight: bolder;
 	font-size: .75em;
+	background-color: inherit;
 }
 .slide{
 	position: fixed;
@@ -349,6 +350,17 @@ to {
 /*	 320.98px*/
 /*Extra small devices (portrait phones, less than 576px)*/
 @media (max-width:575.98px) {
+/*
+	h1{
+		font-size: 1em;
+	}
+	h3{
+		font-size: 1em;
+	}
+*/
+	html{
+		font-size: .75em;
+	}
 }
 /* Small devices (landscape phones, 576px and up)*/
 @media (min-width: 576px) and (max-width: 767.98px) {
@@ -361,3 +373,33 @@ to {
 }
 /* Extra large devices (large desktops, 1200px and up)*/
 @media (min-width: 1200px) {  }
+
+body:before {
+	content: "xsmall";
+	display: none;
+	visibility: hidden;
+}
+
+@media (min-width: 20em) {
+	body:before {
+		content: "small";
+	}
+}
+
+@media (min-width: 40em) {
+	body:before {
+		content: "medium";
+	}
+}
+
+@media (min-width: 60em) {
+	body:before {
+		content: "large";
+	}
+}
+
+@media (min-width: 80em) {
+	body:before {
+		content: "xlarge";
+	}
+}
