@@ -23,11 +23,14 @@ $(document).ready(function(){
 		$('.data')[0].style.top = '30vh';
 		$('#message')[0].style.height = '20vh';
 //			(90 - iOSBottomBarVh) + 'vh';
+		currentBottom = 50;
+
 	}
 	else{
 		iOSBottomBarVh = 0;
 		iOSBottomBarPx = 0;
 		hitBottom = 7.1;
+		currentBottom = 70;
 	}
 	console.log(window.innerHeight);
 	$('#message').prepend(window.innerHeight + '<br>');
@@ -53,6 +56,7 @@ var windowWidth = window.innerWidth;
 var windowHeight = window.innerHeight;
 var	distanceW = windowWidth / 10;
 var	distanceH = windowHeight / 10;
+var heightStep = 20;
 var score = 0;
 var banana;
 var currentColor;
@@ -68,6 +72,7 @@ var maxSize = 1;
 var iOSBottomBarVh = 0;
 var iOSBottomBarPx = 0;
 var hitBottom;
+var currentBottom = 70;
 //window.onscroll = function SC(e){
 //	var status = CheckScroll();
 ////		console.log(status);
@@ -131,7 +136,9 @@ function Slide(direction){
 	var sliderTop = window.getComputedStyle(slider).top;
 	var sliderWidth = window.getComputedStyle(slider).width;
 	var positionX = Number(sliderLeft.replace("px", ""));
-	var positionY = Number(sliderTop.replace("px", ""));
+//	var positionY = Number(sliderTop.replace("px", ""));
+
+	console.log(heightStep);
 
 	if(positionX < (distanceW *2) - 5){ // if hit left
 		positionX = '20vw';
@@ -141,19 +148,35 @@ function Slide(direction){
 		positionX = '70vw';
 		slider.style.left = positionX;
 	}
-	if(positionY < (distanceH * 2) - 5){ // if hit top
-		positionY = '20vh';
-		slider.style.top = positionY;
-	}
-//	if(positionY > window.innerHeight - (distanceH * 2)){ // if hit bottom
-	if(positionY > distanceH * hitBottom){ // if hit bottom
-//		positionY = '70vh';
-		positionY = (70 - iOSBottomBarVh) + 'vh';
-		console.log(positionY);
-		slider.style.top = positionY;
+//	if(positionY < (distanceH * 2) - 5){ // if hit top
 //		positionY = '20vh';
-//		slider.style.bottom = positionY;
-	}
+//		slider.style.top = positionY;
+//	}
+//	if(heightStep < 21){ // if hit top
+////		console.log('yup');
+//		positionY = '30vh';
+//		heightStep = 30;
+//		console.log(positionY);
+//		$('#slider').style.top = positionY;
+//	}
+
+//	if(positionY > window.innerHeight - (distanceH * 2)){ // if hit bottom
+//	if(positionY > distanceH * hitBottom){ // if hit bottom
+////		positionY = '70vh';
+//		positionY = (70 - iOSBottomBarVh) + 'vh';
+//		console.log(positionY);
+//		slider.style.top = positionY;
+////		positionY = '20vh';
+////		slider.style.bottom = positionY;
+//	}
+//	if(heightStep > 50){ // if hit bottom
+//		positionY = '70vh';
+//		console.log(positionY);
+//		slider.style.top = positionY;
+//		console.log(slider);
+////		positionY = '20vh';
+////		slider.style.bottom = positionY;
+//	}
 //console.log(positionY);
 
 	if(direction == 'r'){
@@ -172,8 +195,12 @@ function Slide(direction){
 
 	}
 	if(direction == 'd'){
-		positionY = positionY + distanceH;
-		positionY += "px";
+//		positionY = positionY + distanceH;
+//		positionY += "px";
+		heightStep += 10;
+		positionY = heightStep + 'vh';
+//		positionY = (heightStep + 10) + 'vh';
+//		heightStep += 10;
 		slider.style.top = positionY;
 
 		SlideSquare(1, 1, 'r');
@@ -198,8 +225,10 @@ function Slide(direction){
 		SlideSquare(6, 1, 'l');
 	}
 	if(direction == 'u'){
-		positionY = positionY - distanceH;
-		positionY += "px";
+//		positionY = positionY - distanceH;
+//		positionY += "px";
+		heightStep -= 10;
+		positionY = heightStep + 'vh';
 		slider.style.top = positionY;
 
 		SlideSquare(1, 1, 'u');
@@ -212,6 +241,22 @@ function Slide(direction){
 	}
 	$('#message').prepend(positionY + '<br>');
 
+	if(heightStep > currentBottom){ // if hit bottom
+		positionY = (currentBottom - 10) + 'vh';
+		heightStep = currentBottom - 10;
+		console.log(positionY);
+		$('#slider').style.top = positionY;
+//		console.log(slider);
+//		positionY = '20vh';
+//		slider.style.bottom = positionY;
+	}
+		if(heightStep < 20){ // if hit top
+//		console.log('yup');
+		positionY = '30vh';
+		heightStep = 30;
+		console.log(positionY);
+		$('#slider').style.top = positionY;
+	}
 }
 function Add(number){
 	var badGuys = $(".bad-guy");
