@@ -22,9 +22,6 @@ $(document).ready(function(){
 		$('.zone-center')[0].style.height = '59vh';
 		$('.data')[0].style.top = '30vh';
 		$('#message')[0].style.height = '20vh';
-
-
-
 //			(90 - iOSBottomBarVh) + 'vh';
 	}
 	else{
@@ -32,6 +29,8 @@ $(document).ready(function(){
 		iOSBottomBarPx = 0;
 		hitBottom = 7.1;
 	}
+	console.log(window.innerHeight);
+	$('#message').prepend(window.innerHeight);
 //	try{
 //		highScore = localStorage.getItem('highScore');
 //		console.log('try');
@@ -210,6 +209,7 @@ function Slide(direction){
 		SlideSquare(5, 1, 'l');
 		SlideSquare(6, 1, 'r');
 	}
+	$('#message').prepend(positionY + '<br>');
 
 }
 function Add(number){
