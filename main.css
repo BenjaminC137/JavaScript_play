@@ -245,7 +245,7 @@ p{
 		;
 color: red;
 	animation-name: points;
-	animation-duration: 1000ms;
+	animation-duration: 2000ms;
 	animation-timing-function: linear;
 }
 #sliderR{
