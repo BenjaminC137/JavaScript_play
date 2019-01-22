@@ -20,6 +20,9 @@ $(document).ready(function(){
 		hitBottom = 6.1;
 		$('#sliderD')[0].style.top = '70vh';
 		$('.zone-center')[0].style.height = '59vh';
+		$('.data')[0].style.top = '30vh';
+		$('#message')[0].style.height = '20vh';
+
 
 
 //			(90 - iOSBottomBarVh) + 'vh';
