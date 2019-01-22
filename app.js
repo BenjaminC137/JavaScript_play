@@ -341,7 +341,7 @@ function SlideSquare(id, speed, directionBadGuy){
 			positionX = '70vw';
 		}
 		if(directionBadGuy == 'd'){
-			positionY = '70vh';
+			positionY = currentBottom + 'vh';
 		}
 		if(directionBadGuy == 'l'){
 			positionX = '20vw';
