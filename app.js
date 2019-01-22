@@ -30,7 +30,8 @@ $(document).ready(function(){
 		hitBottom = 7.1;
 	}
 	console.log(window.innerHeight);
-	$('#message').prepend(window.innerHeight);
+	$('#message').prepend(window.innerHeight + '<br>');
+	$('#message').prepend('distanceH ' + distanceH + '<br>');
 //	try{
 //		highScore = localStorage.getItem('highScore');
 //		console.log('try');
