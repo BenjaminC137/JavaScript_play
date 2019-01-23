@@ -13,18 +13,18 @@ $(document).ready(function(){
 	else {
 	   console.log('No High Score Found.');
 	}
-
 	if(breakpoint == 'small'){
-		iOSBottomBarVh = 20;
-		iOSBottomBarPx = 40;
+//		iOSBottomBarVh = 20;
+//		iOSBottomBarPx = 40;
 		hitBottom = 6.1;
 		$('#sliderD')[0].style.top = '70vh';
 		$('.zone-center')[0].style.height = '59vh';
 		$('.data')[0].style.top = '30vh';
-		$('#message')[0].style.height = '20vh';
+		$('#message')[0].style.height = '17vh';
+		$('#instructions')[0].style.fontSize = '1em';
+
 //			(90 - iOSBottomBarVh) + 'vh';
 		currentBottom = 50;
-
 	}
 	else{
 		iOSBottomBarVh = 0;

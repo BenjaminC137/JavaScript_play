@@ -102,11 +102,11 @@ button{
 }
 .data{
 	display: inline-block;
-	width: 30vw;
+	width: 40vw;
 /*	height: 35vh;*/
 	position: fixed;
-	top: 35vh;
-	left: 35vw;
+	top: 30vh;
+	left: 30vw;
 }
 h1{
 	font-size: 1.5em;
@@ -121,17 +121,21 @@ html{
 	font-size: 12px
 }
 #instructions{
-	font-size: 1.5em;
+	font-size: 1.3em;
+	margin: 0;
+	padding-left: 20px;
+	padding-top: 1vh;
 }
 #message{
 	color: black;
-	height: 30vh;
+	height: 37vh;
 	overflow: scroll;
 	font-size: 1em;
 	border-style: solid;
-	padding: 5px;
+	padding: 1vh 1vw;
 	border-radius: 25px;
 	border-color:deeppink;
+	border-width: .5vh .5vw;
 }
 p{
 /*	font-family: fantasy;*/
@@ -264,6 +268,11 @@ color: red;
 	position: fixed;
 	top: 1vh;
 	left: 1vw;
+}
+#stats2{
+	position: fixed;
+	bottom: 1vh;
+	right: 1vw;
 }
 .status{
 	color: deeppink;
