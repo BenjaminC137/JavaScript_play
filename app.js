@@ -505,3 +505,8 @@ window.addEventListener('resize', function () {
 	breakpoint = getBreakpoint();
 	console.log('breakpoint' + breakpoint);
 }, false);
+function RestartGame(){
+	score = 0;
+	$('#score').html(score);
+
+}

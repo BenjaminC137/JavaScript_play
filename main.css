@@ -270,6 +270,7 @@ color: red;
 	left: 1vw;
 }
 #stats2{
+	text-align: right;
 	position: fixed;
 	bottom: 1vh;
 	right: 1vw;
