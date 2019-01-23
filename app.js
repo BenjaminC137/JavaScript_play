@@ -508,5 +508,15 @@ window.addEventListener('resize', function () {
 function RestartGame(){
 	score = 0;
 	$('#score').html(score);
+	difficulty = 1;
+	$('#difficulty').html(difficulty);
 
+	for(i = 1; i < bananas.length; i++){
+		var badGuyId = 'badGuy' + i;
+		console.log(badGuyId);
+//		badGuyId += id;
+		var badGuy = document.getElementById(badGuyId);
+		badGuy.remove();
+	}
+//	clear divs of bad guys
 }
