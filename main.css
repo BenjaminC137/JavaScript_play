@@ -23,7 +23,7 @@
 .arrow2{
 /*	display: inline;*/
 	text-align: center;
-	width: 25vw;
+	width: 40vw;
 }
 .bad-guy-start{
 	position: fixed;
@@ -150,10 +150,12 @@ p{
 }
 */
 .reset{
-	color: red;
+	color: orangered;
 	font-weight: bolder;
 	font-size: .75em;
 	background-color: inherit;
+	border-color: indianred;
+	border-radius: 5px;
 }
 .slide{
 	position: fixed;
@@ -175,9 +177,9 @@ p{
 	font-size: 3em;
 	position: fixed;
 /*	display: block;*/
-	top: 37vh;
+	top: 30vh;
 	width: 10vw;
-	height: 25vh;
+	height: 40vh;
 
 	border-radius: 125px;
 	background-color: palegreen;
@@ -189,8 +191,8 @@ p{
 	font-size: 3em;
 	position: fixed;
 /*	display: block;*/
-	left: 35vw;
-	width: 25vw;
+	left: 30vw;
+	width: 40vw;
 	height: 10vh;
 
 	border-radius: 125px;

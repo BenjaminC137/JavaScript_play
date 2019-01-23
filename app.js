@@ -25,6 +25,7 @@ $(document).ready(function(){
 
 //			(90 - iOSBottomBarVh) + 'vh';
 		currentBottom = 50;
+		$('.slideButtonV').css('top', '20vh');
 	}
 	else{
 		iOSBottomBarVh = 0;
@@ -241,21 +242,21 @@ function Slide(direction){
 	}
 //	$('#message').prepend(positionY + '<br>');
 
-	if(heightStep > currentBottom){ // if hit bottom
-		positionY = (currentBottom - 10) + 'vh';
-		heightStep = currentBottom - 10;
+	if(heightStep > currentBottom + 10){ // if hit bottom
+		positionY = (currentBottom) + 'vh';
+		heightStep = currentBottom;
 		console.log(positionY);
-		$('#slider').style.top = positionY;
+		$('#slider')[0].style.top = positionY;
 //		console.log(slider);
 //		positionY = '20vh';
 //		slider.style.bottom = positionY;
 	}
-		if(heightStep < 20){ // if hit top
+		if(heightStep < 10){ // if hit top
 //		console.log('yup');
-		positionY = '30vh';
-		heightStep = 30;
+		positionY = '20vh';
+		heightStep = 20;
 		console.log(positionY);
-		$('#slider').style.top = positionY;
+		$('#slider')[0].style.top = positionY;
 	}
 }
 function Add(number){
@@ -268,7 +269,7 @@ function Add(number){
 	if(number == bananas.length + 1){
 		number = 1;
 	}
-	for(var i = 1; i < bananas.length; i++){
+	for(var i = 1; i <= bananas.length; i++){
 //		console.log(i);
 		var presence = CheckBadGuy(i);
 		if(presence == 'fart'){
@@ -479,9 +480,11 @@ function ClearHighScore(){
 		localStorage.removeItem('savedHighScore');
 		highScore = 0;
 		$('#highScore').html(highScore);
+			$('#message').prepend("<br><br><span style='color: yellow; font-size: 1.5em;' class='shadow'>Cleared High Score</span><br><br>");
 	}
 	else {
 		console.log('canceled score clearing');
+			$('#message').prepend("<br><br><span style='color: yellow; font-size: 1.5em;' class='shadow'>High Score Preserved</span><br><br>");
 	}
 }
 
@@ -511,12 +514,35 @@ function RestartGame(){
 	difficulty = 1;
 	$('#difficulty').html(difficulty);
 
-	for(i = 1; i < bananas.length; i++){
-		var badGuyId = 'badGuy' + i;
-		console.log(badGuyId);
-//		badGuyId += id;
-		var badGuy = document.getElementById(badGuyId);
-		badGuy.remove();
+//	for(var i = 1; i < bananas.length; i++){
+//		var badGuyId = 'badGuy' + i;
+//		console.log(badGuyId);
+////		badGuyId += id;
+//		var badGuy = document.getElementById(badGuyId);
+//		badGuy.remove();
+//	}
+
+
+	for(var i = 1; i <= bananas.length; i++){
+//		console.log(i);
+		var presence = CheckBadGuy(i);
+		if(presence == 'here'){
+			var badGuyId = 'badGuy' + i;
+//			console.log(badGuyId);
+	//		badGuyId += id;
+			var badGuy = document.getElementById(badGuyId);
+			badGuy.remove();
+		}
+		nextBanana = 1;
+
+//		else{
+//			nextBanana = -1;
+//		}
+//		console.log(nextBanana);
 	}
+
+
+			$('#message').prepend("<br><br><span style='color: brown; font-size: 2em;'>Restarted</span><br><br>");
+
 //	clear divs of bad guys
 }
