@@ -350,10 +350,8 @@ color: red;
 .wide-button{
 	position: fixed;
 	top: 30vh;
-/*	right: 0vw;*/
 	width: 20vw;
 	height: 40vh;
-	background-color: antiquewhite
 }
 #wide-button-l{
 	left: 0vw;
