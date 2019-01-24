@@ -17,6 +17,7 @@ $(document).ready(function(){
 //		iOSBottomBarPx = 40;
 		hitBottom = 6.1;
 		$('#sliderD')[0].style.top = '70vh';
+		$('.wide-button, .wide-button-l').css("top", "20vh");
 		$('.zone-center')[0].style.height = '59vh';
 		$('.data')[0].style.top = '30vh';
 		$('#message')[0].style.height = '17vh';

@@ -347,6 +347,20 @@ color: red;
 	font-weight: bolder;
 	font-size: 2em;
 }
+.wide-button{
+	position: fixed;
+	top: 30vh;
+/*	right: 0vw;*/
+	width: 20vw;
+	height: 40vh;
+	background-color: antiquewhite
+}
+#wide-button-l{
+	left: 0vw;
+}
+#wide-button-r{
+	right:0vw;
+}
 .zone-center{
 /*
 	text-align: center;
