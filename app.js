@@ -58,6 +58,7 @@ var windowHeight = window.innerHeight;
 var	distanceW = windowWidth / 10;
 var	distanceH = windowHeight / 10;
 var heightStep = 20;
+var widthStep = 70;
 var score = 0;
 var banana;
 var currentColor;
@@ -74,6 +75,8 @@ var iOSBottomBarVh = 0;
 var iOSBottomBarPx = 0;
 var hitBottom;
 var currentBottom = 70;
+var hitEdgeW;
+var hitEdgeH;
 //window.onscroll = function SC(e){
 //	var status = CheckScroll();
 ////		console.log(status);
@@ -132,132 +135,132 @@ function GetBananaLocation(){
 	return {x: positionX, y: positionY};
 }
 function Slide(direction){
-	var slider = document.querySelector('#slider');
-	var sliderLeft = window.getComputedStyle(slider).left;
-	var sliderTop = window.getComputedStyle(slider).top;
-	var sliderWidth = window.getComputedStyle(slider).width;
-	var positionX = Number(sliderLeft.replace("px", ""));
-//	var positionY = Number(sliderTop.replace("px", ""));
+//	var slider = document.querySelector('#slider');
+//	var sliderLeft = window.getComputedStyle(slider).left;
+//	var sliderTop = window.getComputedStyle(slider).top;
+//	var sliderWidth = window.getComputedStyle(slider).width;
+//	var positionX = Number(sliderLeft.replace("px", ""));
+//	var positionX;
+//	var positionY;
 
-	console.log(heightStep);
-
-	if(positionX < (distanceW *2) - 5){ // if hit left
-		positionX = '20vw';
-		slider.style.left = positionX;
-	}
-	if(positionX > distanceW * 7.1){ // if hit right
-		positionX = '70vw';
-		slider.style.left = positionX;
-	}
-//	if(positionY < (distanceH * 2) - 5){ // if hit top
-//		positionY = '20vh';
-//		slider.style.top = positionY;
-//	}
-//	if(heightStep < 21){ // if hit top
-////		console.log('yup');
-//		positionY = '30vh';
-//		heightStep = 30;
-//		console.log(positionY);
-//		$('#slider').style.top = positionY;
-//	}
-
-//	if(positionY > window.innerHeight - (distanceH * 2)){ // if hit bottom
-//	if(positionY > distanceH * hitBottom){ // if hit bottom
-////		positionY = '70vh';
-//		positionY = (70 - iOSBottomBarVh) + 'vh';
-//		console.log(positionY);
-//		slider.style.top = positionY;
-////		positionY = '20vh';
-////		slider.style.bottom = positionY;
-//	}
-//	if(heightStep > 50){ // if hit bottom
-//		positionY = '70vh';
-//		console.log(positionY);
-//		slider.style.top = positionY;
-//		console.log(slider);
-////		positionY = '20vh';
-////		slider.style.bottom = positionY;
-//	}
-//console.log(positionY);
+//	$('#slider')[0].style.left = positionX;
+//	$('#slider')[0].style.top = positionY;
 
 	if(direction == 'r'){
-		positionX = positionX + distanceW;
-//		console.log(windowWidth);
-		positionX += "px";
-		slider.style.left = positionX;
+		if(hitEdgeW == 'r'){
+			widthStep = 70;
+//			hitEdgeW = 'n';
+		}
+		else{
+			widthStep += 10;
+	//		positionX = widthStep + 'vw';
+	//			slider.style.left = positionX;
 
-		SlideSquare(1, 1, 'd')
-		SlideSquare(2, 1, 'r');
-		SlideSquare(3, 1, 'l');
-		SlideSquare(4, 1, 'r');
-
-		SlideSquare(5, 1, 'r');
-		SlideSquare(6, 1, 'd');
-
+			SlideSquare(1, 1, 'd')
+			SlideSquare(2, 1, 'r');
+			SlideSquare(3, 1, 'l');
+			SlideSquare(4, 1, 'r');
+			SlideSquare(5, 1, 'r');
+			SlideSquare(6, 1, 'd');
+		}
+		hitEdgeW = 'n';
 	}
 	if(direction == 'd'){
-//		positionY = positionY + distanceH;
-//		positionY += "px";
-		heightStep += 10;
-		positionY = heightStep + 'vh';
-//		positionY = (heightStep + 10) + 'vh';
-//		heightStep += 10;
-		slider.style.top = positionY;
+		if(hitEdgeH == 'b'){
+			heightStep = 70;
+			hitEdgeH = 'n';
+		}
+		else{
+			heightStep += 10;
+	//		positionY = heightStep + 'vh';
+	//			slider.style.top = positionY;
 
-		SlideSquare(1, 1, 'r');
-		SlideSquare(2, 1, 'u');
-		SlideSquare(3, 1, 'r');
-		SlideSquare(4, 1, 'l');
-
-		SlideSquare(5, 1, 'u');
-		SlideSquare(6, 1, 'u');
+			SlideSquare(1, 1, 'r');
+			SlideSquare(2, 1, 'u');
+			SlideSquare(3, 1, 'r');
+			SlideSquare(4, 1, 'l');
+			SlideSquare(5, 1, 'u');
+			SlideSquare(6, 1, 'u');
+		}
 	}
 	if(direction == 'l'){
-		positionX = positionX - distanceW;
-		positionX += "px";
-		slider.style.left = positionX;
+		if(hitEdgeW == 'l'){
+			widthStep = 20;
+//			hitEdgeW = 'n';
+		}
+		else{
+			widthStep -= 10;
+	//		positionX = widthStep +'vw';
+	//			slider.style.left = positionX;
 
-		SlideSquare(1, 1, 'l');
-		SlideSquare(2, 1, 'l');
-		SlideSquare(3, 1, 'd');
-		SlideSquare(4, 1, 'u');
-
-		SlideSquare(5, 1, 'd');
-		SlideSquare(6, 1, 'l');
+			SlideSquare(1, 1, 'l');
+			SlideSquare(2, 1, 'l');
+			SlideSquare(3, 1, 'd');
+			SlideSquare(4, 1, 'u');
+			SlideSquare(5, 1, 'd');
+			SlideSquare(6, 1, 'l');
+		}
+		hitEdgeW = 'n';
 	}
 	if(direction == 'u'){
-//		positionY = positionY - distanceH;
-//		positionY += "px";
-		heightStep -= 10;
-		positionY = heightStep + 'vh';
-		slider.style.top = positionY;
+		if(hitEdgeH == 't'){
+			heightStep = 20;
+			hitEdgeH = 'n';
+		}
+		else{
+			heightStep -= 10;
+	//		positionY = heightStep + 'vh';
+	//			slider.style.top = positionY;
 
-		SlideSquare(1, 1, 'u');
-		SlideSquare(2, 1, 'd');
-		SlideSquare(3, 1, 'u');
-		SlideSquare(4, 1, 'd');
+			SlideSquare(1, 1, 'u');
+			SlideSquare(2, 1, 'd');
+			SlideSquare(3, 1, 'u');
+			SlideSquare(4, 1, 'd');
+			SlideSquare(5, 1, 'l');
+			SlideSquare(6, 1, 'r');
+		}
+	}
 
-		SlideSquare(5, 1, 'l');
-		SlideSquare(6, 1, 'r');
-	}
-//	$('#message').prepend(positionY + '<br>');
+//	positionX = widthStep +'vw';
+//	positionY = heightStep + 'vh';
+	$('#slider')[0].style.left =  widthStep +'vw';
+	$('#slider')[0].style.top = heightStep + 'vh';
 
-	if(heightStep > currentBottom + 10){ // if hit bottom
-		positionY = (currentBottom) + 'vh';
-		heightStep = currentBottom;
-		console.log(positionY);
-		$('#slider')[0].style.top = positionY;
-//		console.log(slider);
-//		positionY = '20vh';
-//		slider.style.bottom = positionY;
+	if(widthStep < 20){ // if hit left
+		hitEdgeW = 'l';
+
+//		positionX = '20vw';
+//		widthStep = 20;
+//		$('#slider')[0].style.left = positionX;
 	}
-		if(heightStep < 10){ // if hit top
-//		console.log('yup');
-		positionY = '20vh';
-		heightStep = 20;
-		console.log(positionY);
-		$('#slider')[0].style.top = positionY;
+	if(widthStep > 70){ // if hit right
+//		positionX = '60vw';
+		hitEdgeW = 'r';
+//		widthStep = 70;
+//		$('#slider')[0].style.left = positionX;
 	}
+	if(heightStep > currentBottom){ // if hit bottom
+		hitEdgeW = 'b';
+
+//		positionY = (currentBottom) + 'vh';
+//		heightStep = currentBottom;
+//		$('#slider')[0].style.top = positionY;
+	}
+	if(heightStep < 20){ // if hit top
+		hitEdgeW = 't';
+
+//		positionY = '30vh';
+//		heightStep = 30;
+//		$('#slider')[0].style.top = positionY;
+	}
+	console.log(hitEdgeW);
+
+
+//	if(heightStep > currentBottom + 10){ // if hit bottom
+//		positionY = (currentBottom) + 'vh';
+//		heightStep = currentBottom;
+//		$('#slider')[0].style.top = positionY;
+//	}
 }
 function Add(number){
 	var badGuys = $(".bad-guy");

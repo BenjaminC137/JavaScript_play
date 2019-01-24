@@ -8,7 +8,7 @@
 	width: 15vw;
 	height: 15vh;
 	z-index: 30;
-/*	color: mediumseagreen*/
+	color: mediumseagreen;
 
 	border-radius: 125px;
 	background-color: ghostwhite;
@@ -34,7 +34,7 @@
 	height: 10vh;
 	border-radius: 125px;
 /*	background-color: gray;*/
-	mix-blend-mode:exclusion;
+	mix-blend-mode: multiply;
 	isolation:isolate;
 
 	transition-duration: 1000ms;
@@ -57,6 +57,12 @@
 
 	transition-duration: 1000ms;
 	transition-timing-function: ease-in-out;
+
+	background-image: linear-gradient(98deg, rgba(255,255,255,.07) 50%, transparent 50%),
+linear-gradient(90deg, rgba(255,255,255,.13) 50%, transparent 50%),
+linear-gradient(90deg, transparent 50%, rgba(255,255,255,.17) 50%),
+linear-gradient(90deg, transparent 50%, rgba(255,255,255,.19) 50%);
+background-size: 13px, 29px, 37px, 53px;
 }
 .bad-guy-clone{
 	position: fixed;
@@ -159,7 +165,7 @@ p{
 }
 .slide{
 	position: fixed;
-	right: 20vw;
+	left: 70vw;
 	top: 20vh;
 	display: block;
 	width: 10vw;
@@ -167,10 +173,11 @@ p{
 	border-radius: 125px;
 	background-color: powderblue;
 /*	background-blend-mode: difference;*/
-	mix-blend-mode: darken;
+	mix-blend-mode:darken;
 	transition-duration: 100ms;
 	transition-timing-function: ease-in-out;
 	z-index: 24;
+
 }
 .slideButtonV{
 	text-align: center;
@@ -185,6 +192,12 @@ p{
 	background-color: palegreen;
 	transition-duration: 50ms;
 	transition-timing-function: ease-in-out;
+
+	background-image: linear-gradient(98deg, rgba(255,255,255,.07) 50%, transparent 50%),
+linear-gradient(90deg, rgba(255,255,255,.13) 50%, transparent 50%),
+linear-gradient(90deg, transparent 50%, rgba(255,255,255,.17) 50%),
+linear-gradient(90deg, transparent 50%, rgba(255,255,255,.19) 50%);
+background-size: 13px, 29px, 37px, 53px;
 }
 .slideButtonH{
 	text-align: center;
@@ -199,6 +212,12 @@ p{
 	background-color: palegreen;
 	transition-duration: 50ms;
 	transition-timing-function: ease-in-out;
+
+	background-image: linear-gradient(98deg, rgba(255,255,255,.02) 50%, transparent 50%),
+linear-gradient(80deg, rgba(255,255,255,.3) 50%, transparent 50%),
+linear-gradient(90deg, transparent 50%, rgba(255,255,255,.17) 90%),
+linear-gradient(80deg, transparent 50%, rgba(255,255,255,.4) 10%);
+background-size: 13px, 29px, 37px, 53px;
 }
 #scrollDiv{
 	position: relative;
@@ -287,6 +306,7 @@ color: red;
 	text-align: center;
 	font-size: 3em;
 */
+
 	background-color: transparent;
 	position: fixed;
 	left: 9vw;
@@ -414,4 +434,44 @@ body:before {
 	body:before {
 		content: "xlarge";
 	}
+}
+
+
+
+
+
+
+
+.texture-rainbow{
+	background:
+	radial-gradient(rgba(255,255,255,0) 0, rgba(255,255,255,.15) 30%, rgba(255,255,255,.3) 32%, rgba(255,255,255,0) 33%) 0 0,
+	radial-gradient(rgba(255,255,255,0) 0, rgba(255,255,255,.1) 11%, rgba(255,255,255,.3) 13%, rgba(255,255,255,0) 14%) 0 0,
+	radial-gradient(rgba(255,255,255,0) 0, rgba(255,255,255,.2) 17%, rgba(255,255,255,.43) 19%, rgba(255,255,255,0) 20%) 0 110px,
+	radial-gradient(rgba(255,255,255,0) 0, rgba(255,255,255,.2) 11%, rgba(255,255,255,.4) 13%, rgba(255,255,255,0) 14%) -130px -170px,
+	radial-gradient(rgba(255,255,255,0) 0, rgba(255,255,255,.2) 11%, rgba(255,255,255,.4) 13%, rgba(255,255,255,0) 14%) 130px 370px,
+	radial-gradient(rgba(255,255,255,0) 0, rgba(255,255,255,.1) 11%, rgba(255,255,255,.2) 13%, rgba(255,255,255,0) 14%) 0 0,
+	linear-gradient(45deg, #343702 0%, #184500 20%, #187546 30%, #006782 40%, #0b1284 50%, #760ea1 60%, #83096e 70%, #840b2a 80%, #b13e12 90%, #e27412 100%);
+	background-size: 470px 470px, 970px 970px, 410px 410px, 610px 610px, 530px 530px, 730px 730px, 100% 100%;
+	background-color: #840b2a;
+}
+.texture-fabric{
+	background-color: hsl(2, 57%, 40%);
+background-image: repeating-linear-gradient(transparent, transparent 50px, rgba(0,0,0,.4) 50px, rgba(0,0,0,.4) 53px, transparent 53px, transparent 63px, rgba(0,0,0,.4) 63px, rgba(0,0,0,.4) 66px, transparent 66px, transparent 116px, rgba(0,0,0,.5) 116px, rgba(0,0,0,.5) 166px, rgba(255,255,255,.2) 166px, rgba(255,255,255,.2) 169px, rgba(0,0,0,.5) 169px, rgba(0,0,0,.5) 179px, rgba(255,255,255,.2) 179px, rgba(255,255,255,.2) 182px, rgba(0,0,0,.5) 182px, rgba(0,0,0,.5) 232px, transparent 232px),
+repeating-linear-gradient(270deg, transparent, transparent 50px, rgba(0,0,0,.4) 50px, rgba(0,0,0,.4) 53px, transparent 53px, transparent 63px, rgba(0,0,0,.4) 63px, rgba(0,0,0,.4) 66px, transparent 66px, transparent 116px, rgba(0,0,0,.5) 116px, rgba(0,0,0,.5) 166px, rgba(255,255,255,.2) 166px, rgba(255,255,255,.2) 169px, rgba(0,0,0,.5) 169px, rgba(0,0,0,.5) 179px, rgba(255,255,255,.2) 179px, rgba(255,255,255,.2) 182px, rgba(0,0,0,.5) 182px, rgba(0,0,0,.5) 232px, transparent 232px),
+repeating-linear-gradient(125deg, transparent, transparent 2px, rgba(0,0,0,.2) 2px, rgba(0,0,0,.2) 3px, transparent 3px, transparent 5px, rgba(0,0,0,.2) 5px);
+}
+.texture-fabric-mod{
+/*	background-color: hsl(2, 57%, 40%);*/
+	background-color: beige;
+background-image: repeating-linear-gradient(transparent, transparent 50px, rgba(0,0,0,.4) 50px, rgba(0,0,0,.4) 53px, transparent 53px, transparent 63px, rgba(0,0,0,.4) 63px, rgba(0,0,0,.4) 66px, transparent 66px, transparent 116px, rgba(0,0,0,.5) 116px, rgba(0,0,0,.5) 166px, rgba(255,255,255,.2) 166px, rgba(255,255,255,.2) 169px, rgba(0,0,0,.5) 169px, rgba(0,0,0,.5) 179px, rgba(255,255,255,.2) 179px, rgba(255,255,255,.2) 182px, rgba(0,0,0,.5) 182px, rgba(0,0,0,.5) 232px, transparent 232px),
+repeating-linear-gradient(270deg, transparent, transparent 50px, rgba(0,0,0,.4) 50px, rgba(0,0,0,.4) 53px, transparent 53px, transparent 63px, rgba(0,0,0,.4) 63px, rgba(0,0,0,.4) 66px, transparent 66px, transparent 116px, rgba(0,0,0,.5) 116px, rgba(0,0,0,.5) 166px, rgba(255,255,255,.2) 166px, rgba(255,255,255,.2) 169px, rgba(0,0,0,.5) 169px, rgba(0,0,0,.5) 179px, rgba(255,255,255,.2) 179px, rgba(255,255,255,.2) 182px, rgba(0,0,0,.5) 182px, rgba(0,0,0,.5) 232px, transparent 232px),
+repeating-linear-gradient(125deg, transparent, transparent 2px, rgba(0,0,0,.2) 2px, rgba(0,0,0,.2) 3px, transparent 3px, transparent 5px, rgba(0,0,0,.2) 5px);
+}
+.texture-stripes{
+/*	background-color: beige;*/
+background-image: linear-gradient(98deg, rgba(255,255,255,.07) 50%, transparent 50%),
+linear-gradient(90deg, rgba(255,255,255,.13) 50%, transparent 50%),
+linear-gradient(90deg, transparent 50%, rgba(255,255,255,.17) 50%),
+linear-gradient(90deg, transparent 50%, rgba(255,255,255,.19) 50%);
+background-size: 13px, 29px, 37px, 53px;
 }
