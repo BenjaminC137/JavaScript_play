@@ -48,6 +48,10 @@
 		<h1>Slider Banana©</h1>
 <!--		zones-->
 		<div class="zone-center texture-stripes"></div>
+		<div id="crossoverTL" class="center crossover-wrapper"><div class="crossover">&#8620;</div></div>
+		<div id="crossoverTR" class="center crossover-wrapper"><div class="crossover">&#8619;</div></div>
+		<div id="crossoverBL" class="center crossover-wrapper"><div class="crossover">&#8620;</div></div>
+		<div id="crossoverBR" class="center crossover-wrapper"><div class="crossover">&#8619;</div></div>
 		<div class="data">
 			<div id="message">
 				<ol id="instructions">
@@ -67,6 +71,8 @@
 		</div>
 		<div id="stats2" >
 			 <button id="restartButton" class="reset" onclick="RestartGame();" >Restart Round</button>
+			<br>
+			<br>
 			<button id="clearButton" class="reset" onclick="ClearHighScore();" >Clear High</button>
 			<br>
 			<h3 style="display: inline;">High Score: </h3><span id="highScore" class="shadow" style="color: yellow; font-size: 2em">0</span>
@@ -75,13 +81,13 @@
 		<div id="slider" class="slide"></div>
 <!--<div id='badGuy3' class="bad-guy"></div>-->
 <!--		right-->
-		<div id="sliderR" class="slideButtonV center" onclick="Slide('r');"><div class="arrow">→</div></div>
+		<div id="sliderR" class="slideButtonV center" onclick="Slide('r');"><div class="arrow">&rarr;</div></div>
 <!--		down-->
-		<div id="sliderD" class="center slideButtonH" onclick="Slide('d');"><div class="arrow2">↓</div></div>
+		<div id="sliderD" class="center slideButtonH" onclick="Slide('d');"><div class="arrow2">&darr;</div></div>
 <!--		left-->
-		<div id="sliderL" class="slideButtonV center" onclick="Slide('l');"><div class="arrow">←</div></div>
+		<div id="sliderL" class="slideButtonV center" onclick="Slide('l');"><div class="arrow">&larr;</div></div>
 <!--		up-->
-		<div id="sliderU" class="center slideButtonH" onclick="Slide('u');"><div class="arrow2">↑</div></div>
+		<div id="sliderU" class="center slideButtonH" onclick="Slide('u');"><div class="arrow2">&uarr;</div></div>
 
 <!--		add-->
 		<div id="add" class="center add"onclick="Add(1);"><div class="arrow">+</div></div>

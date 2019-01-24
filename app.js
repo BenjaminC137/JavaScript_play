@@ -4,7 +4,6 @@
 
 $(document).ready(function(){
 //	$('#scrollDiv')[0].scrollIntoView(); //works but doesn't register as scrolling down on iOS
-//	console.log('ready');
 	if("savedHighScore" in localStorage){
 		highScore = localStorage.getItem('savedHighScore');
    		console.log('High Score Found! It is: ' + highScore);
@@ -22,6 +21,7 @@ $(document).ready(function(){
 		$('.data')[0].style.top = '30vh';
 		$('#message')[0].style.height = '17vh';
 		$('#instructions')[0].style.fontSize = '1em';
+		$("#crossoverBL, #crossoverBR").css('top', '60vh');
 
 //			(90 - iOSBottomBarVh) + 'vh';
 		currentBottom = 50;
@@ -33,16 +33,6 @@ $(document).ready(function(){
 		hitBottom = 7.1;
 		currentBottom = 70;
 	}
-	console.log(window.innerHeight);
-//	$('#message').prepend(window.innerHeight + '<br>');
-//	$('#message').prepend('distanceH ' + distanceH + '<br>');
-//	try{
-//		highScore = localStorage.getItem('highScore');
-//		console.log('try');
-//	}
-//	catch(error){
-//		console.log('No high score. error: ' + error);
-//	}
 });
 const bananas = [
 	{id: 1, color: 'Turquoise', size: 12, speed: 2},
@@ -75,35 +65,28 @@ var iOSBottomBarVh = 0;
 var iOSBottomBarPx = 0;
 var hitBottom;
 var currentBottom = 70;
-var hitEdgeW;
-var hitEdgeH;
+var hitEdgeW = 'n';
+var hitEdgeH = 'n';
 //window.onscroll = function SC(e){
 //	var status = CheckScroll();
-////		console.log(status);
 //	if(status == 'done'){
 ////		window.removeEventListener('scroll', SC);
-//////		console.log('done done');
 ////		var body = $('body')[0];
 //////		console.log(body);
 ////		body.addEventListener("scroll", function(event){
-////			console.log('eventfired');
 ////			event.preventDefault();
 ////		}, false);
 //	}
 //};
 //document.querySelector("body").addEventListener("scroll", function(event) {
-//console.log('newfire');
 //         event.preventDefault();
 //}, false);
 
 //function CheckScroll() {
 //  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
 ////	window.removeEventListener('scroll', SC);
-////		console.log('done done');
 //	var body = $('body')[0];
-////		console.log(body);
 ////	body.addEventListener("scroll", function(event){
-////		console.log('eventfired');
 ////		event.preventDefault();
 ////	}, false);
 //	  setTimeout(function(){
@@ -149,13 +132,21 @@ function Slide(direction){
 	if(direction == 'r'){
 		if(hitEdgeW == 'r'){
 			widthStep = 70;
-//			hitEdgeW = 'n';
+		}
+		else if(hitEdgeH == 't' && widthStep > 60){
+			heightStep = 20;
+			widthStep = 80;
+			hitEdgeH = 'n';
+		}
+		else if(hitEdgeH == 'b' && widthStep > 60){
+			heightStep = currentBottom;
+			widthStep = 80;
+			hitEdgeH = 'n';
 		}
 		else{
 			widthStep += 10;
 	//		positionX = widthStep + 'vw';
 	//			slider.style.left = positionX;
-
 			SlideSquare(1, 1, 'd')
 			SlideSquare(2, 1, 'r');
 			SlideSquare(3, 1, 'l');
@@ -164,17 +155,29 @@ function Slide(direction){
 			SlideSquare(6, 1, 'd');
 		}
 		hitEdgeW = 'n';
+//		hitEdgeH = 'n';
+
 	}
 	if(direction == 'd'){
 		if(hitEdgeH == 'b'){
-			heightStep = 70;
-			hitEdgeH = 'n';
+			heightStep = currentBottom;
+		}
+		else if(hitEdgeW == 'r' && heightStep > currentBottom - 10){
+			widthStep = 70;
+			heightStep = currentBottom + 10;
+			hitEdgeH = 'b';
+			hitEdgeW = 'n';
+		}
+		else if(hitEdgeW == 'l' && heightStep > currentBottom - 10){
+			widthStep = 20;
+			heightStep = currentBottom + 10;
+			hitEdgeH = 't';
+			hitEdgeW = 'n';
 		}
 		else{
 			heightStep += 10;
 	//		positionY = heightStep + 'vh';
 	//			slider.style.top = positionY;
-
 			SlideSquare(1, 1, 'r');
 			SlideSquare(2, 1, 'u');
 			SlideSquare(3, 1, 'r');
@@ -182,11 +185,24 @@ function Slide(direction){
 			SlideSquare(5, 1, 'u');
 			SlideSquare(6, 1, 'u');
 		}
+		hitEdgeH = 'n';
+
 	}
 	if(direction == 'l'){
 		if(hitEdgeW == 'l'){
 			widthStep = 20;
-//			hitEdgeW = 'n';
+		}
+		else if(hitEdgeH == 't' && widthStep < 30){
+			heightStep = 20;
+			widthStep = 10;
+			hitEdgeW = 'l';
+			hitEdgeH = 'n';
+		}
+		else if(hitEdgeH == 'b' && widthStep < 30){
+			heightStep = currentBottom;
+			widthStep = 10;
+			hitEdgeW = 'l';
+			hitEdgeH = 'n';
 		}
 		else{
 			widthStep -= 10;
@@ -205,13 +221,23 @@ function Slide(direction){
 	if(direction == 'u'){
 		if(hitEdgeH == 't'){
 			heightStep = 20;
-			hitEdgeH = 'n';
+		}
+		else if(hitEdgeW == 'r' && heightStep < 30){
+			widthStep = 70;
+			heightStep = 10;
+			hitEdgeH = 't';
+			hitEdgeW = 'n';
+		}
+		else if(hitEdgeW == 'l' && heightStep < 30){
+			widthStep = 20;
+			heightStep = 10;
+			hitEdgeH = 't';
+			hitEdgeW = 'n';
 		}
 		else{
 			heightStep -= 10;
 	//		positionY = heightStep + 'vh';
 	//			slider.style.top = positionY;
-
 			SlideSquare(1, 1, 'u');
 			SlideSquare(2, 1, 'd');
 			SlideSquare(3, 1, 'u');
@@ -219,8 +245,8 @@ function Slide(direction){
 			SlideSquare(5, 1, 'l');
 			SlideSquare(6, 1, 'r');
 		}
+		hitEdgeH = 'n';
 	}
-
 //	positionX = widthStep +'vw';
 //	positionY = heightStep + 'vh';
 	$('#slider')[0].style.left =  widthStep +'vw';
@@ -228,7 +254,6 @@ function Slide(direction){
 
 	if(widthStep < 20){ // if hit left
 		hitEdgeW = 'l';
-
 //		positionX = '20vw';
 //		widthStep = 20;
 //		$('#slider')[0].style.left = positionX;
@@ -240,20 +265,19 @@ function Slide(direction){
 //		$('#slider')[0].style.left = positionX;
 	}
 	if(heightStep > currentBottom){ // if hit bottom
-		hitEdgeW = 'b';
-
+		hitEdgeH = 'b';
 //		positionY = (currentBottom) + 'vh';
 //		heightStep = currentBottom;
 //		$('#slider')[0].style.top = positionY;
 	}
 	if(heightStep < 20){ // if hit top
-		hitEdgeW = 't';
+		hitEdgeH = 't';
 
 //		positionY = '30vh';
 //		heightStep = 30;
 //		$('#slider')[0].style.top = positionY;
 	}
-	console.log(hitEdgeW);
+	console.log(hitEdgeW, hitEdgeH);
 
 
 //	if(heightStep > currentBottom + 10){ // if hit bottom
@@ -394,10 +418,6 @@ function CheckBanana(id){
 	var positionY = Number(badGuyTop.replace("px", ""));
 
 	var bananaLocation = GetBananaLocation();
-//	console.log("banana: ",  bananaLocation.x);
-//	console.log(badGuyId + " : " + positionX);
-//	console.log(bananaLocation.x < positionX + 100);
-//	console.log(badGuyId);
 	currentSize = (windowWidth / 100) * currentSize;
 	currentHeight = (windowHeight / 10);
 	if(((bananaLocation.x < positionX + currentSize) && (bananaLocation.x > positionX - 50)) && ((bananaLocation.y < positionY + currentHeight) && (bananaLocation.y > positionY - 1))){
@@ -412,7 +432,6 @@ function CheckBanana(id){
 			var newPoints = (1*difficulty) * value;
 			$('#message').prepend("Peeled <span style='color: " + currentColor + "' class='shadow'>" + currentColor + "</span>" + " + " + newPoints + "<br>");
 			score += newPoints;
-//			console.log(badGuyId + ' value: ' + value + "score: " + newPoints);
 			if(score > highScore){
 				highScore = score;
 				localStorage.setItem('savedHighScore', highScore);
@@ -476,7 +495,6 @@ function Clone(id){
 	// add the newly created element and its content into the DOM
 	var currentDiv = document.getElementById("slider");
 	document.body.insertBefore(newDiv, currentDiv);
-	console.log(newDiv);
 }
 function ClearHighScore(){
 	if (confirm("Are you sure you want to clear your high score?")) {
@@ -486,8 +504,7 @@ function ClearHighScore(){
 			$('#message').prepend("<br><br><span style='color: yellow; font-size: 1.5em;' class='shadow'>Cleared High Score</span><br><br>");
 	}
 	else {
-		console.log('canceled score clearing');
-			$('#message').prepend("<br><br><span style='color: yellow; font-size: 1.5em;' class='shadow'>High Score Preserved</span><br><br>");
+		$('#message').prepend("<br><br><span style='color: yellow; font-size: 1.5em;' class='shadow'>High Score Preserved</span><br><br>");
 	}
 }
 
@@ -498,13 +515,11 @@ var breakpoint;
 
 // Get the current breakpoint
 var getBreakpoint = function () {
-	console.log('got here');
 	return window.getComputedStyle(document.body, ':before').content.replace(/\"/g, '');
 };
 
 // Calculate breakpoint on page load
 breakpoint = getBreakpoint();
-console.log('breakpoint' + breakpoint);
 
 // Recalculate breakpoint on resize
 window.addEventListener('resize', function () {
@@ -517,35 +532,16 @@ function RestartGame(){
 	difficulty = 1;
 	$('#difficulty').html(difficulty);
 
-//	for(var i = 1; i < bananas.length; i++){
-//		var badGuyId = 'badGuy' + i;
-//		console.log(badGuyId);
-////		badGuyId += id;
-//		var badGuy = document.getElementById(badGuyId);
-//		badGuy.remove();
-//	}
-
-
 	for(var i = 1; i <= bananas.length; i++){
-//		console.log(i);
 		var presence = CheckBadGuy(i);
 		if(presence == 'here'){
 			var badGuyId = 'badGuy' + i;
-//			console.log(badGuyId);
 	//		badGuyId += id;
 			var badGuy = document.getElementById(badGuyId);
 			badGuy.remove();
 		}
 		nextBanana = 1;
-
-//		else{
-//			nextBanana = -1;
-//		}
-//		console.log(nextBanana);
 	}
-
-
-			$('#message').prepend("<br><br><span style='color: brown; font-size: 2em;'>Restarted</span><br><br>");
-
+	$('#message').prepend("<br><br><span style='color: brown; font-size: 2em;'>Restarted</span><br><br>");
 //	clear divs of bad guys
 }
