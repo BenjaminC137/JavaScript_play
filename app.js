@@ -1,9 +1,4 @@
-//document.ready = function(event){
-//	$('#scrollDiv').scrollIntoView();
-//};
-
 $(document).ready(function(){
-//	$('#scrollDiv')[0].scrollIntoView(); //works but doesn't register as scrolling down on iOS
 	if("savedHighScore" in localStorage){
 		highScore = localStorage.getItem('savedHighScore');
    		console.log('High Score Found! It is: ' + highScore);
@@ -21,8 +16,6 @@ $(document).ready(function(){
 	   console.log('No High Score Found.');
 	}
 	if(breakpoint == 'small'){
-//		iOSBottomBarVh = 20;
-//		iOSBottomBarPx = 40;
 		hitBottom = 6.1;
 		$('#sliderD')[0].style.top = '70vh';
 		$('.wide-button, .wide-button-l').css("top", "20vh");
@@ -31,31 +24,27 @@ $(document).ready(function(){
 		$('#message')[0].style.height = '17vh';
 		$('#instructions')[0].style.fontSize = '1rem';
 		$("#crossoverBL, #crossoverBR").css('top', '60vh');
-
-//			(90 - iOSBottomBarVh) + 'vh';
 		currentBottom = 50;
 		$('.slideButtonV').css('top', '20vh');
 	}
 	else{
-		iOSBottomBarVh = 0;
-		iOSBottomBarPx = 0;
 		hitBottom = 7.1;
 		currentBottom = 70;
 	}
 });
 const bananas = [
-	{id: 1, color: 'Turquoise', size: 10, speed: 2},
-	{id: 2, color: 'deeppink', size: 2, speed: 5},
-	{id: 3, color: 'orange', size: 20, speed: 0.5},
-	{id: 4, color: 'rebeccapurple', size: 6, speed: 4},
-	{id: 5, color: 'beige', size: 15, speed: 0.5},
-	{id: 6, color: 'crimson', size: 25, speed: 0.5}
+	{id: 1, color: 'Turquoise', 	size: 10, 	speed: 2, 	right: 'd', down: 'r', left: 'l', up: 'u'},
+	{id: 2, color: 'deeppink', 		size: 2, 	speed: 5, 	right: 'r', down: 'u', left: 'l', up: 'd'},
+	{id: 3, color: 'orange', 		size: 20, 	speed: 0.5, right: 'l', down: 'r', left: 'd', up: 'u'},
+	{id: 4, color: 'rebeccapurple', size: 6, 	speed: 4, 	right: 'r', down: 'l', left: 'u', up: 'd'},
+	{id: 5, color: 'beige', 		size: 15, 	speed: 0.5, right: 'r', down: 'u', left: 'd', up: 'l'},
+	{id: 6, color: 'crimson', 		size: 25, 	speed: 0.5, right: 'd', down: 'u', left: 'l', up: 'r'}
 ];
 var highScore = 0;
 var windowWidth = window.innerWidth;
 var windowHeight = window.innerHeight;
-var	distanceW = windowWidth / 10;
-var	distanceH = windowHeight / 10;
+//var	distanceW = windowWidth / 10;
+//var	distanceH = windowHeight / 10;
 var heightStep = 20;
 var widthStep = 70;
 var score = 0;
@@ -63,62 +52,23 @@ var banana;
 var currentColor;
 var currentSize;
 var currentSpeed;
-var	pexelsAPI;
 var currentId;
 var directionBadGuy = 'r';
 var done;
 var difficulty = 1;
 var nextBanana = -1;
 var maxSize = 1;
-var iOSBottomBarVh = 0;
-var iOSBottomBarPx = 0;
 var hitBottom;
 var currentBottom = 70;
 var hitEdgeW = 'n';
 var hitEdgeH = 'n';
 var panel = 'open';
 var texture;
-//window.onscroll = function SC(e){
-//	var status = CheckScroll();
-//	if(status == 'done'){
-////		window.removeEventListener('scroll', SC);
-////		var body = $('body')[0];
-//////		console.log(body);
-////		body.addEventListener("scroll", function(event){
-////			event.preventDefault();
-////		}, false);
-//	}
-//};
-//document.querySelector("body").addEventListener("scroll", function(event) {
-//         event.preventDefault();
-//}, false);
-
-//function CheckScroll() {
-//  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-////	window.removeEventListener('scroll', SC);
-//	var body = $('body')[0];
-////	body.addEventListener("scroll", function(event){
-////		event.preventDefault();
-////	}, false);
-//	  setTimeout(function(){
-//		  $('#scrollMessage').text(' ');
-//		  $('#scrollMessage').removeAttr("id");
-//		  $('#scrollDiv').addClass("zScroll");
-//	  }, 800);
-//	  return 'done';
-//  }
-//	else{
-//		return 'not ready';
-//	}
-//}
 window.onresize = function(event) {
 	windowWidth = window.innerWidth;
 	windowHeight = window.innerHeight;
-	distanceW = windowWidth / 10;
-	distanceH = windowHeight / 10;
-//	if(breakpoint == 'small'){
-//
-//	}
+//	distanceW = windowWidth / 10;
+//	distanceH = windowHeight / 10;
 };
 function GetBananaLocation(){
 	var slider = document.querySelector('#slider');
@@ -129,17 +79,6 @@ function GetBananaLocation(){
 	return {x: positionX, y: positionY};
 }
 function Slide(direction){
-//	var slider = document.querySelector('#slider');
-//	var sliderLeft = window.getComputedStyle(slider).left;
-//	var sliderTop = window.getComputedStyle(slider).top;
-//	var sliderWidth = window.getComputedStyle(slider).width;
-//	var positionX = Number(sliderLeft.replace("px", ""));
-//	var positionX;
-//	var positionY;
-
-//	$('#slider')[0].style.left = positionX;
-//	$('#slider')[0].style.top = positionY;
-
 	if(direction == 'r'){
 		if(hitEdgeW == 'r'){
 			widthStep = 70;
@@ -156,18 +95,18 @@ function Slide(direction){
 		}
 		else{
 			widthStep += 10;
-	//		positionX = widthStep + 'vw';
 		}
-		SlideSquare(1, 1, 'd')
-		SlideSquare(2, 1, 'r');
-		SlideSquare(3, 1, 'l');
-		SlideSquare(4, 1, 'r');
-		SlideSquare(5, 1, 'r');
-		SlideSquare(6, 1, 'd');
-
+		for(var i = 1; i <= bananas.length; i++){
+			SlideSquare(i, 'right');
+//			console.log( 'SS ' + i);
+		}
+//		SlideSquare(1, 1, 'd')
+//		SlideSquare(2, 1, 'r');
+//		SlideSquare(3, 1, 'l');
+//		SlideSquare(4, 1, 'r');
+//		SlideSquare(5, 1, 'r');
+//		SlideSquare(6, 1, 'd');
 		hitEdgeW = 'n';
-//		hitEdgeH = 'n';
-
 	}
 	if(direction == 'd'){
 		if(hitEdgeH == 'b'){
@@ -187,17 +126,18 @@ function Slide(direction){
 		}
 		else{
 			heightStep += 10;
-	//		positionY = heightStep + 'vh';
 		}
-		SlideSquare(1, 1, 'r');
-		SlideSquare(2, 1, 'u');
-		SlideSquare(3, 1, 'r');
-		SlideSquare(4, 1, 'l');
-		SlideSquare(5, 1, 'u');
-		SlideSquare(6, 1, 'u');
-
+		for(var i = 1; i <= bananas.length; i++){
+			SlideSquare(i, 'down');
+//			console.log( 'SS ' + i);
+		}
+//		SlideSquare(1, 1, 'r');
+//		SlideSquare(2, 1, 'u');
+//		SlideSquare(3, 1, 'r');
+//		SlideSquare(4, 1, 'l');
+//		SlideSquare(5, 1, 'u');
+//		SlideSquare(6, 1, 'u');
 		hitEdgeH = 'n';
-
 	}
 	if(direction == 'l'){
 		if(hitEdgeW == 'l'){
@@ -217,16 +157,17 @@ function Slide(direction){
 		}
 		else{
 			widthStep -= 10;
-	//		positionX = widthStep +'vw';
-	//			slider.style.left = positionX;
 		}
-		SlideSquare(1, 1, 'l');
-		SlideSquare(2, 1, 'l');
-		SlideSquare(3, 1, 'd');
-		SlideSquare(4, 1, 'u');
-		SlideSquare(5, 1, 'd');
-		SlideSquare(6, 1, 'l');
-
+		for(var i = 1; i <= bananas.length; i++){
+			SlideSquare(i, 'left');
+//			console.log( 'SS ' + i);
+		}
+//		SlideSquare(1, 1, 'l');
+//		SlideSquare(2, 1, 'l');
+//		SlideSquare(3, 1, 'd');
+//		SlideSquare(4, 1, 'u');
+//		SlideSquare(5, 1, 'd');
+//		SlideSquare(6, 1, 'l');
 		hitEdgeW = 'n';
 	}
 	if(direction == 'u'){
@@ -248,12 +189,16 @@ function Slide(direction){
 		else{
 			heightStep -= 10;
 		}
-		SlideSquare(1, 1, 'u');
-		SlideSquare(2, 1, 'd');
-		SlideSquare(3, 1, 'u');
-		SlideSquare(4, 1, 'd');
-		SlideSquare(5, 1, 'l');
-		SlideSquare(6, 1, 'r');
+		for(var i = 1; i <= bananas.length; i++){
+			SlideSquare(i, 'up');
+//			console.log( 'SS ' + i);
+		}
+//		SlideSquare(1, 1, 'u');
+//		SlideSquare(2, 1, 'd');
+//		SlideSquare(3, 1, 'u');
+//		SlideSquare(4, 1, 'd');
+//		SlideSquare(5, 1, 'l');
+//		SlideSquare(6, 1, 'r');
 		hitEdgeH = 'n';
 	}
 //	positionX = widthStep +'vw';
@@ -263,37 +208,17 @@ function Slide(direction){
 
 	if(widthStep < 20){ // if hit left
 		hitEdgeW = 'l';
-//		positionX = '20vw';
-//		widthStep = 20;
-//		$('#slider')[0].style.left = positionX;
 	}
 	if(widthStep > 70){ // if hit right
-//		positionX = '60vw';
 		hitEdgeW = 'r';
-//		widthStep = 70;
-//		$('#slider')[0].style.left = positionX;
 	}
 	if(heightStep > currentBottom){ // if hit bottom
 		hitEdgeH = 'b';
-//		positionY = (currentBottom) + 'vh';
-//		heightStep = currentBottom;
-//		$('#slider')[0].style.top = positionY;
 	}
 	if(heightStep < 20){ // if hit top
 		hitEdgeH = 't';
-
-//		positionY = '30vh';
-//		heightStep = 30;
-//		$('#slider')[0].style.top = positionY;
 	}
 	console.log(hitEdgeW, hitEdgeH);
-
-
-//	if(heightStep > currentBottom + 10){ // if hit bottom
-//		positionY = (currentBottom) + 'vh';
-//		heightStep = currentBottom;
-//		$('#slider')[0].style.top = positionY;
-//	}
 }
 function Add(number){
 	var badGuys = $(".bad-guy");
@@ -329,7 +254,6 @@ function Add(number){
 	currentSpeed = currentBanana['speed'];
 	if(currentSize > maxSize){
 		maxSize = currentSize;
-//		console.log(maxSize);
 	}
 	if ([2,4,5].indexOf(number) > -1){
 		difficulty ++;
@@ -354,13 +278,28 @@ function Add(number){
 //	addClassBG(number);
 //	console.log(number);
 }
-//function addClassBG(id){
-//	var badGuyId = 'badGuy';
-//	badGuyId += id;
-//	var badGuy = document.getElementById(badGuyId);
-//	badGuy.setAttribute("class", "bad-guy");
-//}
-function SlideSquare(id, speed, directionBadGuy){
+function SlideSquare(id, button){
+	var dir;
+	const currentBanana = bananas.find( banana => banana.id === id);
+//	currentId = currentBanana['id'];
+//	currentColor = currentBanana['color'];
+//	currentSize = currentBanana['size'];
+//	currentSpeed = currentBanana['speed'];
+	if(button == 'right'){
+		dir = currentBanana.right;
+	}
+	if(button == 'down'){
+		dir = currentBanana.down;
+	}
+	if(button == 'left'){
+		dir = currentBanana.left;
+	}
+	if(button == 'up'){
+		dir = currentBanana.up;
+	}
+//	dir = currentBanana[button];
+//	console.log(currentBanana.button);
+	console.log(dir);
 	var badGuyId = 'badGuy';
 	badGuyId += id;
 	if(CheckBadGuy(id) == 'fart'){
@@ -371,8 +310,7 @@ function SlideSquare(id, speed, directionBadGuy){
 	var badGuyTop = window.getComputedStyle(badGuy).top;
 	var positionX = Number(badGuyLeft);
 	var positionY = Number(badGuyTop);
-
-	Move(directionBadGuy);
+	Move(dir);
 	function Move(directionBadGuy){
 		if(directionBadGuy == 'r'){
 			positionX = '70vw';
@@ -388,9 +326,7 @@ function SlideSquare(id, speed, directionBadGuy){
 		}
 		badGuy.style.left = positionX;
 		badGuy.style.top = positionY;
-
 		badGuy.addEventListener("transitionend", CheckB, false);
-//		badGuy.removeEventListener("transitionend", CheckB, false);
 		function CheckB(event) {
 			CheckBanana(id);
 			badGuy.removeEventListener("transitionend", CheckB, false);
@@ -417,15 +353,15 @@ function CheckBanana(id){
 	currentId = currentBanana['id'];
 	currentColor = currentBanana['color'];
 	currentSize = currentBanana['size'];
-	currentSpeed = currentBanana['speed'];
+//	currentSpeed = currentBanana['speed'];
 	var badGuyId = 'badGuy';
 	badGuyId += id;
 	var badGuy = document.getElementById(badGuyId);
+	console.log(badGuy);
 	var badGuyLeft = window.getComputedStyle(badGuy).left;
 	var badGuyTop = window.getComputedStyle(badGuy).top;
 	var positionX = Number(badGuyLeft.replace("px", ""));
 	var positionY = Number(badGuyTop.replace("px", ""));
-
 	var bananaLocation = GetBananaLocation();
 	currentSize = (windowWidth / 100) * currentSize;
 	currentHeight = (windowHeight / 10);
@@ -449,12 +385,6 @@ function CheckBanana(id){
 			}
 		}
 		Clone(id);
-//		setTimeout(function(){
-//			badGuy.remove();
-//		}, 800);
-//		var old_element = badGuy;
-//		var new_element = old_element.cloneNode(true);
-//		old_element.parentNode.replaceChild(new_element, old_element);
 		var badGuyCloneId = 'badGuyClone';
 		badGuyCloneId += id;
 		var badGuyClone = document.getElementById(badGuyCloneId);
@@ -516,21 +446,11 @@ function ClearHighScore(){
 		$('#message').prepend("<br><br><span style='color: yellow; font-size: 1.5em;' class='shadow'>High Score Preserved</span><br><br>");
 	}
 }
-
-
-
-// Setup the breakpoint variable
-var breakpoint;
-
-// Get the current breakpoint
+var breakpoint; // for communicating size with JS
 var getBreakpoint = function () {
 	return window.getComputedStyle(document.body, ':before').content.replace(/\"/g, '');
 };
-
-// Calculate breakpoint on page load
 breakpoint = getBreakpoint();
-
-// Recalculate breakpoint on resize
 window.addEventListener('resize', function () {
 	breakpoint = getBreakpoint();
 	console.log('breakpoint' + breakpoint);
@@ -540,12 +460,10 @@ function RestartGame(){
 	$('#score').html(score);
 	difficulty = 1;
 	$('#difficulty').html(difficulty);
-
 	for(var i = 1; i <= bananas.length; i++){
 		var presence = CheckBadGuy(i);
 		if(presence == 'here'){
 			var badGuyId = 'badGuy' + i;
-	//		badGuyId += id;
 			var badGuy = document.getElementById(badGuyId);
 			badGuy.remove();
 		}
