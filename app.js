@@ -68,6 +68,7 @@ var hitBottom;
 var currentBottom = 70;
 var hitEdgeW = 'n';
 var hitEdgeH = 'n';
+var panel = 'open';
 //window.onscroll = function SC(e){
 //	var status = CheckScroll();
 //	if(status == 'done'){
@@ -545,4 +546,20 @@ function RestartGame(){
 	}
 	$('#message').prepend("<br><br><span style='color: brown; font-size: 2em;'>Restarted</span><br><br>");
 //	clear divs of bad guys
+}
+function ChangeBanana(b){
+	var newTexture = b.className.replace('slide-demo', '');
+	console.log(newTexture);
+
+	$('#slider').attr("class", 'slide' + newTexture);
+}
+function Settings(){
+	if(panel == 'closed'){
+		$('.options').css('bottom', '70vh');
+		panel = 'open';
+	}
+	else{
+		$('.options').css('bottom', '1.1em');
+		panel = 'closed';
+	}
 }
