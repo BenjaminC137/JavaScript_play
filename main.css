@@ -221,7 +221,7 @@ html{
 	text-align: right;
 /*	height: 20vw;*/
 /*	mix-blend-mode:lighten;*/
-	transition-duration: 1000ms;
+	transition-duration: 500ms;
 	transition-timing-function: ease-in-out;
 	z-index: 100;
 }
@@ -239,8 +239,11 @@ p{
 */
 #play{
 	background-color: inherit;
-	color: aliceblue;
+	color: beige;
 	font-size: 2rem;
+}
+#playDiv{
+	text-align: center;
 }
 .reset{
 	color: orangered;

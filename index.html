@@ -92,7 +92,7 @@
 			<button class="options-button" onclick="Settings()">Options</button>
 			<div id="menu" class="texture-carbon">
 				<div id="sliderStyles">
-					<h2 style="margin-top: 0" >Choose a banana</h2>
+					<h2 style="margin: 0 5px 10px 0" >Choose a banana</h2>
 					<span class="slide-demo" onclick="ChangeBanana(this);"></span>
 					<span class="slide-demo texture-pyramid-teal" onclick="ChangeBanana(this);"></span>
 					<span class="slide-demo texture-stripes" onclick="ChangeBanana(this);"></span>
@@ -112,8 +112,9 @@
 					<button id="restartButton" class="reset" onclick="RestartGame();" >&olarr; Restart Round</button>
 					<button id="clearButton" class="reset" onclick="ClearHighScore();" >Clear High</button>
 					<br>
-					<br>
-					<button id="play" onclick="Settings();">Play</button>
+					<div id="playDiv" >
+						<button id="play" onclick="Settings();">Play</button>
+					</div>
 					<br>
 					<br>
 					<br>
