@@ -12,6 +12,14 @@ $(document).ready(function(){
 	else {
 	   console.log('No High Score Found.');
 	}
+	if("savedBanana" in localStorage){
+		texture = localStorage.getItem('savedBanana');
+   		console.log('Banana Found! It is: ' + texture);
+		$('#slider').attr("class", 'slide' + texture);
+	}
+	else {
+	   console.log('No High Score Found.');
+	}
 	if(breakpoint == 'small'){
 //		iOSBottomBarVh = 20;
 //		iOSBottomBarPx = 40;
@@ -69,6 +77,7 @@ var currentBottom = 70;
 var hitEdgeW = 'n';
 var hitEdgeH = 'n';
 var panel = 'open';
+var texture;
 //window.onscroll = function SC(e){
 //	var status = CheckScroll();
 //	if(status == 'done'){
@@ -546,10 +555,9 @@ function RestartGame(){
 //	clear divs of bad guys
 }
 function ChangeBanana(b){
-	var newTexture = b.className.replace('slide-demo', '');
-	console.log(newTexture);
-
-	$('#slider').attr("class", 'slide' + newTexture);
+	texture = b.className.replace('slide-demo', '');
+	localStorage.setItem('savedBanana', texture);
+	$('#slider').attr("class", 'slide' + texture);
 }
 function Settings(){
 	if(panel == 'closed'){
