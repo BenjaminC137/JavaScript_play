@@ -365,7 +365,7 @@ function CheckBanana(id){
 	var bananaLocation = GetBananaLocation();
 	currentSize = (windowWidth / 100) * currentSize;
 	currentHeight = (windowHeight / 10);
-	if(((bananaLocation.x < positionX + currentSize) && (bananaLocation.x > positionX - 50)) && ((bananaLocation.y < positionY + currentHeight) && (bananaLocation.y > positionY - 1))){
+	if(((bananaLocation.x < positionX + currentSize) && (bananaLocation.x >= positionX - 1)) && ((bananaLocation.y < positionY + currentHeight) && (bananaLocation.y > positionY - 1))){
 		if(id == 2 || id == 4 || id == 5){
 			var pointsLost = Math.round(score / 2);
 			score = pointsLost;
