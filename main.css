@@ -159,6 +159,7 @@ transform: scale(1, -1);
 }
 .crossover{
 	width: 10vw;
+	color: deepskyblue;
 }
 .data{
 	display: inline-block;
@@ -211,7 +212,7 @@ html{
 .options{
 	position: fixed;
 	left: 0vw;
-	bottom: 70vh;
+	bottom: 55vh;
 	width: 100vw;
 	height: 5px;
 	font-size: 20px;

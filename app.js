@@ -555,7 +555,7 @@ function ChangeBanana(b){
 }
 function Settings(){
 	if(panel == 'closed'){
-		$('.options').css('bottom', '70vh');
+		$('.options').css('bottom', '55vh');
 		panel = 'open';
 	}
 	else{
