@@ -53,6 +53,7 @@
 		<div id="crossoverBR" class="center crossover-wrapper"><div class="crossover">&#8619;</div></div>
 		<div class="data">
 			<div id="message">
+<!--
 				<ol id="instructions">
 				<li>Click + to add bad guys.</li>
 				<li>Click the arrow buttons to move your banana.</li>
@@ -61,6 +62,7 @@
 				<li>You will acquire more <b>points</b> when the difficulty level is higher and for peeling smaller bad guys</li>
 				<li>Add more bad guys when you want!</li>
 				</ol>
+-->
 			</div>
 		</div>
 		<div id="stats" >
@@ -72,7 +74,7 @@
 			<h3 style="display: inline;">High Score: </h3><span id="highScore" class="shadow" style="color: yellow; font-size: 2em">0</span>
 		</div>
 <!--		main-->
-		<div id="slider" class="slide texture-pyramid-teal"></div>
+		<div id="slider" class="slide"></div>
 <!--<div id='badGuy3' class="bad-guy"></div>-->
 <!--		right-->
 		<div id="wide-button-r" class="wide-button" onclick="Slide('r');"><div id="sliderR" class="slideButtonV center"><div class="arrow">&rarr;</div></div></div>
@@ -91,12 +93,20 @@
 			<div id="menu" class="texture-carbon">
 				<div id="sliderStyles">
 					<h2 style="margin-top: 0" >Choose a banana</h2>
+					<span class="slide-demo" onclick="ChangeBanana(this);"></span>
 					<span class="slide-demo texture-pyramid-teal" onclick="ChangeBanana(this);"></span>
 					<span class="slide-demo texture-stripes" onclick="ChangeBanana(this);"></span>
 					<span class="slide-demo texture-fabric" onclick="ChangeBanana(this);"></span>
 					<span onclick="ChangeBanana(this);" class="slide-demo texture-rainbow"></span>
-					<br>
-					<br>
+						<ol id="instructions">
+							<div style="margin-bottom: 5px; font-size: 1.5em"><b>Instructions</b></div>
+							<li>Click + to add bad guys.</li>
+							<li>Click the arrow buttons to move your banana.</li>
+							<li>Get <span style="color: Turquoise">turquoise</span>, <span style="color: orange">orange</span> or <span style="color: crimson">crimson</span> to land on you!</li>
+							<li>Don't let <span style="color: pink;  text-shadow: 1px 1px 1px black;">pink</span>, <span style="color: ghostwhite; text-shadow: 1px 1px 1px black;">white</span> or <span style="color: beige; text-shadow: 1px 1px 1px black;">invisible</span>(beige) land on you!</li>
+							<li>You will acquire more <b>points</b> when the difficulty level is higher and for peeling smaller bad guys</li>
+							<li>Add more bad guys when you want!</li>
+						</ol>
 					<button id="restartButton" class="reset" onclick="RestartGame();" >&olarr; Restart Round</button>
 					<button id="clearButton" class="reset" onclick="ClearHighScore();" >Clear High</button>
 					<br>

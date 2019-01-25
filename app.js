@@ -21,7 +21,7 @@ $(document).ready(function(){
 		$('.zone-center')[0].style.height = '59vh';
 		$('.data')[0].style.top = '30vh';
 		$('#message')[0].style.height = '17vh';
-		$('#instructions')[0].style.fontSize = '1em';
+		$('#instructions')[0].style.fontSize = '1rem';
 		$("#crossoverBL, #crossoverBR").css('top', '60vh');
 
 //			(90 - iOSBottomBarVh) + 'vh';
