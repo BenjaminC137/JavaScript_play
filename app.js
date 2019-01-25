@@ -36,11 +36,11 @@ $(document).ready(function(){
 	}
 });
 const bananas = [
-	{id: 1, color: 'Turquoise', size: 12, speed: 2},
-	{id: 2, color: 'pink', size: 2, speed: 5},
-	{id: 3, color: 'orange', size: 15, speed: 0.5},
-	{id: 4, color: 'white', size: 3, speed: 4},
-	{id: 5, color: 'beige', size: 20, speed: 0.5},
+	{id: 1, color: 'Turquoise', size: 10, speed: 2},
+	{id: 2, color: 'deeppink', size: 2, speed: 5},
+	{id: 3, color: 'orange', size: 20, speed: 0.5},
+	{id: 4, color: 'rebeccapurple', size: 6, speed: 4},
+	{id: 5, color: 'beige', size: 15, speed: 0.5},
 	{id: 6, color: 'crimson', size: 25, speed: 0.5}
 ];
 var highScore = 0;
@@ -148,14 +148,14 @@ function Slide(direction){
 		else{
 			widthStep += 10;
 	//		positionX = widthStep + 'vw';
-	//			slider.style.left = positionX;
-			SlideSquare(1, 1, 'd')
-			SlideSquare(2, 1, 'r');
-			SlideSquare(3, 1, 'l');
-			SlideSquare(4, 1, 'r');
-			SlideSquare(5, 1, 'r');
-			SlideSquare(6, 1, 'd');
 		}
+		SlideSquare(1, 1, 'd')
+		SlideSquare(2, 1, 'r');
+		SlideSquare(3, 1, 'l');
+		SlideSquare(4, 1, 'r');
+		SlideSquare(5, 1, 'r');
+		SlideSquare(6, 1, 'd');
+
 		hitEdgeW = 'n';
 //		hitEdgeH = 'n';
 
@@ -179,14 +179,14 @@ function Slide(direction){
 		else{
 			heightStep += 10;
 	//		positionY = heightStep + 'vh';
-	//			slider.style.top = positionY;
-			SlideSquare(1, 1, 'r');
-			SlideSquare(2, 1, 'u');
-			SlideSquare(3, 1, 'r');
-			SlideSquare(4, 1, 'l');
-			SlideSquare(5, 1, 'u');
-			SlideSquare(6, 1, 'u');
 		}
+		SlideSquare(1, 1, 'r');
+		SlideSquare(2, 1, 'u');
+		SlideSquare(3, 1, 'r');
+		SlideSquare(4, 1, 'l');
+		SlideSquare(5, 1, 'u');
+		SlideSquare(6, 1, 'u');
+
 		hitEdgeH = 'n';
 
 	}
@@ -210,14 +210,14 @@ function Slide(direction){
 			widthStep -= 10;
 	//		positionX = widthStep +'vw';
 	//			slider.style.left = positionX;
-
-			SlideSquare(1, 1, 'l');
-			SlideSquare(2, 1, 'l');
-			SlideSquare(3, 1, 'd');
-			SlideSquare(4, 1, 'u');
-			SlideSquare(5, 1, 'd');
-			SlideSquare(6, 1, 'l');
 		}
+		SlideSquare(1, 1, 'l');
+		SlideSquare(2, 1, 'l');
+		SlideSquare(3, 1, 'd');
+		SlideSquare(4, 1, 'u');
+		SlideSquare(5, 1, 'd');
+		SlideSquare(6, 1, 'l');
+
 		hitEdgeW = 'n';
 	}
 	if(direction == 'u'){
@@ -238,15 +238,13 @@ function Slide(direction){
 		}
 		else{
 			heightStep -= 10;
-	//		positionY = heightStep + 'vh';
-	//			slider.style.top = positionY;
-			SlideSquare(1, 1, 'u');
-			SlideSquare(2, 1, 'd');
-			SlideSquare(3, 1, 'u');
-			SlideSquare(4, 1, 'd');
-			SlideSquare(5, 1, 'l');
-			SlideSquare(6, 1, 'r');
 		}
+		SlideSquare(1, 1, 'u');
+		SlideSquare(2, 1, 'd');
+		SlideSquare(3, 1, 'u');
+		SlideSquare(4, 1, 'd');
+		SlideSquare(5, 1, 'l');
+		SlideSquare(6, 1, 'r');
 		hitEdgeH = 'n';
 	}
 //	positionX = widthStep +'vw';

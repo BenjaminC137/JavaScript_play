@@ -258,19 +258,20 @@ p{
 	width: 10vw;
 	height: 10vh;
 	border-radius: 125px;
-	background-color: powderblue;
+	background-color: deepskyblue;
 /*	background-blend-mode: difference;*/
 	mix-blend-mode:darken;
 	transition-duration: 100ms;
 	transition-timing-function: ease-in-out;
-	z-index: 24;
+/*	z-index: 24;*/
+	z-index: 0;
 }
 .slide-demo{
 	display: inline-block;
 	width: 10vw;
 	height: 10vh;
 	border-radius: 125px;
-	background-color: powderblue;
+	background-color: deepskyblue;
 /*	background-blend-mode: difference;*/
 /*	mix-blend-mode:darken;*/
 /*
@@ -406,6 +407,7 @@ color: red;
 	top: 30vh;
 	width: 20vw;
 	height: 40vh;
+	border-radius: 50px;
 }
 #wide-button-l{
 	left: 0vw;
