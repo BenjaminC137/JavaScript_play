@@ -15,6 +15,16 @@ $(document).ready(function(){
 	else {
 	   console.log('No High Score Found.');
 	}
+	if("activeScore" in localStorage){
+		score = localStorage.getItem('activeScore');
+		score = parseInt(score, 10);
+   		console.log('session Found! It is: ' + score);
+		$('#score').html(score);
+	}
+	else{
+//		localStorage.setItem('activeScore', 0);
+		console.log("no activeScore found.")
+	}
 	if(breakpoint == 'small'){
 		hitBottom = 6.1;
 		$('#sliderD')[0].style.top = '70vh';
@@ -64,12 +74,34 @@ var hitEdgeW = 'n';
 var hitEdgeH = 'n';
 var panel = 'open';
 var texture;
+var availableBadGuys;
 window.onresize = function(event) {
 	windowWidth = window.innerWidth;
 	windowHeight = window.innerHeight;
 //	distanceW = windowWidth / 10;
 //	distanceH = windowHeight / 10;
 };
+document.onkeydown = function(e){
+	if(e.key == 'ArrowRight'){
+		Slide('r');
+	}
+	if(e.key == 'ArrowDown'){
+		Slide('d');
+	}
+	if(e.key == 'ArrowLeft'){
+		Slide('l');
+	}
+	if(e.key == 'ArrowUp'){
+		Slide('u');
+	}
+	if(e.key == ' '){
+		Add(nextBanana);
+	}
+	if(e.key == 'Escape'){
+		Settings();
+	}
+//	console.log(e.key);
+}
 function GetBananaLocation(){
 	var slider = document.querySelector('#slider');
 	var sliderLeft = window.getComputedStyle(slider).left;
@@ -79,7 +111,7 @@ function GetBananaLocation(){
 	return {x: positionX, y: positionY};
 }
 function Slide(direction){
-	if(direction == 'r'){
+	if(direction == 'r'){ // --------------------RIGHT
 		if(hitEdgeW == 'r'){
 			widthStep = 70;
 		}
@@ -98,17 +130,10 @@ function Slide(direction){
 		}
 		for(var i = 1; i <= bananas.length; i++){
 			SlideSquare(i, 'right');
-//			console.log( 'SS ' + i);
 		}
-//		SlideSquare(1, 1, 'd')
-//		SlideSquare(2, 1, 'r');
-//		SlideSquare(3, 1, 'l');
-//		SlideSquare(4, 1, 'r');
-//		SlideSquare(5, 1, 'r');
-//		SlideSquare(6, 1, 'd');
 		hitEdgeW = 'n';
 	}
-	if(direction == 'd'){
+	if(direction == 'd'){ // --------------------DOWN
 		if(hitEdgeH == 'b'){
 			heightStep = currentBottom;
 		}
@@ -129,17 +154,10 @@ function Slide(direction){
 		}
 		for(var i = 1; i <= bananas.length; i++){
 			SlideSquare(i, 'down');
-//			console.log( 'SS ' + i);
 		}
-//		SlideSquare(1, 1, 'r');
-//		SlideSquare(2, 1, 'u');
-//		SlideSquare(3, 1, 'r');
-//		SlideSquare(4, 1, 'l');
-//		SlideSquare(5, 1, 'u');
-//		SlideSquare(6, 1, 'u');
 		hitEdgeH = 'n';
 	}
-	if(direction == 'l'){
+	if(direction == 'l'){ // --------------------LEFT
 		if(hitEdgeW == 'l'){
 			widthStep = 20;
 		}
@@ -170,7 +188,7 @@ function Slide(direction){
 //		SlideSquare(6, 1, 'l');
 		hitEdgeW = 'n';
 	}
-	if(direction == 'u'){
+	if(direction == 'u'){ // --------------------UP
 		if(hitEdgeH == 't'){
 			heightStep = 20;
 		}
@@ -218,20 +236,33 @@ function Slide(direction){
 	if(heightStep < 20){ // if hit top
 		hitEdgeH = 't';
 	}
-	console.log(hitEdgeW, hitEdgeH);
+//	console.log(hitEdgeW, hitEdgeH);
+}
+function CountBadGuys(){
+	var badGuys = $(".bad-guy");
+	availableBadGuys = bananas.length - badGuys.length;
+	$('#addButton').text(availableBadGuys);
+//	if(badGuys.length >= bananas.length - 1){
+//		$('#addButton').text('0');
+//	}
 }
 function Add(number){
 	var badGuys = $(".bad-guy");
+//	availableBadGuys = bananas.length - badGuys.length - 1;
+//		$('#addButton').text(availableBadGuys);
+//
+//	if(badGuys.length >= bananas.length - 1){
+//		$('#addButton').text('0');
+//	}
+	CountBadGuys();
 	if(badGuys.length >= bananas.length){
 		$('#message').prepend('All bad guys are here!<br>');
 		return null;
 	}
-
 	if(number == bananas.length + 1){
 		number = 1;
 	}
 	for(var i = 1; i <= bananas.length; i++){
-//		console.log(i);
 		var presence = CheckBadGuy(i);
 		if(presence == 'fart'){
 			nextBanana = i;
@@ -240,13 +271,10 @@ function Add(number){
 		else{
 			nextBanana = -1;
 		}
-//		console.log(nextBanana);
 	}
-
 	if(nextBanana > -1){
 		number = nextBanana;
 	}
-
 	const currentBanana = bananas.find( banana => banana.id === number);
 	currentId = currentBanana['id'];
 	currentColor = currentBanana['color'];
@@ -277,14 +305,11 @@ function Add(number){
 //	newDiv.setAttribute("class", "bad-guy");
 //	addClassBG(number);
 //	console.log(number);
+	CountBadGuys();
 }
 function SlideSquare(id, button){
 	var dir;
 	const currentBanana = bananas.find( banana => banana.id === id);
-//	currentId = currentBanana['id'];
-//	currentColor = currentBanana['color'];
-//	currentSize = currentBanana['size'];
-//	currentSpeed = currentBanana['speed'];
 	if(button == 'right'){
 		dir = currentBanana.right;
 	}
@@ -297,9 +322,6 @@ function SlideSquare(id, button){
 	if(button == 'up'){
 		dir = currentBanana.up;
 	}
-//	dir = currentBanana[button];
-//	console.log(currentBanana.button);
-	console.log(dir);
 	var badGuyId = 'badGuy';
 	badGuyId += id;
 	if(CheckBadGuy(id) == 'fart'){
@@ -349,15 +371,14 @@ function CheckBadGuy(id){
 	}
 }
 function CheckBanana(id){
-	const currentBanana = bananas.find( banana => banana.id === id);
+	CountBadGuys();
+	const currentBanana = bananas.find(banana => banana.id === id);
 	currentId = currentBanana['id'];
 	currentColor = currentBanana['color'];
 	currentSize = currentBanana['size'];
-//	currentSpeed = currentBanana['speed'];
 	var badGuyId = 'badGuy';
 	badGuyId += id;
 	var badGuy = document.getElementById(badGuyId);
-	console.log(badGuy);
 	var badGuyLeft = window.getComputedStyle(badGuy).left;
 	var badGuyTop = window.getComputedStyle(badGuy).top;
 	var positionX = Number(badGuyLeft.replace("px", ""));
@@ -365,7 +386,7 @@ function CheckBanana(id){
 	var bananaLocation = GetBananaLocation();
 	currentSize = (windowWidth / 100) * currentSize;
 	currentHeight = (windowHeight / 10);
-	if(((bananaLocation.x < positionX + currentSize) && (bananaLocation.x >= positionX - 1)) && ((bananaLocation.y < positionY + currentHeight) && (bananaLocation.y > positionY - 1))){
+	if(((bananaLocation.x < positionX + currentSize) && (bananaLocation.x >= positionX - 1)) && ((bananaLocation.y < positionY + (currentHeight - 1)) && (bananaLocation.y > positionY - 1))){
 		if(id == 2 || id == 4 || id == 5){
 			var pointsLost = Math.round(score / 2);
 			score = pointsLost;
@@ -373,10 +394,16 @@ function CheckBanana(id){
 			difficulty --;
 		}
 		else{
-			var value = -(currentBanana['size'] / 2) + maxSize;
+			var value = Math.round(-(currentBanana['size'] / 2) + maxSize);
+			console.log('value' + value);
 			var newPoints = (1*difficulty) * value;
 			$('#message').prepend("Peeled <span style='color: " + currentColor + "' class='shadow'>" + currentColor + "</span>" + " + " + newPoints + "<br>");
+			console.log('score');
+			console.log(score);
+			console.log('new points');
+			console.log(newPoints);
 			score += newPoints;
+
 			if(score > highScore){
 				highScore = score;
 				localStorage.setItem('savedHighScore', highScore);
@@ -384,6 +411,7 @@ function CheckBanana(id){
 				$('#message').prepend("<span class='shadow' style='color: yellow'>New High Score: </span><span class='shadow' style='color: deeppink'>" + highScore + "</span><br>");
 			}
 		}
+		CountBadGuys();
 		Clone(id);
 		var badGuyCloneId = 'badGuyClone';
 		badGuyCloneId += id;
@@ -396,8 +424,10 @@ function CheckBanana(id){
 		badGuyClone.style.left = ('90vw');
 		}, 100);
 		$('#difficulty').html(difficulty);
+		localStorage.setItem('activeScore', score);
 		$('#score').html(score);
-	}
+//		CountBadGuys();
+	}// end of block - if hit bad guy
 }
 function Clone(id){
 	//get current badguy
@@ -457,6 +487,7 @@ window.addEventListener('resize', function () {
 }, false);
 function RestartGame(){
 	score = 0;
+	localStorage.removeItem('activeScore');
 	$('#score').html(score);
 	difficulty = 1;
 	$('#difficulty').html(difficulty);
@@ -486,4 +517,34 @@ function Settings(){
 		$('.options').css('bottom', '1.1em');
 		panel = 'closed';
 	}
+}
+function Rotten(){
+//	$('.sliderButtonV').css({'left': '30vw', 'width': '40vw', 'height': '10vh', 'color': 'red'});
+
+//	$('.slideButtonV').setClass('center slideButtonH');
+//	$('.slideButtonV').attr("class", "center slideButtonH");
+//	$('.slideButtonH').attr("class", "center slideButtonV");
+//	$('.slideButtonH').removeClass().addClass('center slideButtonV');
+//	$('.arrow').removeClass().addClass('arrow2');
+//	$('.arrow2').removeClass().addClass('arrow');
+//	$('#sliderR')[0].style.top = '70vh';
+
+//	$('#sliderL').css('left', '40vw');
+//	  $( '.slideButtonH' ).toggleClass( '.slideButtonH', 1000, "easeOutSine" );
+//	  $( '.slideButtonV' ).toggleClass( '.slideButtonV', 1000, "easeOutSine" ).toggleClass( '.slideButtonH', 1000, "easeOutSine" );
+	$( '.slideButtonH' ).switchClass( 'slideButtonH', 'slideButtonV', 1000, "easeInOutQuad" );
+	$( '.slideButtonV' ).switchClass( 'slideButtonV', 'slideButtonH', 1000, "easeInOutQuad" );
+
+
+
+//	if(breakpoint == 'small'){
+//		$('#sliderR')[0].style.top = '70vh';
+////		$('.wide-button, .wide-button-l').css("top", "20vh");
+//		$('.slideButtonV').css('top', '20vh');
+//	}
+//	$('.slideButtonV').css('class', 'slideButtonH');
+//	$('.slideButtonH').css('class', 'slideButtonV');
+
+
+//	$('sliderR')[0].css('right', '30vw');
 }

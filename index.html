@@ -8,6 +8,11 @@
 	  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 	  crossorigin="anonymous">
 	</script>
+	<script
+			src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+			integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+			crossorigin="anonymous">
+	</script>
 
 	<link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
@@ -30,20 +35,6 @@
     <title>Slider Banana</title>
 </head>
 	<body class="texture-stripes">
-<!--
-		<div id="fartDiv">
-			<div id="scrollDiv">
-				<br>
-				<br>
-				<div id="scrollMessage" >
-					Scroll Down right now.
-				</div>
-				<br>
-				<br>
-				<br>
-			</div>
-		</div>
--->
 		<h1>Slider Banana©</h1>
 <!--		zones-->
 		<div class="zone-center texture-stripes"></div>
@@ -53,16 +44,6 @@
 		<div id="crossoverBR" class="center crossover-wrapper"><div class="crossover">&#8619;</div></div>
 		<div class="data">
 			<div id="message">
-<!--
-				<ol id="instructions">
-				<li>Click + to add bad guys.</li>
-				<li>Click the arrow buttons to move your banana.</li>
-				<li>Get <span style="color: Turquoise">turquoise</span>, <span style="color: orange">orange</span> or <span style="color: crimson">crimson</span> to land on you!</li>
-				<li>Don't let <span style="color: pink;  text-shadow: 1px 1px 1px black;">pink</span>, <span style="color: ghostwhite; text-shadow: 1px 1px 1px black;">white</span> or <span style="color: beige; text-shadow: 1px 1px 1px black;">invisible</span>(beige) land on you!</li>
-				<li>You will acquire more <b>points</b> when the difficulty level is higher and for peeling smaller bad guys</li>
-				<li>Add more bad guys when you want!</li>
-				</ol>
--->
 			</div>
 		</div>
 		<div id="stats" >
@@ -73,21 +54,19 @@
 		<div id="stats2" >
 			<h3 style="display: inline;">High Score: </h3><span id="highScore" class="shadow" style="color: yellow; font-size: 2em">0</span>
 		</div>
-<!--		main-->
 		<div id="slider" class="slide"></div>
-<!--<div id='badGuy3' class="bad-guy"></div>-->
 <!--		right-->
-		<div id="wide-button-r" class="wide-button" onclick="Slide('r');"><div id="sliderR" class="slideButtonV center"><div class="arrow">&rarr;</div></div></div>
+		<div id="wide-button-r" class="wide-button" onclick="Slide('r');"><div id="sliderR" class="slideButtonV center sliderR"><div class="arrow">&rarr;</div></div></div>
 <!--		down-->
-		<div id="sliderD" class="center slideButtonH" onclick="Slide('d');"><div class="arrow2">&darr;</div></div>
+		<div id="sliderD" class="center slideButtonH sliderD" onclick="Slide('d');"><div class="arrow2">&darr;</div></div>
 <!--		left-->
-		<div id="wide-button-l" class="wide-button" onclick="Slide('l');"><div id="sliderL" class="slideButtonV center"><div class="arrow">&larr;</div></div></div>
+		<div id="wide-button-l" class="wide-button" onclick="Slide('l');"><div id="sliderL" class="slideButtonV center sliderL"><div class="arrow">&larr;</div></div></div>
 <!--		up-->
-		<div id="sliderU" class="center slideButtonH" onclick="Slide('u');"><div class="arrow2">&uarr;</div></div>
-
+		<div id="sliderU" class="center slideButtonH sliderU" onclick="Slide('u');"><div class="arrow2">&uarr;</div></div>
 <!--		add-->
-		<div id="add" class="center add"onclick="Add(1);"><div class="arrow">+</div></div>
-
+		<div id="add" class="center add"onclick="Add(1);"><div id="addButton" class="arrow">+</div></div>
+		<div id="rotten" class="center rotten"onclick="Rotten();"><div id="rottenButton" class="">Rotten Banana Mode</div></div>
+<!--		banana split, monkey, banana bread, peel, slip, bunch, tree, rotten, banana boat, go bananas, shit is bananas, that's bananas -->
 		<div class="options">
 			<button class="options-button" onclick="Settings()">Options</button>
 			<div id="menu" class="texture-carbon">
@@ -103,7 +82,7 @@
 						<ol id="instructions">
 							<div style="margin-bottom: 5px; font-size: 1.5em"><b>Instructions</b></div>
 							<li>+ adds bad guys.</li>
-							<li>&rarr;&darr;&larr;&uarr; move your banana.</li>
+							<li>&rarr;&darr;&larr;&uarr; moves your banana.</li>
 							<li>Make <span style="color: Turquoise">turquoise</span>, <span style="color: orange">orange</span> or <span style="color: crimson">crimson</span> land on you!</li>
 							<li><span style="color: deeppink;  text-shadow: 1px 1px 1px black;">pink</span>, <span style="color: rebeccapurple; text-shadow: -1px -1px 0px white, 1px 1px 0px white, -1px 1px 0px white, 1px -1px .5px white;">purple</span> or <span style="color: beige; text-shadow: 1px 1px 1px black;">invisible</span> can't land on you!</li>
 							<li>You will acquire more <b>points</b> when the difficulty level is higher and for peeling smaller bad guys</li>
@@ -141,12 +120,6 @@
 				</div>
 			</div>
 		</div>
-
-
-
-
-
 	<script src="app.js"></script>
-
 	</body>
 </html>
