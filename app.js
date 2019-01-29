@@ -94,6 +94,7 @@ var availableBadGuys;
 var unRottenState = true;
 var rottenUnlockStatus = false;
 var level = 2;
+var randomState = 1;
 window.onresize = function(event) {
 	windowWidth = window.innerWidth;
 	windowHeight = window.innerHeight;
@@ -291,6 +292,21 @@ function Add(number){
 	CountBadGuys();
 }
 function SlideSquare(id, button){
+	randomState ++;
+	if(randomState > 15){
+		const currentBanana = bananas.find( banana => banana.id === 5);
+		currentBanana.right = 'u';
+		currentBanana.down = 'r';		currentBanana.left = 'l';
+		currentBanana.up = 'd';
+		randomState ++;
+	}
+	if(randomState > 30){
+		const currentBanana = bananas.find( banana => banana.id === 5);
+		currentBanana.right = 'r';
+		currentBanana.down = 'l';		currentBanana.left = 'd';
+		currentBanana.up = 'u';
+		randomState = 3;
+	}
 	var dir;
 	const currentBanana = bananas.find( banana => banana.id === id);
 	if(button == 'right'){
@@ -379,7 +395,7 @@ function CheckBanana(id){
 			var value = Math.round(-(currentBanana['size'] / 2) + maxSize);
 //			console.log('value' + value);
 			var newPoints = (1*difficulty) * value;
-			$('#message').prepend("Peeled <div class='bad-guy-mini' style='background-color: " + currentColor + "'>" + "</div>" + "<span class='shadowLight'> +" + newPoints + "</span><br>");
+			$('#message').prepend("Peeled <div class='bad-guy-mini' style='background-color: " + currentColor + "'>" + "</div>" + "<span class='shadow' style='color: yellow'> +" + newPoints + "</span><br>");
 			score += newPoints;
 			if(score > highScore){
 				highScore = score;
@@ -553,7 +569,7 @@ function Settings(e){
 function Rotten(){
 	if(highScore < 100){
 		rottenUnlockStatus == false;
-		$('#message').prepend('Unlock Rotten Banana Mode when you reach 100 points.');
+		$('#message').prepend('Unlock Rotten Banana Mode when you reach 100 points<br>');
 		return null;
 	}
 	else{
@@ -591,36 +607,35 @@ else{
 
 	//		hitBottom = 6.1;
 //		$('#sliderD')[0].style.top = '70vh';
-//		$('.wide-button, .wide-button-l').css("top", "20vh");
-//		$('.zone-center')[0].style.height = '59vh';
-//		$('.data')[0].style.top = '30vh';
-//		$('#message')[0].style.height = '17vh';
-//		$('#instructions')[0].style.fontSize = '1rem';
-//		$("#crossoverBL, #crossoverBR").css('top', '60vh');
 //		currentBottom = 50;
 //		$('.slideButtonV').css('top', '20vh');
 
 
+//		$('.sliderR, .sliderU').animate({top: "20px", color: 'yellow'}, 1000 );
 
 
 
 
-		if(unRottenState == true){
+	if(unRottenState == true){
 		$('.slideButtonV, .slideButtonH').animate({backgroundColor: "#8B0000", color: 'yellow'}, 1000 );
 
 		$('#wide-button-r').attr("onclick","Slide('u')");
 		$('#wide-button-l').attr("onclick","Slide('d')");
 
 
+		$( '#sliderD' ).switchClass( 'sliderD', 'sliderL', {duration: 500, easing: "easeInOutQuad", complete: RottenMessage, queue: true});
 
-		$( '.slideButtonH' ).switchClass( 'slideButtonH', 'slideButtonV',{duration: 1000, easing: "easeInOutQuad" , queue: true} );
+		$( '.slideButtonH').switchClass( 'slideButtonH', 'slideButtonV',{duration: 1000, easing: "easeInOutQuad" , queue: true} ).animate({top: '20vh'}, 500);
 		$( '.slideButtonV' ).switchClass( 'slideButtonV', 'slideButtonH', {duration: 1000, easing: "easeInOutQuad" , queue: true});
-		$( '#sliderR' ).switchClass( 'sliderR', 'sliderD', {duration: 1000, easing: "easeInOutQuad" , queue: true});
+		$( '#sliderR' ).switchClass( 'sliderR', 'sliderD', {duration: 1000, easing: "easeInOutQuad" , queue: true}).animate({top: '70vh'}, 500);
 
-		$( '#sliderL' ).switchClass( 'sliderL', 'sliderU', {duration: 1000, easing: "easeInOutQuad" , queue: true});
+		$( '#sliderL' ).switchClass( 'sliderL', 'sliderU', {duration: 1000, easing: "easeInOutQuad" , queue: true}).animate({top: '0vh'}, 500);
 		$( '#sliderU' ).switchClass( 'sliderU', 'sliderR', {duration: 1000, easing: "easeInOutQuad" , queue: true});
 
-		$( '#sliderD' ).switchClass( 'sliderD', 'sliderL', {duration: 1000, easing: "easeInOutQuad", complete: RottenMessage, queue: true});
+
+
+//				$('.slideButtonH').css('top', '20vh');
+
 	}
 	else{
 		$('.slideButtonV, .slideButtonH').animate({backgroundColor: "#98FB98", color: 'black'}, 300 );
