@@ -31,9 +31,7 @@ $(document).ready(function(){
 	}
 	if("savedMenuStatus" in localStorage){
 		panel = localStorage.getItem('savedMenuStatus');
-//		console.log(panel);
 		panel = (panel == 'true');
-//		console.log(panel);
 		Settings('remember');
 	}
 	if("activeScore" in localStorage){
@@ -98,8 +96,6 @@ var rottenUnlockStatus = false;
 window.onresize = function(event) {
 	windowWidth = window.innerWidth;
 	windowHeight = window.innerHeight;
-//	distanceW = windowWidth / 10;
-//	distanceH = windowHeight / 10;
 };
 document.onkeydown = function(e){
 	if(e.key == 'ArrowRight'){
@@ -120,7 +116,6 @@ document.onkeydown = function(e){
 	if(e.key == 'Escape'){
 		Settings();
 	}
-//	console.log(e.key);
 }
 function GetBananaLocation(){
 	var slider = document.querySelector('#slider');
@@ -198,14 +193,7 @@ function Slide(direction){
 		}
 		for(var i = 1; i <= bananas.length; i++){
 			SlideSquare(i, 'left');
-//			console.log( 'SS ' + i);
 		}
-//		SlideSquare(1, 1, 'l');
-//		SlideSquare(2, 1, 'l');
-//		SlideSquare(3, 1, 'd');
-//		SlideSquare(4, 1, 'u');
-//		SlideSquare(5, 1, 'd');
-//		SlideSquare(6, 1, 'l');
 		hitEdgeW = 'n';
 	}
 	if(direction == 'u'){ // --------------------UP
@@ -229,18 +217,9 @@ function Slide(direction){
 		}
 		for(var i = 1; i <= bananas.length; i++){
 			SlideSquare(i, 'up');
-//			console.log( 'SS ' + i);
 		}
-//		SlideSquare(1, 1, 'u');
-//		SlideSquare(2, 1, 'd');
-//		SlideSquare(3, 1, 'u');
-//		SlideSquare(4, 1, 'd');
-//		SlideSquare(5, 1, 'l');
-//		SlideSquare(6, 1, 'r');
 		hitEdgeH = 'n';
 	}
-//	positionX = widthStep +'vw';
-//	positionY = heightStep + 'vh';
 	$('#slider')[0].style.left =  widthStep +'vw';
 	$('#slider')[0].style.top = heightStep + 'vh';
 
@@ -256,24 +235,14 @@ function Slide(direction){
 	if(heightStep < 20){ // if hit top
 		hitEdgeH = 't';
 	}
-//	console.log(hitEdgeW, hitEdgeH);
 }
 function CountBadGuys(){
 	var badGuys = $(".bad-guy");
 	availableBadGuys = bananas.length - badGuys.length;
 	$('#addButton').text(availableBadGuys);
-//	if(badGuys.length >= bananas.length - 1){
-//		$('#addButton').text('0');
-//	}
 }
 function Add(number){
 	var badGuys = $(".bad-guy");
-//	availableBadGuys = bananas.length - badGuys.length - 1;
-//		$('#addButton').text(availableBadGuys);
-//
-//	if(badGuys.length >= bananas.length - 1){
-//		$('#addButton').text('0');
-//	}
 	CountBadGuys();
 	if(badGuys.length >= bananas.length){
 		$('#message').prepend("<span class='shadowLight' style='font-size: 1em;'>All bad guys are out!</span><br>");
@@ -307,24 +276,17 @@ function Add(number){
 		difficulty ++;
 		$('#difficulty').html(difficulty);
 	}
-  // create a new div element
 	var newDiv = document.createElement("div");
 	newDiv.setAttribute("class", "bad-guy");
 	newDiv.setAttribute("id", "badGuy" + number);
 	newDiv.style.backgroundColor = currentColor;
 //	newDiv.style.transition =  '200ms';
 	newDiv.style.width = currentSize += 'vw';
-
-	// add the newly created element and its content into the DOM
 	var currentDiv = document.getElementById("slider");
 	document.body.insertBefore(newDiv, currentDiv);
-
 	var addDiv = document.getElementById("add");
 	var newClick = ("Add(" + (number + 1) + ")");
 	addDiv.setAttribute("onclick", newClick);
-//	newDiv.setAttribute("class", "bad-guy");
-//	addClassBG(number);
-//	console.log(number);
 	CountBadGuys();
 }
 function SlideSquare(id, button){
@@ -382,11 +344,9 @@ function CheckBadGuy(id){
 
 	try{
 		var badGuyLeft = window.getComputedStyle(badGuy).left;
-//		console.log('here');
 		return 'here';
 	}
 	catch(error){
-//		console.log('error');
 	return 'fart';
 	}
 }
@@ -417,14 +377,8 @@ function CheckBanana(id){
 			var value = Math.round(-(currentBanana['size'] / 2) + maxSize);
 			console.log('value' + value);
 			var newPoints = (1*difficulty) * value;
-//			$('#message').prepend("Peeled <span style='color: " + currentColor + "' class='shadow'>" + currentColor + "</span>" + " + " + newPoints + "<br>");
 			$('#message').prepend("Peeled <div class='bad-guy-mini' style='background-color: " + currentColor + "'>" + "</div>" + "<span class='shadowLight'> +" + newPoints + "</span><br>");
-			console.log('score');
-			console.log(score);
-			console.log('new points');
-			console.log(newPoints);
 			score += newPoints;
-
 			if(score > highScore){
 				highScore = score;
 				localStorage.setItem('savedHighScore', highScore);
@@ -466,30 +420,25 @@ function Clone(id){
 	currentSpeed = currentBanana['speed'];
 	var badGuyId = 'badGuy';
 	badGuyId += id;
-
 	//get badguy location
 	var badGuy = document.getElementById(badGuyId);
 	var badGuyLeft = window.getComputedStyle(badGuy).left;
 	var badGuyTop = window.getComputedStyle(badGuy).top;
 	var positionX = Number(badGuyLeft.replace("px", ""));
 	var positionY = Number(badGuyTop.replace("px", ""));
-
 	//remove current badguy to remove event listners
 	badGuy.remove();
-
 // create clone
 	var newDiv = document.createElement("div");
 	newDiv.setAttribute("class", "bad-guy-clone");
 	newDiv.setAttribute("id", "badGuyClone" + id);
 	newDiv.style.backgroundColor = currentColor;
-//	newDiv.style.transition =  '200ms';
 	newDiv.style.width = currentSize += 'vw';
 	positionX += "px";
 	positionY += "px";
 	newDiv.style.left = positionX;
 	newDiv.style.top = positionY;
-
-	// add the newly created element and its content into the DOM
+	// add into the DOM
 	var currentDiv = document.getElementById("slider");
 	document.body.insertBefore(newDiv, currentDiv);
 }
@@ -504,7 +453,7 @@ function ClearHighScore(){
 		$('#message').prepend("<br><br><span style='color: yellow; font-size: 1.5em;' class='shadow'>High Score Preserved</span><br><br>");
 	}
 }
-var breakpoint; // for communicating size with JS
+var breakpoint; // for communicating size with JS from CSS
 var getBreakpoint = function () {
 	return window.getComputedStyle(document.body, ':before').content.replace(/\"/g, '');
 };
@@ -533,7 +482,6 @@ function Restore(){
 			}
 			nextBanana = 1;
 		}
-
 		$('#slider').removeAttr('style');
 		$('#slider').attr("class", 'slide');
 		highScore = 0;
@@ -598,7 +546,6 @@ function Settings(e){
 		}
 		console.log('You have played on this device before.');
 	}
-//	console.log(panel);
 	localStorage.setItem('savedMenuStatus', panel);
 }
 function Rotten(){
@@ -610,45 +557,31 @@ function Rotten(){
 	else{
 		localStorage.setItem('savedRottenStatus', true );
 	}
-
 	//	for DESKTOP----------------------------------------------
 	if(breakpoint != 'small'){
 		if(unRottenState == true){
 			$('.slideButtonV, .slideButtonH').animate({backgroundColor: "#8B0000", color: 'yellow'}, 1000 );
-
 			$('#wide-button-r').attr("onclick","Slide('u')");
 			$('#wide-button-l').attr("onclick","Slide('d')");
-
-
-
 			$( '.slideButtonH' ).switchClass( 'slideButtonH', 'slideButtonV',{duration: 1000, easing: "easeInOutQuad" , queue: true} );
 			$( '.slideButtonV' ).switchClass( 'slideButtonV', 'slideButtonH', {duration: 1000, easing: "easeInOutQuad" , queue: true});
 			$( '#sliderR' ).switchClass( 'sliderR', 'sliderD', {duration: 1000, easing: "easeInOutQuad" , queue: true});
-
 			$( '#sliderL' ).switchClass( 'sliderL', 'sliderU', {duration: 1000, easing: "easeInOutQuad" , queue: true});
 			$( '#sliderU' ).switchClass( 'sliderU', 'sliderR', {duration: 1000, easing: "easeInOutQuad" , queue: true});
-
 			$( '#sliderD' ).switchClass( 'sliderD', 'sliderL', {duration: 1000, easing: "easeInOutQuad", complete: RottenMessage, queue: true});
 		}
 		else{
 			$('.slideButtonV, .slideButtonH').animate({backgroundColor: "#98FB98", color: 'black'}, 300 );
-
 			$( '#sliderR' ).switchClass( 'sliderD', 'sliderR', {duration: 500, easing: "easeInOutQuad" , queue: true});
 			$( '#sliderL' ).switchClass( 'sliderU', 'sliderL', {duration: 500, easing: "easeInOutQuad" , queue: true});
 			$( '#sliderU' ).switchClass( 'sliderR', 'sliderU', {duration: 500, easing: "easeInOutQuad" , queue: true});
-
 			$( '.slideButtonH' ).switchClass( 'slideButtonH', 'slideButtonV',{duration: 500, easing: "easeInOutQuad" , queue: true} );
 			$( '.slideButtonV' ).switchClass( 'slideButtonV', 'slideButtonH', {duration: 500, easing: "easeInOutQuad" , queue: true});
-
 			$( '#sliderD' ).switchClass( 'sliderL', 'sliderD', {duration: 500, easing: "easeInOutQuad", complete: UnRottenMessage, queue: true});
-
 			$('#wide-button-r').attr("onclick","Slide('r')");
 			$('#wide-button-l').attr("onclick","Slide('l')");
 		}
 	}
-
-
-
 //	for MOBILE----------------------------------------------
 else{
 
@@ -664,13 +597,6 @@ else{
 //		$("#crossoverBL, #crossoverBR").css('top', '60vh');
 //		currentBottom = 50;
 //		$('.slideButtonV').css('top', '20vh');
-
-
-
-
-
-
-
 
 
 
