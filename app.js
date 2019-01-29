@@ -100,17 +100,33 @@ window.onresize = function(event) {
 	windowHeight = window.innerHeight;
 };
 document.onkeydown = function(e){
-	if(e.key == 'ArrowRight'){
-		Slide('r');
+	if(unRottenState == true){
+		if(e.key == 'ArrowRight'){
+			Slide('r');
+		}
+		if(e.key == 'ArrowDown'){
+			Slide('d');
+		}
+		if(e.key == 'ArrowLeft'){
+			Slide('l');
+		}
+		if(e.key == 'ArrowUp'){
+			Slide('u');
+		}
 	}
-	if(e.key == 'ArrowDown'){
-		Slide('d');
-	}
-	if(e.key == 'ArrowLeft'){
-		Slide('l');
-	}
-	if(e.key == 'ArrowUp'){
-		Slide('u');
+	else{
+		if(e.key == 'ArrowRight'){
+			Slide('u');
+		}
+		if(e.key == 'ArrowDown'){
+			Slide('r');
+		}
+		if(e.key == 'ArrowLeft'){
+			Slide('d');
+		}
+		if(e.key == 'ArrowUp'){
+			Slide('l');
+		}
 	}
 	if(e.key == ' '){
 		Add(nextBanana);
