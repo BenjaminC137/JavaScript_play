@@ -93,6 +93,7 @@ var texture;
 var availableBadGuys;
 var unRottenState = true;
 var rottenUnlockStatus = false;
+var level = 2;
 window.onresize = function(event) {
 	windowWidth = window.innerWidth;
 	windowHeight = window.innerHeight;
@@ -368,14 +369,15 @@ function CheckBanana(id){
 	currentHeight = (windowHeight / 10);
 	if(((bananaLocation.x < positionX + currentSize) && (bananaLocation.x >= positionX - 1)) && ((bananaLocation.y < positionY + (currentHeight - 1)) && (bananaLocation.y > positionY - 1))){
 		if(id == 2 || id == 4 || id == 5){
-			var pointsLost = Math.round(score / 2);
-			score = pointsLost;
+			var pointsLeft = Math.round(score / level);
+			var pointsLost = score - pointsLeft;
+			score = pointsLeft;
 			$('#message').prepend("<div class='bad-guy-mini' style='background-color: " + currentColor + "'>" + "</div> slipped on you" + "<span class='shadowLight'> -" + pointsLost + "</span><br>");
 			difficulty --;
 		}
 		else{
 			var value = Math.round(-(currentBanana['size'] / 2) + maxSize);
-			console.log('value' + value);
+//			console.log('value' + value);
 			var newPoints = (1*difficulty) * value;
 			$('#message').prepend("Peeled <div class='bad-guy-mini' style='background-color: " + currentColor + "'>" + "</div>" + "<span class='shadowLight'> +" + newPoints + "</span><br>");
 			score += newPoints;
@@ -639,9 +641,13 @@ else{
 	}
 	if(unRottenState == true){
 		difficulty += 10;
+		level ++;
+		console.log(level);
 	}
 	else{
 		difficulty -= 10;
+		level --;
+		console.log(level);
 	}
 	unRottenState = !unRottenState;
 	$('#difficulty').text(difficulty);
