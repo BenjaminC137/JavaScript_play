@@ -71,6 +71,8 @@ const bananas = [
 var highScore = 0;
 var windowWidth = window.innerWidth;
 var windowHeight = window.innerHeight;
+	var calculatedVW = windowWidth / 100;
+	var calculatedVH = windowHeight / 100;
 var heightStep = 20;
 var widthStep = 70;
 var score = 0;
@@ -98,6 +100,8 @@ var randomState = 1;
 window.onresize = function(event) {
 	windowWidth = window.innerWidth;
 	windowHeight = window.innerHeight;
+	calculatedVW = windowWidth / 100;
+	calculatedVH = windowHeight / 100;
 };
 document.onkeydown = function(e){
 	if(unRottenState == true){
@@ -309,7 +313,7 @@ function Add(number){
 }
 function SlideSquare(id, button){
 	randomState ++;
-	console.log(randomState);
+//	console.log(randomState);
 	if(randomState > 180){
 		const currentBanana = bananas.find( banana => banana.id === 5);
 		currentBanana.right = 'u';
@@ -356,8 +360,20 @@ function SlideSquare(id, button){
 	var badGuy = document.getElementById(badGuyId);
 	var badGuyLeft = window.getComputedStyle(badGuy).left;
 	var badGuyTop = window.getComputedStyle(badGuy).top;
-	var positionX = Number(badGuyLeft);
-	var positionY = Number(badGuyTop);
+//	console.log(badGuyLeft, badGuyTop);
+	var positionX = Number((badGuyLeft).replace("px", ""));
+	var positionXWas = Number((badGuyLeft).replace("px", ""));
+	var positionY = Number((badGuyTop).replace("px", ""));
+	var positionYWas = Number((badGuyTop).replace("px", ""));
+	positionX = (Math.round(positionX / calculatedVW)) + 'vw';
+//	console.log(positionX);
+	positionY = (Math.round(positionY / calculatedVH)) + 'vh';
+//	console.log(positionY);
+	positionXWas = (Math.round(positionXWas / calculatedVW)) + 'vw';
+//	console.log(positionXWas);
+	positionYWas = (Math.round(positionYWas / calculatedVH)) + 'vh';
+//	console.log(positionYWas);
+
 	Move(dir);
 	function Move(directionBadGuy){
 		if(directionBadGuy == 'r'){
@@ -372,16 +388,24 @@ function SlideSquare(id, button){
 		if(directionBadGuy == 'u'){
 			positionY = '20vh';
 		}
-		badGuy.style.left = positionX;
-		badGuy.style.top = positionY;
-		badGuy.addEventListener("transitionend", CheckB, false);
-		function CheckB(event) {
+//		badGuy.style.left = positionX;
+//		badGuy.style.top = positionY;
+		console.log(positionX, positionXWas, positionY, positionYWas);
+		if(positionX == positionXWas && positionY == positionYWas){
+			return null;
+		}
+		else{
+			$('#' + badGuyId).animate({left: positionX, top: positionY}, {queue: false, duration: 1000, easing: 'easeOutQuint', complete: CheckB});
+//			badGuy.addEventListener("transitionend", CheckB, false);
+			function CheckB(event) {
 			CheckBanana(id);
-			badGuy.removeEventListener("transitionend", CheckB, false);
+//			badGuy.removeEventListener("transitionend", CheckB, 				false);
+			}
 		}
 	}
 }
 function CheckBadGuy(id){
+//	console.log('checkedbadguy');
 	var badGuyId = 'badGuy';
 	badGuyId += id;
 	var badGuy = document.getElementById(badGuyId);
@@ -395,6 +419,7 @@ function CheckBadGuy(id){
 	}
 }
 function CheckBanana(id){
+//	console.log('checkedbanana');
 	CountBadGuys();
 	const currentBanana = bananas.find(banana => banana.id === id);
 	currentId = currentBanana['id'];
