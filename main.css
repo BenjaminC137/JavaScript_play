@@ -8,23 +8,24 @@
 	width: 10vw;
 	height: 15vh;
 	z-index: 30;
-	color: mediumseagreen;
+	color: ghostwhite;
 
 	border-radius: 125px;
-	background-color: ghostwhite;
+	background-color: mediumseagreen;
 	transition-duration: 50ms;
 	transition-timing-function: ease-in-out;
 }
 .arrow{
 /*	display: inline;*/
 	text-align: center;
-	width: 15vw;
+	width: 40vw;
 }
+/*
 .arrow2{
-/*	display: inline;*/
 	text-align: center;
 	width: 40vw;
 }
+*/
 .bad-guy-start{
 	position: fixed;
 	right: 5vw;
@@ -214,7 +215,8 @@ html{
 .options{
 	position: fixed;
 	left: 0vw;
-	bottom: 55vh;
+/*	bottom: 55vh;*/
+	bottom: 1.1em;
 	width: 100vw;
 	height: 5px;
 	font-size: 20px;
@@ -258,15 +260,15 @@ p{
 /*	font-size: 1em;*/
 	position: fixed;
 	left: 0vw;
-	top: 10vh;
+	top: 15vh;
 	display: block;
 	width: 10vw;
 /*	height: 10vh;*/
 	z-index: 30;
-	color: yellow;
+	color: beige;
 
 	border-radius: 125px;
-	background-color: green;
+	background-color: mediumaquamarine;
 	transition-duration: 50ms;
 	transition-timing-function: ease-in-out;
 }

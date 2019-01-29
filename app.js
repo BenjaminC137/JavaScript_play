@@ -15,6 +15,13 @@ $(document).ready(function(){
 	else {
 	   console.log('No High Score Found.');
 	}
+	if("savedMenuStatus" in localStorage){
+		panel = localStorage.getItem('savedMenuStatus');
+		console.log(panel);
+		panel = (panel == 'true');
+		console.log(panel);
+		Settings('remember');
+	}
 	if("activeScore" in localStorage){
 		score = localStorage.getItem('activeScore');
 		score = parseInt(score, 10);
@@ -22,7 +29,6 @@ $(document).ready(function(){
 		$('#score').html(score);
 	}
 	else{
-//		localStorage.setItem('activeScore', 0);
 		console.log("no activeScore found.")
 	}
 	if(breakpoint == 'small'){
@@ -53,8 +59,6 @@ const bananas = [
 var highScore = 0;
 var windowWidth = window.innerWidth;
 var windowHeight = window.innerHeight;
-//var	distanceW = windowWidth / 10;
-//var	distanceH = windowHeight / 10;
 var heightStep = 20;
 var widthStep = 70;
 var score = 0;
@@ -72,9 +76,11 @@ var hitBottom;
 var currentBottom = 70;
 var hitEdgeW = 'n';
 var hitEdgeH = 'n';
-var panel = 'open';
+var panel = true;
 var texture;
 var availableBadGuys;
+var rottenState = true;
+var rottenUnlockStatus = false;
 window.onresize = function(event) {
 	windowWidth = window.innerWidth;
 	windowHeight = window.innerHeight;
@@ -426,7 +432,12 @@ function CheckBanana(id){
 		$('#difficulty').html(difficulty);
 		localStorage.setItem('activeScore', score);
 		$('#score').html(score);
-//		CountBadGuys();
+		if(rottenUnlockStatus == false){
+			if(highScore > 100){
+				rottenUnlockStatus = true;
+				$('#message').prepend('Unlocked ROTTEN BANANA MODE!<br>');
+			}
+		}
 	}// end of block - if hit bad guy
 }
 function Clone(id){
@@ -488,6 +499,9 @@ window.addEventListener('resize', function () {
 function RestartGame(){
 	score = 0;
 	localStorage.removeItem('activeScore');
+	if(rottenState == false){
+		Rotten();
+	}
 	$('#score').html(score);
 	difficulty = 1;
 	$('#difficulty').html(difficulty);
@@ -508,43 +522,67 @@ function ChangeBanana(b){
 	localStorage.setItem('savedBanana', texture);
 	$('#slider').attr("class", 'slide' + texture);
 }
-function Settings(){
-	if(panel == 'closed'){
-		$('.options').css('bottom', '55vh');
-		panel = 'open';
+function Settings(e){
+	if(e == null){
+		if(panel == false){
+			$('.options').css('bottom', '55vh');
+			panel = true;
+		}
+		else{
+			$('.options').css('bottom', '1.1em');
+			panel = false;
+		}
 	}
-	else{
-		$('.options').css('bottom', '1.1em');
-		panel = 'closed';
+	if(e == 'remember'){
+		if(panel == true){
+			$('.options').css('bottom', '55vh');
+			panel = true;
+		}
+		else{
+			$('.options').css('bottom', '1.1em');
+			panel = false;
+		}
+		console.log('remembered');
 	}
+	console.log(panel);
+	localStorage.setItem('savedMenuStatus', panel);
 }
 function Rotten(){
-//	$('.sliderButtonV').css({'left': '30vw', 'width': '40vw', 'height': '10vh', 'color': 'red'});
+	if(highScore < 100){
+		rottenUnlockStatus == false;
+		$('#message').prepend('Unlock Rotten Banana Mode when you reach 100 points.');
+		return null;
+	}
+	if(rottenState == true){
+		$('.slideButtonV, .slideButtonH').animate({backgroundColor: "black"}, 1000 );
 
-//	$('.slideButtonV').setClass('center slideButtonH');
-//	$('.slideButtonV').attr("class", "center slideButtonH");
-//	$('.slideButtonH').attr("class", "center slideButtonV");
-//	$('.slideButtonH').removeClass().addClass('center slideButtonV');
-//	$('.arrow').removeClass().addClass('arrow2');
-//	$('.arrow2').removeClass().addClass('arrow');
-//	$('#sliderR')[0].style.top = '70vh';
+		$( '.slideButtonH' ).switchClass( 'slideButtonH', 'slideButtonV',{duration: 1000, easing: "easeInOutQuad" , queue: true} );
+		$( '.slideButtonV' ).switchClass( 'slideButtonV', 'slideButtonH', {duration: 1000, easing: "easeInOutQuad" , queue: true});
+		$( '#sliderR' ).switchClass( 'sliderR', 'sliderD', {duration: 1000, easing: "easeInOutQuad" , queue: true});
 
-//	$('#sliderL').css('left', '40vw');
-//	  $( '.slideButtonH' ).toggleClass( '.slideButtonH', 1000, "easeOutSine" );
-//	  $( '.slideButtonV' ).toggleClass( '.slideButtonV', 1000, "easeOutSine" ).toggleClass( '.slideButtonH', 1000, "easeOutSine" );
-	$( '.slideButtonH' ).switchClass( 'slideButtonH', 'slideButtonV', 1000, "easeInOutQuad" );
-	$( '.slideButtonV' ).switchClass( 'slideButtonV', 'slideButtonH', 1000, "easeInOutQuad" );
+		$( '#sliderL' ).switchClass( 'sliderL', 'sliderU', {duration: 1000, easing: "easeInOutQuad" , queue: true});
+		$( '#sliderU' ).switchClass( 'sliderU', 'sliderR', {duration: 1000, easing: "easeInOutQuad" , queue: true});
 
+		$( '#sliderD' ).switchClass( 'sliderD', 'sliderL', {duration: 1000, easing: "easeInOutQuad" , queue: true});
+	}
+	else{
+		$('.slideButtonV, .slideButtonH').animate({backgroundColor: "#98FB98"}, 300 );
 
+		$( '#sliderR' ).switchClass( 'sliderD', 'sliderR', {duration: 500, easing: "easeInOutQuad" , queue: true});
+		$( '#sliderL' ).switchClass( 'sliderU', 'sliderL', {duration: 500, easing: "easeInOutQuad" , queue: true});
+		$( '#sliderU' ).switchClass( 'sliderR', 'sliderU', {duration: 500, easing: "easeInOutQuad" , queue: true});
 
-//	if(breakpoint == 'small'){
-//		$('#sliderR')[0].style.top = '70vh';
-////		$('.wide-button, .wide-button-l').css("top", "20vh");
-//		$('.slideButtonV').css('top', '20vh');
-//	}
-//	$('.slideButtonV').css('class', 'slideButtonH');
-//	$('.slideButtonH').css('class', 'slideButtonV');
+		$( '.slideButtonH' ).switchClass( 'slideButtonH', 'slideButtonV',{duration: 500, easing: "easeInOutQuad" , queue: true} );
+		$( '.slideButtonV' ).switchClass( 'slideButtonV', 'slideButtonH', {duration: 500, easing: "easeInOutQuad" , queue: true});
 
-
-//	$('sliderR')[0].css('right', '30vw');
+		$( '#sliderD' ).switchClass( 'sliderL', 'sliderD', {duration: 500, easing: "easeInOutQuad" , queue: true});
+	}
+	if(rottenState == true){
+		difficulty += 10;
+	}
+	else{
+		difficulty -= 10;
+	}
+	rottenState = !rottenState;
+	$('#difficulty').text(difficulty);
 }
