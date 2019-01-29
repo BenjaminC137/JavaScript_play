@@ -404,7 +404,7 @@ function CheckBanana(id){
 			var pointsLeft = Math.round(score / level);
 			var pointsLost = score - pointsLeft;
 			score = pointsLeft;
-			$('#message').prepend("<div class='bad-guy-mini' style='background-color: " + currentColor + "'>" + "</div> slipped on you" + "<span class='shadowLight'> -" + pointsLost + "</span><br>");
+			$('#message').prepend("<div class='bad-guy-mini' style='background-color: " + currentColor + "'>" + "</div> slipped" + "<span class='shadowLight'> -" + pointsLost + "</span><br>");
 			difficulty --;
 		}
 		else{
