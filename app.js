@@ -635,6 +635,12 @@ function Rotten(){
 		$( '.slideButtonV' ).switchClass( 'slideButtonV', 'slideButtonH', {duration: 500, easing: "easeInOutQuad" , queue: true});
 
 		$( '#sliderD' ).switchClass( 'sliderL', 'sliderD', {duration: 500, easing: "easeInOutQuad" , queue: true});
+
+		$('#wide-button-r').attr("onclick","Slide('r')");
+		$('#wide-button-l').attr("onclick","Slide('l')");
+
+
+
 	}
 	if(unRottenState == true){
 		difficulty += 10;
