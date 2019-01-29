@@ -16,15 +16,18 @@ $(document).ready(function(){
 	   console.log('No Banana Found.');
 	}
 	if("savedRottenStatus" in localStorage){
+//		console.log('srs');
 		rottenUnlockStatus = localStorage.getItem('savedRottenStatus');
 		rottenUnlockStatus = (rottenUnlockStatus == 'true');
+//		console.log(rottenUnlockStatus);
 		if(rottenUnlockStatus == true){
-			$('.rotten').css('color', 'black');
+			$('.rotten').css({'color': 'yellow', 'background-color': 'brown'});
 		}
    		console.log('Rotten Status loaded.');
 	}
 	else {
 	   console.log('You have not achieved Rotten Status.');
+		console.log(rottenUnlockStatus);
 	}
 	if("savedMenuStatus" in localStorage){
 		panel = localStorage.getItem('savedMenuStatus');
@@ -90,7 +93,7 @@ var hitEdgeH = 'n';
 var panel = true;
 var texture;
 var availableBadGuys;
-var rottenState = true;
+var unRottenState = true;
 var rottenUnlockStatus = false;
 window.onresize = function(event) {
 	windowWidth = window.innerWidth;
@@ -446,8 +449,9 @@ function CheckBanana(id){
 		if(rottenUnlockStatus == false){
 			if(highScore > 100){
 				rottenUnlockStatus = true;
+				localStorage.setItem('savedRottenStatus', true);
 				$('#message').prepend("<br><br><span style='color: mediumseagreen; font-size: 2em;' class='shadowLight'>Unlocked ROTTEN BANANA MODE!</span><br><br>");
-				$('.rotten').css('color: black');
+				$('.rotten').css({'color': 'yellow', 'background-color': 'brown'});
 			}
 		}
 	}// end of block - if hit bad guy
@@ -513,7 +517,7 @@ function Restore(){
 		localStorage.clear();
 
 		score = 0;
-		if(rottenState == false){
+		if(unRottenState == false){
 			Rotten();
 		}
 		$('#score').html(score);
@@ -543,7 +547,7 @@ function RestartGame(){
 	if (confirm("Are you sure you want to restart?")) {
 		score = 0;
 		localStorage.removeItem('activeScore');
-		if(rottenState == false){
+		if(unRottenState == false){
 			Rotten();
 		}
 		$('#score').html(score);
@@ -576,7 +580,7 @@ function Settings(e){
 			panel = true;
 		}
 		else{
-			$('.options').css('bottom', '1.1em');
+			$('.options').css('bottom', '0vh');
 			panel = false;
 		}
 	}
@@ -586,7 +590,7 @@ function Settings(e){
 			panel = true;
 		}
 		else{
-			$('.options').css('bottom', '1.1em');
+			$('.options').css('bottom', '0vh');
 			panel = false;
 		}
 		console.log('You have played on this device before.');
@@ -600,8 +604,16 @@ function Rotten(){
 		$('#message').prepend('Unlock Rotten Banana Mode when you reach 100 points.');
 		return null;
 	}
-	if(rottenState == true){
-		$('.slideButtonV, .slideButtonH').animate({backgroundColor: "black"}, 1000 );
+	else{
+		localStorage.setItem('savedRottenStatus', true );
+	}
+	if(unRottenState == true){
+		$('.slideButtonV, .slideButtonH').animate({backgroundColor: "#8B0000", color: 'yellow'}, 1000 );
+
+		$('#wide-button-r').attr("onclick","Slide('u')");
+		$('#wide-button-l').attr("onclick","Slide('d')");
+
+
 
 		$( '.slideButtonH' ).switchClass( 'slideButtonH', 'slideButtonV',{duration: 1000, easing: "easeInOutQuad" , queue: true} );
 		$( '.slideButtonV' ).switchClass( 'slideButtonV', 'slideButtonH', {duration: 1000, easing: "easeInOutQuad" , queue: true});
@@ -613,7 +625,7 @@ function Rotten(){
 		$( '#sliderD' ).switchClass( 'sliderD', 'sliderL', {duration: 1000, easing: "easeInOutQuad" , queue: true});
 	}
 	else{
-		$('.slideButtonV, .slideButtonH').animate({backgroundColor: "#98FB98"}, 300 );
+		$('.slideButtonV, .slideButtonH').animate({backgroundColor: "#98FB98", color: 'black'}, 300 );
 
 		$( '#sliderR' ).switchClass( 'sliderD', 'sliderR', {duration: 500, easing: "easeInOutQuad" , queue: true});
 		$( '#sliderL' ).switchClass( 'sliderU', 'sliderL', {duration: 500, easing: "easeInOutQuad" , queue: true});
@@ -624,12 +636,12 @@ function Rotten(){
 
 		$( '#sliderD' ).switchClass( 'sliderL', 'sliderD', {duration: 500, easing: "easeInOutQuad" , queue: true});
 	}
-	if(rottenState == true){
+	if(unRottenState == true){
 		difficulty += 10;
 	}
 	else{
 		difficulty -= 10;
 	}
-	rottenState = !rottenState;
+	unRottenState = !unRottenState;
 	$('#difficulty').text(difficulty);
 }

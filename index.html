@@ -50,22 +50,24 @@
 			<h3 style="display: inline">Difficulty:</h3><span id="difficulty" class="status">1</span>
 			<br>
 			<h3 style="display: inline;">Score:</h3><span id="score" class="status">0</span>
+			<div id="rotten" class="center rotten"onclick="Rotten();"><div id="rottenButton">ROTTEN BANANA</div></div>
 		</div>
 		<div id="stats2" >
 			<h3 style="display: inline;">High Score: </h3><span id="highScore" class="shadow" style="color: yellow; font-size: 2em">0</span>
 		</div>
 		<div id="slider" class="slide"></div>
 <!--		right-->
-		<div id="wide-button-r" class="wide-button" onclick="Slide('r');"><div id="sliderR" class="slideButtonV center sliderR"><div class="arrow">&rarr;</div></div></div>
+		<div id="wide-button-r" class="wide-button" onclick="Slide('r');"></div>
+		<div id="sliderR" onclick="Slide('r');" class="slideButtonV center sliderR"><div class="arrow">&rarr;</div></div>
 <!--		down-->
 		<div id="sliderD" class="center slideButtonH sliderD" onclick="Slide('d');"><div class="arrow">&darr;</div></div>
 <!--		left-->
-		<div id="wide-button-l" class="wide-button" onclick="Slide('l');"><div id="sliderL" class="slideButtonV center sliderL"><div class="arrow">&larr;</div></div></div>
+		<div id="wide-button-l" class="wide-button" onclick="Slide('l');"></div>
+		<div id="sliderL" onclick="Slide('l');" class="slideButtonV center sliderL"><div class="arrow">&larr;</div></div>
 <!--		up-->
 		<div id="sliderU" class="center slideButtonH sliderU" onclick="Slide('u');"><div class="arrow">&uarr;</div></div>
 <!--		add-->
 		<div id="add" class="center add"onclick="Add(1);"><div id="addButton" class="arrow">+</div></div>
-		<div id="rotten" class="center rotten"onclick="Rotten();"><div id="rottenButton" class="">Rotten Banana Mode</div></div>
 <!--		banana split, monkey, banana bread, peel, slip, bunch, tree, rotten, banana boat, go bananas, shit is bananas, that's bananas -->
 		<div class="options">
 			<button class="options-button" onclick="Settings()">Options</button>
