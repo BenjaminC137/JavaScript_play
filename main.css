@@ -56,8 +56,10 @@
 	animation-duration: 200ms;
 	animation-timing-function: linear;
 
+/*
 	transition-duration: 1000ms;
 	transition-timing-function: ease-in-out;
+*/
 
 	background-image: linear-gradient(98deg, rgba(255,255,255,.07) 50%, transparent 50%),
 linear-gradient(90deg, rgba(255,255,255,.13) 50%, transparent 50%),

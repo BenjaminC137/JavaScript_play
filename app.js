@@ -309,19 +309,30 @@ function Add(number){
 }
 function SlideSquare(id, button){
 	randomState ++;
-	if(randomState > 15){
+	console.log(randomState);
+	if(randomState > 180){
 		const currentBanana = bananas.find( banana => banana.id === 5);
 		currentBanana.right = 'u';
-		currentBanana.down = 'r';		currentBanana.left = 'l';
+		currentBanana.down = 'r';
+		currentBanana.left = 'l';
 		currentBanana.up = 'd';
-		randomState ++;
+		if(randomState > 270){
+			randomState = 3;
+		}
 	}
-	if(randomState > 30){
+	else if(randomState > 90){
+		const currentBanana = bananas.find( banana => banana.id === 5);
+		currentBanana.right = 'l';
+		currentBanana.down = 'd';
+		currentBanana.left = 'r';
+		currentBanana.up = 'u';
+		randomState ++;	}
+	else{
 		const currentBanana = bananas.find( banana => banana.id === 5);
 		currentBanana.right = 'r';
-		currentBanana.down = 'l';		currentBanana.left = 'd';
-		currentBanana.up = 'u';
-		randomState = 3;
+		currentBanana.down = 'u';
+		currentBanana.left = 'd';
+		currentBanana.up = 'l';
 	}
 	var dir;
 	const currentBanana = bananas.find( banana => banana.id === id);
