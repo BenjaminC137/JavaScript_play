@@ -65,6 +65,27 @@ linear-gradient(90deg, transparent 50%, rgba(255,255,255,.17) 50%),
 linear-gradient(90deg, transparent 50%, rgba(255,255,255,.19) 50%);
 background-size: 13px, 29px, 37px, 53px;
 }
+.bad-guy-mini{
+	display: inline-block;
+	width: 2vw;
+	height: 2vh;
+	border-radius: 125px;
+	mix-blend-mode:darken;
+	isolation:isolate;
+	animation-name: add;
+	animation-duration: 200ms;
+	animation-timing-function: linear;
+	box-shadow: 1px 1px 1px black, -1px -1px 1px black;
+
+	transition-duration: 1000ms;
+	transition-timing-function: ease-in-out;
+
+	background-image: linear-gradient(98deg, rgba(255,255,255,.07) 50%, transparent 50%),
+linear-gradient(90deg, rgba(255,255,255,.13) 50%, transparent 50%),
+linear-gradient(90deg, transparent 50%, rgba(255,255,255,.17) 50%),
+linear-gradient(90deg, transparent 50%, rgba(255,255,255,.19) 50%);
+background-size: 13px, 29px, 37px, 53px;
+}
 .bad-guy-clone{
 	position: fixed;
 	display: block;
@@ -426,7 +447,7 @@ background-size: 13px, 29px, 37px, 53px;
 /*	text-shadow: 1px 1px 0px black;*/
 	text-shadow:
 		1px 1px 0px black,
-		-1px -1px 1px powderblue,
+		-1px -1px 1px indigo,
 		2px -1px 0px black
 		;
 color: red;

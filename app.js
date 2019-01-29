@@ -276,7 +276,7 @@ function Add(number){
 //	}
 	CountBadGuys();
 	if(badGuys.length >= bananas.length){
-		$('#message').prepend('All bad guys are here!<br>');
+		$('#message').prepend("<span class='shadowLight' style='font-size: 1em;'>All bad guys are out!</span><br>");
 		return null;
 	}
 	if(number == bananas.length + 1){
@@ -410,14 +410,15 @@ function CheckBanana(id){
 		if(id == 2 || id == 4 || id == 5){
 			var pointsLost = Math.round(score / 2);
 			score = pointsLost;
-			$('#message').prepend("<span style='color: " + currentColor + "' class='shadow'>" + currentColor + "</span> slipped on you" + " - " + pointsLost + "<br>");
+			$('#message').prepend("<div class='bad-guy-mini' style='background-color: " + currentColor + "'>" + "</div> slipped on you" + "<span class='shadowLight'> -" + pointsLost + "</span><br>");
 			difficulty --;
 		}
 		else{
 			var value = Math.round(-(currentBanana['size'] / 2) + maxSize);
 			console.log('value' + value);
 			var newPoints = (1*difficulty) * value;
-			$('#message').prepend("Peeled <span style='color: " + currentColor + "' class='shadow'>" + currentColor + "</span>" + " + " + newPoints + "<br>");
+//			$('#message').prepend("Peeled <span style='color: " + currentColor + "' class='shadow'>" + currentColor + "</span>" + " + " + newPoints + "<br>");
+			$('#message').prepend("Peeled <div class='bad-guy-mini' style='background-color: " + currentColor + "'>" + "</div>" + "<span class='shadowLight'> +" + newPoints + "</span><br>");
 			console.log('score');
 			console.log(score);
 			console.log('new points');
@@ -428,7 +429,7 @@ function CheckBanana(id){
 				highScore = score;
 				localStorage.setItem('savedHighScore', highScore);
 				$('#highScore').html(highScore);
-				$('#message').prepend("<span class='shadow' style='color: yellow'>New High Score: </span><span class='shadow' style='color: deeppink'>" + highScore + "</span><br>");
+				$('#message').prepend("<span class='shadow' style='color: yellow'>New High Score: </span><span class='shadowLight' style='color: deeppink'>" + highScore + "</span><br>");
 			}
 		}
 		CountBadGuys();
@@ -497,7 +498,7 @@ function ClearHighScore(){
 		localStorage.removeItem('savedHighScore');
 		highScore = 0;
 		$('#highScore').html(highScore);
-			$('#message').prepend("<br><br><span style='color: crimson; font-size: 1.5em;' class='shadow'>Cleared High Score</span><br><br>");
+			$('#message').prepend("<br><br><span style='color: crimson; font-size: 2em;' class='shadow'>Cleared High Score</span><br><br>");
 	}
 	else {
 		$('#message').prepend("<br><br><span style='color: yellow; font-size: 1.5em;' class='shadow'>High Score Preserved</span><br><br>");
@@ -539,7 +540,7 @@ function Restore(){
 		$('#highScore').html(highScore);
 		$('.rotten').removeAttr('style');
 		$('#addButton').html('+');
-		$('#message').html("<br><br><span style='color: crimson; font-size: 1.5em;' class='shadow'>Restored Game</span><br><br>");
+		$('#message').html("<br><br><span style='color: crimson; font-size: 1.5em;' class='shadowLight'>Restored Game</span><br><br>");
 	}
 	else {
 		$('#message').prepend("<br><br><span style='color: yellow; font-size: 1.5em;' class='shadow'>Game Data Preserved</span><br><br>");
@@ -564,7 +565,7 @@ function RestartGame(){
 			}
 			nextBanana = 1;
 		}
-		$('#message').prepend("<br><br><span style='color: crimson; font-size: 2em;'>Restarted</span><br><br>");
+		$('#message').prepend("<br><br><span class='shadowLight' style='color: crimson; font-size: 2em;'>Restarted</span><br><br>");
 	}
 	else{
 		$('#message').prepend("<br><br><span style='color: yellow; font-size: 1.5em;' class='shadow'>Restart Canceled</span><br><br>");
@@ -609,7 +610,74 @@ function Rotten(){
 	else{
 		localStorage.setItem('savedRottenStatus', true );
 	}
-	if(unRottenState == true){
+
+	//	for DESKTOP----------------------------------------------
+	if(breakpoint != 'small'){
+		if(unRottenState == true){
+			$('.slideButtonV, .slideButtonH').animate({backgroundColor: "#8B0000", color: 'yellow'}, 1000 );
+
+			$('#wide-button-r').attr("onclick","Slide('u')");
+			$('#wide-button-l').attr("onclick","Slide('d')");
+
+
+
+			$( '.slideButtonH' ).switchClass( 'slideButtonH', 'slideButtonV',{duration: 1000, easing: "easeInOutQuad" , queue: true} );
+			$( '.slideButtonV' ).switchClass( 'slideButtonV', 'slideButtonH', {duration: 1000, easing: "easeInOutQuad" , queue: true});
+			$( '#sliderR' ).switchClass( 'sliderR', 'sliderD', {duration: 1000, easing: "easeInOutQuad" , queue: true});
+
+			$( '#sliderL' ).switchClass( 'sliderL', 'sliderU', {duration: 1000, easing: "easeInOutQuad" , queue: true});
+			$( '#sliderU' ).switchClass( 'sliderU', 'sliderR', {duration: 1000, easing: "easeInOutQuad" , queue: true});
+
+			$( '#sliderD' ).switchClass( 'sliderD', 'sliderL', {duration: 1000, easing: "easeInOutQuad", complete: RottenMessage, queue: true});
+		}
+		else{
+			$('.slideButtonV, .slideButtonH').animate({backgroundColor: "#98FB98", color: 'black'}, 300 );
+
+			$( '#sliderR' ).switchClass( 'sliderD', 'sliderR', {duration: 500, easing: "easeInOutQuad" , queue: true});
+			$( '#sliderL' ).switchClass( 'sliderU', 'sliderL', {duration: 500, easing: "easeInOutQuad" , queue: true});
+			$( '#sliderU' ).switchClass( 'sliderR', 'sliderU', {duration: 500, easing: "easeInOutQuad" , queue: true});
+
+			$( '.slideButtonH' ).switchClass( 'slideButtonH', 'slideButtonV',{duration: 500, easing: "easeInOutQuad" , queue: true} );
+			$( '.slideButtonV' ).switchClass( 'slideButtonV', 'slideButtonH', {duration: 500, easing: "easeInOutQuad" , queue: true});
+
+			$( '#sliderD' ).switchClass( 'sliderL', 'sliderD', {duration: 500, easing: "easeInOutQuad", complete: UnRottenMessage, queue: true});
+
+			$('#wide-button-r').attr("onclick","Slide('r')");
+			$('#wide-button-l').attr("onclick","Slide('l')");
+		}
+	}
+
+
+
+//	for MOBILE----------------------------------------------
+else{
+
+
+
+	//		hitBottom = 6.1;
+//		$('#sliderD')[0].style.top = '70vh';
+//		$('.wide-button, .wide-button-l').css("top", "20vh");
+//		$('.zone-center')[0].style.height = '59vh';
+//		$('.data')[0].style.top = '30vh';
+//		$('#message')[0].style.height = '17vh';
+//		$('#instructions')[0].style.fontSize = '1rem';
+//		$("#crossoverBL, #crossoverBR").css('top', '60vh');
+//		currentBottom = 50;
+//		$('.slideButtonV').css('top', '20vh');
+
+
+
+
+
+
+
+
+
+
+
+
+
+		if(unRottenState == true){
 		$('.slideButtonV, .slideButtonH').animate({backgroundColor: "#8B0000", color: 'yellow'}, 1000 );
 
 		$('#wide-button-r').attr("onclick","Slide('u')");
@@ -640,8 +708,7 @@ function Rotten(){
 
 		$('#wide-button-r').attr("onclick","Slide('r')");
 		$('#wide-button-l').attr("onclick","Slide('l')");
-
-
+}//	END of - for mobile-------------------------------------
 
 	}
 	if(unRottenState == true){
@@ -654,8 +721,8 @@ function Rotten(){
 	$('#difficulty').text(difficulty);
 }
 function RottenMessage(){
-	$('#message').prepend('ROTTEN MODE ACTIVATED<br>');
+	$('#message').prepend("<span class='shadow' style='color: yellow'>ROTTEN BANANA MODE ACTIVATED</span><br>");
 }
 function UnRottenMessage(){
-		$('#message').prepend('ROTTEN MODE DEACTIVATED<br>');
+	$('#message').prepend("<span class='shadow' style='color: yellow'>ROTTEN BANANA MODE DEACTIVATED</span><br>");
 }
