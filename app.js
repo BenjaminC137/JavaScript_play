@@ -537,6 +537,8 @@ function Restore(){
 		$('#slider').attr("class", 'slide');
 		highScore = 0;
 		$('#highScore').html(highScore);
+		$('.rotten').removeAttr('style');
+		$('#addButton').html('+');
 		$('#message').html("<br><br><span style='color: crimson; font-size: 1.5em;' class='shadow'>Restored Game</span><br><br>");
 	}
 	else {
@@ -656,5 +658,4 @@ function RottenMessage(){
 }
 function UnRottenMessage(){
 		$('#message').prepend('ROTTEN MODE DEACTIVATED<br>');
-
 }
