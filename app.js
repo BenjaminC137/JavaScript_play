@@ -605,17 +605,6 @@ else{
 
 
 
-	//		hitBottom = 6.1;
-//		$('#sliderD')[0].style.top = '70vh';
-//		currentBottom = 50;
-//		$('.slideButtonV').css('top', '20vh');
-
-
-//		$('.sliderR, .sliderU').animate({top: "20px", color: 'yellow'}, 1000 );
-
-
-
-
 	if(unRottenState == true){
 		$('.slideButtonV, .slideButtonH').animate({backgroundColor: "#8B0000", color: 'yellow'}, 1000 );
 
@@ -632,22 +621,18 @@ else{
 		$( '#sliderL' ).switchClass( 'sliderL', 'sliderU', {duration: 1000, easing: "easeInOutQuad" , queue: true}).animate({top: '0vh'}, 500);
 		$( '#sliderU' ).switchClass( 'sliderU', 'sliderR', {duration: 1000, easing: "easeInOutQuad" , queue: true});
 
-
-
-//				$('.slideButtonH').css('top', '20vh');
-
 	}
-	else{
+	else{ // mobile - leaving rotten mode
 		$('.slideButtonV, .slideButtonH').animate({backgroundColor: "#98FB98", color: 'black'}, 300 );
 
-		$( '#sliderR' ).switchClass( 'sliderD', 'sliderR', {duration: 500, easing: "easeInOutQuad" , queue: true});
-		$( '#sliderL' ).switchClass( 'sliderU', 'sliderL', {duration: 500, easing: "easeInOutQuad" , queue: true});
-		$( '#sliderU' ).switchClass( 'sliderR', 'sliderU', {duration: 500, easing: "easeInOutQuad" , queue: true});
+		$( '#sliderR' ).switchClass( 'sliderD', 'sliderR', {duration: 500, easing: "easeInOutQuad" , queue: true}).animate({top: '20vh'}, 500);
+		$( '#sliderL' ).switchClass( 'sliderU', 'sliderL', {duration: 500, easing: "easeInOutQuad" , queue: true}).animate({top: '20vh'}, 500);
+		$( '#sliderU' ).switchClass( 'sliderR', 'sliderU', {duration: 500, easing: "easeInOutQuad" , queue: true}).animate({top: '0vh'}, 500);
 
 		$( '.slideButtonH' ).switchClass( 'slideButtonH', 'slideButtonV',{duration: 500, easing: "easeInOutQuad" , queue: true} );
 		$( '.slideButtonV' ).switchClass( 'slideButtonV', 'slideButtonH', {duration: 500, easing: "easeInOutQuad" , queue: true});
 
-		$( '#sliderD' ).switchClass( 'sliderL', 'sliderD', {duration: 500, easing: "easeInOutQuad", complete: UnRottenMessage, queue: true});
+		$( '#sliderD' ).switchClass( 'sliderL', 'sliderD', {duration: 500, easing: "easeInOutQuad", complete: UnRottenMessage, queue: true}).animate({top: '70vh'}, 500);
 
 		$('#wide-button-r').attr("onclick","Slide('r')");
 		$('#wide-button-l').attr("onclick","Slide('l')");
