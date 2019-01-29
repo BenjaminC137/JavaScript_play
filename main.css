@@ -215,8 +215,8 @@ html{
 .options{
 	position: fixed;
 	left: 0vw;
-/*	bottom: 55vh;*/
-	bottom: 1.1em;
+	bottom: 55vh;
+/*	bottom: 1.1em;*/
 	width: 100vw;
 	height: 5px;
 	font-size: 20px;
@@ -346,6 +346,35 @@ linear-gradient(90deg, transparent 50%, rgba(255,255,255,.17) 90%),
 linear-gradient(80deg, transparent 50%, rgba(255,255,255,.4) 10%);
 background-size: 13px, 29px, 37px, 53px;
 }
+.sliderR{
+	right: 0vw;
+/*	left: auto;*/
+/*
+	transition-duration: 1000ms;
+	transition-timing-function: ease-in-out;
+*/
+}
+.sliderD{
+	bottom: 0vh;
+/*
+	transition-duration: 1000ms;
+	transition-timing-function: ease-in-out;
+*/
+}
+.sliderL{
+	left: 0vw;
+/*
+	transition-duration: 1000ms;
+	transition-timing-function: ease-in-out;
+*/
+}
+.sliderU{
+	top: 0vh;
+/*
+	transition-duration: 1000ms;
+	transition-timing-function: ease-in-out;
+*/
+}
 #scrollDiv{
 	position: relative;
 	display: inline-block;
@@ -400,34 +429,19 @@ color: red;
 	animation-duration: 2000ms;
 	animation-timing-function: linear;
 }
-.sliderR{
-	right: 0vw;
-/*	left: auto;*/
-/*
-	transition-duration: 1000ms;
-	transition-timing-function: ease-in-out;
-*/
-}
-.sliderD{
-	bottom: 0vh;
-/*
-	transition-duration: 1000ms;
-	transition-timing-function: ease-in-out;
-*/
-}
-.sliderL{
-	left: 0vw;
-/*
-	transition-duration: 1000ms;
-	transition-timing-function: ease-in-out;
-*/
-}
-.sliderU{
-	top: 0vh;
-/*
-	transition-duration: 1000ms;
-	transition-timing-function: ease-in-out;
-*/
+.shadowLight{
+	font-weight: bolder;
+	font-size: 1.5em;
+	border-radius: 5px;
+	text-shadow:
+		1px 1px 0px whitesmoke,
+		-1px -1px 1px powderblue,
+		2px -1px 0px yellow;
+		;
+color: red;
+	animation-name: points;
+	animation-duration: 2000ms;
+	animation-timing-function: linear;
 }
 #stats{
 	position: fixed;

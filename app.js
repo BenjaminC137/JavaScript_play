@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	if("savedHighScore" in localStorage){
 		highScore = localStorage.getItem('savedHighScore');
-   		console.log('High Score Found! It is: ' + highScore);
+   		console.log('High Score Found: ' + highScore);
 		$('#highScore').html(highScore);
 	}
 	else {
@@ -9,23 +9,34 @@ $(document).ready(function(){
 	}
 	if("savedBanana" in localStorage){
 		texture = localStorage.getItem('savedBanana');
-   		console.log('Banana Found! It is: ' + texture);
+   		console.log('Banana Found: ' + texture);
 		$('#slider').attr("class", 'slide' + texture);
 	}
 	else {
-	   console.log('No High Score Found.');
+	   console.log('No Banana Found.');
+	}
+	if("savedRottenStatus" in localStorage){
+		rottenUnlockStatus = localStorage.getItem('savedRottenStatus');
+		rottenUnlockStatus = (rottenUnlockStatus == 'true');
+		if(rottenUnlockStatus == true){
+			$('.rotten').css('color', 'black');
+		}
+   		console.log('Rotten Status loaded.');
+	}
+	else {
+	   console.log('You have not achieved Rotten Status.');
 	}
 	if("savedMenuStatus" in localStorage){
 		panel = localStorage.getItem('savedMenuStatus');
-		console.log(panel);
+//		console.log(panel);
 		panel = (panel == 'true');
-		console.log(panel);
+//		console.log(panel);
 		Settings('remember');
 	}
 	if("activeScore" in localStorage){
 		score = localStorage.getItem('activeScore');
 		score = parseInt(score, 10);
-   		console.log('session Found! It is: ' + score);
+   		console.log('Session Found! Score: ' + score);
 		$('#score').html(score);
 	}
 	else{
@@ -435,7 +446,8 @@ function CheckBanana(id){
 		if(rottenUnlockStatus == false){
 			if(highScore > 100){
 				rottenUnlockStatus = true;
-				$('#message').prepend('Unlocked ROTTEN BANANA MODE!<br>');
+				$('#message').prepend("<br><br><span style='color: mediumseagreen; font-size: 2em;' class='shadowLight'>Unlocked ROTTEN BANANA MODE!</span><br><br>");
+				$('.rotten').css('color: black');
 			}
 		}
 	}// end of block - if hit bad guy
@@ -481,7 +493,7 @@ function ClearHighScore(){
 		localStorage.removeItem('savedHighScore');
 		highScore = 0;
 		$('#highScore').html(highScore);
-			$('#message').prepend("<br><br><span style='color: yellow; font-size: 1.5em;' class='shadow'>Cleared High Score</span><br><br>");
+			$('#message').prepend("<br><br><span style='color: crimson; font-size: 1.5em;' class='shadow'>Cleared High Score</span><br><br>");
 	}
 	else {
 		$('#message').prepend("<br><br><span style='color: yellow; font-size: 1.5em;' class='shadow'>High Score Preserved</span><br><br>");
@@ -496,26 +508,61 @@ window.addEventListener('resize', function () {
 	breakpoint = getBreakpoint();
 	console.log('breakpoint' + breakpoint);
 }, false);
-function RestartGame(){
-	score = 0;
-	localStorage.removeItem('activeScore');
-	if(rottenState == false){
-		Rotten();
-	}
-	$('#score').html(score);
-	difficulty = 1;
-	$('#difficulty').html(difficulty);
-	for(var i = 1; i <= bananas.length; i++){
-		var presence = CheckBadGuy(i);
-		if(presence == 'here'){
-			var badGuyId = 'badGuy' + i;
-			var badGuy = document.getElementById(badGuyId);
-			badGuy.remove();
+function Restore(){
+	if (confirm("Are you sure you want to restore your game to factory settings?")) {
+		localStorage.clear();
+
+		score = 0;
+		if(rottenState == false){
+			Rotten();
 		}
-		nextBanana = 1;
+		$('#score').html(score);
+		difficulty = 1;
+		$('#difficulty').html(difficulty);
+		for(var i = 1; i <= bananas.length; i++){
+			var presence = CheckBadGuy(i);
+			if(presence == 'here'){
+				var badGuyId = 'badGuy' + i;
+				var badGuy = document.getElementById(badGuyId);
+				badGuy.remove();
+			}
+			nextBanana = 1;
+		}
+
+		$('#slider').removeAttr('style');
+		$('#slider').attr("class", 'slide');
+		highScore = 0;
+		$('#highScore').html(highScore);
+		$('#message').html("<br><br><span style='color: crimson; font-size: 1.5em;' class='shadow'>Restored Game</span><br><br>");
 	}
-	$('#message').prepend("<br><br><span style='color: brown; font-size: 2em;'>Restarted</span><br><br>");
-//	clear divs of bad guys
+	else {
+		$('#message').prepend("<br><br><span style='color: yellow; font-size: 1.5em;' class='shadow'>Game Data Preserved</span><br><br>");
+	}
+}
+function RestartGame(){
+	if (confirm("Are you sure you want to restart?")) {
+		score = 0;
+		localStorage.removeItem('activeScore');
+		if(rottenState == false){
+			Rotten();
+		}
+		$('#score').html(score);
+		difficulty = 1;
+		$('#difficulty').html(difficulty);
+		for(var i = 1; i <= bananas.length; i++){
+			var presence = CheckBadGuy(i);
+			if(presence == 'here'){
+				var badGuyId = 'badGuy' + i;
+				var badGuy = document.getElementById(badGuyId);
+				badGuy.remove();
+			}
+			nextBanana = 1;
+		}
+		$('#message').prepend("<br><br><span style='color: crimson; font-size: 2em;'>Restarted</span><br><br>");
+	}
+	else{
+		$('#message').prepend("<br><br><span style='color: yellow; font-size: 1.5em;' class='shadow'>Restart Canceled</span><br><br>");
+	}
 }
 function ChangeBanana(b){
 	texture = b.className.replace('slide-demo', '');
@@ -542,9 +589,9 @@ function Settings(e){
 			$('.options').css('bottom', '1.1em');
 			panel = false;
 		}
-		console.log('remembered');
+		console.log('You have played on this device before.');
 	}
-	console.log(panel);
+//	console.log(panel);
 	localStorage.setItem('savedMenuStatus', panel);
 }
 function Rotten(){
