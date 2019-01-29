@@ -622,7 +622,7 @@ function Rotten(){
 		$( '#sliderL' ).switchClass( 'sliderL', 'sliderU', {duration: 1000, easing: "easeInOutQuad" , queue: true});
 		$( '#sliderU' ).switchClass( 'sliderU', 'sliderR', {duration: 1000, easing: "easeInOutQuad" , queue: true});
 
-		$( '#sliderD' ).switchClass( 'sliderD', 'sliderL', {duration: 1000, easing: "easeInOutQuad" , queue: true});
+		$( '#sliderD' ).switchClass( 'sliderD', 'sliderL', {duration: 1000, easing: "easeInOutQuad", complete: RottenMessage, queue: true});
 	}
 	else{
 		$('.slideButtonV, .slideButtonH').animate({backgroundColor: "#98FB98", color: 'black'}, 300 );
@@ -634,7 +634,7 @@ function Rotten(){
 		$( '.slideButtonH' ).switchClass( 'slideButtonH', 'slideButtonV',{duration: 500, easing: "easeInOutQuad" , queue: true} );
 		$( '.slideButtonV' ).switchClass( 'slideButtonV', 'slideButtonH', {duration: 500, easing: "easeInOutQuad" , queue: true});
 
-		$( '#sliderD' ).switchClass( 'sliderL', 'sliderD', {duration: 500, easing: "easeInOutQuad" , queue: true});
+		$( '#sliderD' ).switchClass( 'sliderL', 'sliderD', {duration: 500, easing: "easeInOutQuad", complete: UnRottenMessage, queue: true});
 
 		$('#wide-button-r').attr("onclick","Slide('r')");
 		$('#wide-button-l').attr("onclick","Slide('l')");
@@ -650,4 +650,11 @@ function Rotten(){
 	}
 	unRottenState = !unRottenState;
 	$('#difficulty').text(difficulty);
+}
+function RottenMessage(){
+	$('#message').prepend('ROTTEN MODE ACTIVATED<br>');
+}
+function UnRottenMessage(){
+		$('#message').prepend('ROTTEN MODE DEACTIVATED<br>');
+
 }
