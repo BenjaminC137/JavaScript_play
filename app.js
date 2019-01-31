@@ -44,23 +44,57 @@ $(document).ready(function(){
 		console.log("no activeScore found.")
 	}
 	if(breakpoint == 'small'){
-		hitBottom = 6.1;
-		$('#sliderD')[0].style.top = '70vh';
+//		hitBottom = 6.1;
+		GoScreen('m');
+//		$('#sliderD')[0].style.top = '70vh';
+//		$('.wide-button, .wide-button-l').css("top", "20vh");
+//		$('.zone-center')[0].style.height = '59vh';
+//		$('.data')[0].style.top = '30vh';
+//		$('#message')[0].style.height = '17vh';
+//		$('#instructions')[0].style.fontSize = '1rem';
+//		$("#crossoverBL, #crossoverBR").css('top', '60vh');
+//		currentBottom = 50;
+//		$('.slideButtonV').css('top', '20vh');
+	}
+	else{
+		GoScreen('d');
+//		hitBottom = 7.1;
+//		currentBottom = 70;
+	}
+});
+function GoScreen(screen){
+//	console.log('Screen ' + screen);
+	if(screen == 'm'){
+		$('.sliderD')[0].style.top = '70vh';
 		$('.wide-button, .wide-button-l').css("top", "20vh");
 		$('.zone-center')[0].style.height = '59vh';
-		$('.data')[0].style.top = '30vh';
+//		$('.data')[0].style.top = '30vh';
 		$('#message')[0].style.height = '17vh';
 		$('#instructions')[0].style.fontSize = '1rem';
 		$("#crossoverBL, #crossoverBR").css('top', '60vh');
 		currentBottom = 50;
 		$('.slideButtonV').css('top', '20vh');
 	}
-	else{
-		hitBottom = 7.1;
+	if(screen == 'd'){
 		currentBottom = 70;
+		$('.sliderD').css("top", "");
+
+		$('.wide-button, .wide-button-l').css("top", "");
+		$('.zone-center').css('height', '');
+//		$('.data')[0].style.top = '30vh';
+//		$('.data').css('top', '');
+
+//		$('#message')[0].style.height = '17vh';
+		$('#message').css('height', '');
+
+//		$('#instructions')[0].style.fontSize = '1rem';
+		$('#instructions').css('fontSize', '');
+		$("#crossoverBL, #crossoverBR").css('top', '');
+//		currentBottom = 50;
+		$('.slideButtonV').css('top', '');
 	}
-});
-const bananas = [
+}
+var bananas = [
 	{id: 1, color: 'Turquoise', 	size: 10, 	speed: 2, 	right: 'd', down: 'r', left: 'l', up: 'u'},
 	{id: 2, color: 'deeppink', 		size: 2, 	speed: 5, 	right: 'r', down: 'u', left: 'l', up: 'd'},
 	{id: 3, color: 'orange', 		size: 20, 	speed: 0.5, right: 'l', down: 'r', left: 'd', up: 'u'},
@@ -86,7 +120,7 @@ var done;
 var difficulty = 1;
 var nextBanana = -1;
 var maxSize = 1;
-var hitBottom;
+//var hitBottom;
 var currentBottom = 70;
 var hitEdgeW = 'n';
 var hitEdgeH = 'n';
@@ -102,6 +136,13 @@ window.onresize = function(event) {
 	windowHeight = window.innerHeight;
 	calculatedVW = windowWidth / 100;
 	calculatedVH = windowHeight / 100;
+
+	if(breakpoint == 'small'){
+		GoScreen('m'); //change screen to mobbile
+	}
+	else{
+		GoScreen('d'); //change screen to desktop
+	}
 };
 document.onkeydown = function(e){
 	if(unRottenState == true){
@@ -388,6 +429,14 @@ function SlideSquare(id, button){
 		if(directionBadGuy == 'u'){
 			positionY = '20vh';
 		}
+
+		if(['20vw', '70vw'].indexOf(positionX) +1){
+			console.log('yes');
+		}
+
+
+
+
 //		badGuy.style.left = positionX;
 //		badGuy.style.top = positionY;
 		console.log(positionX, positionXWas, positionY, positionYWas);
@@ -395,7 +444,7 @@ function SlideSquare(id, button){
 			return null;
 		}
 		else{
-			$('#' + badGuyId).animate({left: positionX, top: positionY}, {queue: false, duration: 1000, easing: 'easeOutQuint', complete: CheckB});
+			$('#' + badGuyId).animate({left: positionX, top: positionY}, {queue: false, duration: 1000, easing: 'easeOutBack', complete: CheckB});
 //			badGuy.addEventListener("transitionend", CheckB, false);
 			function CheckB(event) {
 			CheckBanana(id);
@@ -513,11 +562,12 @@ function Clone(id){
 	document.body.insertBefore(newDiv, currentDiv);
 }
 function ClearHighScore(){
-	if (confirm("Are you sure you want to clear your high score?")) {
+	if (confirm("Are you sure you want to clear your high score & current score?")) {
 		localStorage.removeItem('savedHighScore');
 		highScore = 0;
 		$('#highScore').html(highScore);
 			$('#message').prepend("<br><br><span style='color: crimson; font-size: 2em;' class='shadow'>Cleared High Score</span><br><br>");
+		RestartGame('skip');
 	}
 	else {
 		$('#message').prepend("<br><br><span style='color: yellow; font-size: 1.5em;' class='shadow'>High Score Preserved</span><br><br>");
@@ -530,7 +580,7 @@ var getBreakpoint = function () {
 breakpoint = getBreakpoint();
 window.addEventListener('resize', function () {
 	breakpoint = getBreakpoint();
-	console.log('breakpoint' + breakpoint);
+	console.log('breakpoint ' + breakpoint);
 }, false);
 function Restore(){
 	if (confirm("Are you sure you want to restore your game to factory settings?")) {
@@ -564,8 +614,9 @@ function Restore(){
 		$('#message').prepend("<br><br><span style='color: yellow; font-size: 1.5em;' class='shadow'>Game Data Preserved</span><br><br>");
 	}
 }
-function RestartGame(){
-	if (confirm("Are you sure you want to restart?")) {
+function RestartGame(skip){
+
+	function DoIt(){
 		score = 0;
 		localStorage.removeItem('activeScore');
 		if(unRottenState == false){
@@ -584,6 +635,12 @@ function RestartGame(){
 			nextBanana = 1;
 		}
 		$('#message').prepend("<br><br><span class='shadowLight' style='color: crimson; font-size: 2em;'>Restarted</span><br><br>");
+	}
+	if(skip == 'skip'){
+	   DoIt();
+	}
+	else if (confirm("Are you sure you want to restart?")) {
+		DoIt();
 	}
 	else{
 		$('#message').prepend("<br><br><span style='color: yellow; font-size: 1.5em;' class='shadow'>Restart Canceled</span><br><br>");
@@ -647,9 +704,25 @@ function Rotten(){
 			$( '#sliderU' ).switchClass( 'sliderR', 'sliderU', {duration: 500, easing: "easeInOutQuad" , queue: true});
 			$( '.slideButtonH' ).switchClass( 'slideButtonH', 'slideButtonV',{duration: 500, easing: "easeInOutQuad" , queue: true} );
 			$( '.slideButtonV' ).switchClass( 'slideButtonV', 'slideButtonH', {duration: 500, easing: "easeInOutQuad" , queue: true});
-			$( '#sliderD' ).switchClass( 'sliderL', 'sliderD', {duration: 500, easing: "easeInOutQuad", complete: UnRottenMessage, queue: true});
+
+
+
+//			$( '#sliderD' ).switchClass( 'sliderL', 'sliderD', {duration: 500, easing: "easeInOutQuad", complete: UnRottenMessage, queue: true});
+
+			$( '#sliderD' )
+				.switchClass( 'sliderL', 'sliderD', {duration: 500, easing: "easeInOutQuad", complete: UnRottenMessage, queue: true})
+				.queue(function() {
+      				GoScreen('d');
+					console.log('queueue-desktop');
+					$( this ).dequeue();
+    			});
+
+
 			$('#wide-button-r').attr("onclick","Slide('r')");
 			$('#wide-button-l').attr("onclick","Slide('l')");
+
+//			GoScreen('d'); //I need to get this to be fired off after the unrotten Message.
+
 		}
 	}
 //	for MOBILE----------------------------------------------
@@ -679,15 +752,30 @@ else{
 
 		$( '#sliderR' ).switchClass( 'sliderD', 'sliderR', {duration: 500, easing: "easeInOutQuad" , queue: true}).animate({top: '20vh'}, 500);
 		$( '#sliderL' ).switchClass( 'sliderU', 'sliderL', {duration: 500, easing: "easeInOutQuad" , queue: true}).animate({top: '20vh'}, 500);
-		$( '#sliderU' ).switchClass( 'sliderR', 'sliderU', {duration: 500, easing: "easeInOutQuad" , queue: true}).animate({top: '0vh'}, 500);
+		$( '#sliderU' ).switchClass( 'sliderR', 'sliderU', {duration: 500, easing: "easeInOutQuad" , queue: true}).animate({top: '0vh'},{duration: 500, complete: function(){$('#sliderU').css('top', '')}});
 
 		$( '.slideButtonH' ).switchClass( 'slideButtonH', 'slideButtonV',{duration: 500, easing: "easeInOutQuad" , queue: true} );
 		$( '.slideButtonV' ).switchClass( 'slideButtonV', 'slideButtonH', {duration: 500, easing: "easeInOutQuad" , queue: true});
 
-		$( '#sliderD' ).switchClass( 'sliderL', 'sliderD', {duration: 500, easing: "easeInOutQuad", complete: UnRottenMessage, queue: true}).animate({top: '70vh'}, 500);
+//		$( '#sliderD' ).switchClass( 'sliderL', 'sliderD', {duration: 500, easing: "easeInOutQuad", complete: UnRottenMessage, queue: true}).animate({top: '70vh'}, 500);
+		$( '#sliderD' )
+			.switchClass( 'sliderL', 'sliderD', {duration: 500, easing: "easeInOutQuad", complete: UnRottenMessage, queue: true})
+			.animate({top: '70vh'}, 500)
+			.queue(function() {
+      			GoScreen('m');
+				console.log('queueue-mobile');
+				$( this ).dequeue();
+    		});
+
+
 
 		$('#wide-button-r').attr("onclick","Slide('r')");
 		$('#wide-button-l').attr("onclick","Slide('l')");
+
+
+
+//		GoScreen('m'); //I need to get this to be fired off after the unrotten Message.
+
 }//	END of - for mobile-------------------------------------
 
 	}
