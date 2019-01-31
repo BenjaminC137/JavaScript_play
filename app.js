@@ -72,6 +72,7 @@ function GoScreen(screen){
 		$("#crossoverBL, #crossoverBR").css('top', '60vh');
 		currentBottom = 50;
 		$('.slideButtonV').css('top', '20vh');
+//		calculatedVH = windowHeight / 100;
 	}
 	if(screen == 'd'){
 		currentBottom = 70;
@@ -404,14 +405,15 @@ function SlideSquare(id, button){
 	var positionXWas = Number((badGuyLeft).replace("px", ""));
 	var positionY = Number((badGuyTop).replace("px", ""));
 	var positionYWas = Number((badGuyTop).replace("px", ""));
+	console.log('windowHeight: ' + windowHeight);	console.log('calculatedVH: ' + calculatedVH);
 	positionX = (Math.round(positionX / calculatedVW)) + 'vw';
 //	console.log(positionX);
 	positionY = (Math.round(positionY / calculatedVH)) + 'vh';
-//	console.log(positionY);
+	console.log('posY: ' + positionY);
 	positionXWas = (Math.round(positionXWas / calculatedVW)) + 'vw';
 //	console.log(positionXWas);
 	positionYWas = (Math.round(positionYWas / calculatedVH)) + 'vh';
-//	console.log(positionYWas);
+	console.log('posYWas: ' + positionYWas);
 
 	Move(dir);
 	function Move(directionBadGuy){
@@ -432,7 +434,7 @@ function SlideSquare(id, button){
 
 //		ensure they go to the nearest corner:
 		if(['20vw', '70vw'].indexOf(positionX) +1){
-			console.log('position X == 20vw or 70vw');
+//			console.log('position X == 20vw or 70vw');
 		}
 		else{
 			if (Number(positionX.replace("vw", "")) < 50){
@@ -446,7 +448,7 @@ function SlideSquare(id, button){
 //		var currentBottomVH = currentBottom + 'vh';
 		var middleVh = (((currentBottom + 10) - 20) / 2) + 20;
 		if(['20vh', currentBottomVH].indexOf(positionY) +1){
-			console.log('position Y == 20vh or bottom');
+//			console.log('position Y == 20vh or bottom');
 		}
 		else{
 			if (Number(positionY.replace("vh", "")) < middleVh ){
