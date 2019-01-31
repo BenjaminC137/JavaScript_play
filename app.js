@@ -16,10 +16,8 @@ $(document).ready(function(){
 	   console.log('No Banana Found.');
 	}
 	if("savedRottenStatus" in localStorage){
-//		console.log('srs');
 		rottenUnlockStatus = localStorage.getItem('savedRottenStatus');
 		rottenUnlockStatus = (rottenUnlockStatus == 'true');
-//		console.log(rottenUnlockStatus);
 		if(rottenUnlockStatus == true){
 			$('.rotten').css({'color': 'yellow', 'background-color': 'brown'});
 		}
@@ -417,6 +415,8 @@ function SlideSquare(id, button){
 
 	Move(dir);
 	function Move(directionBadGuy){
+		var currentBottomVH = currentBottom + 'vh';
+
 		if(directionBadGuy == 'r'){
 			positionX = '70vw';
 		}
@@ -430,17 +430,42 @@ function SlideSquare(id, button){
 			positionY = '20vh';
 		}
 
+//		ensure they go to the nearest corner:
 		if(['20vw', '70vw'].indexOf(positionX) +1){
-			console.log('yes');
+			console.log('position X == 20vw or 70vw');
+		}
+		else{
+			if (Number(positionX.replace("vw", "")) < 50){
+				positionX = '20vw';
+			}
+			else{
+				positionX = '70vw';
+			}
 		}
 
+//		var currentBottomVH = currentBottom + 'vh';
+		var middleVh = (((currentBottom + 10) - 20) / 2) + 20;
+		if(['20vh', currentBottomVH].indexOf(positionY) +1){
+			console.log('position Y == 20vh or bottom');
+		}
+		else{
+			if (Number(positionY.replace("vh", "")) < middleVh ){
+				positionY = '20vh';
+			}
+			else{
+				positionY = currentBottomVH;
+			}
+		}
 
 
 
 //		badGuy.style.left = positionX;
 //		badGuy.style.top = positionY;
+
 		console.log(positionX, positionXWas, positionY, positionYWas);
+
 		if(positionX == positionXWas && positionY == positionYWas){
+			console.log(id + 'no move needed');
 			return null;
 		}
 		else{
