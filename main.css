@@ -138,7 +138,7 @@ body{
     user-select: none;
 }
 button{
-/*	background-color: inherit;*/
+	font-family: monospace;
 	border-radius: 5px;
 }
 .center{
@@ -265,6 +265,7 @@ p{
 }
 */
 #play{
+	margin-top: 5px;
 	background-color: inherit;
 	color: beige;
 	font-size: 2rem;
@@ -282,12 +283,7 @@ p{
 }
 .rotten{
 	text-align: center;
-/*	font-size: 1em;*/
-/*
-	position: fixed;
-	left: 0vw;
-	top: 15vh;
-*/
+	padding: 1px;
 	margin-top: 5px;
 	display: block;
 	width: 10vw;
@@ -295,7 +291,7 @@ p{
 	z-index: 30;
 	color: beige;
 
-	border-radius: 125px;
+	border-radius: 2em;
 	background-color: mediumaquamarine;
 	transition-duration: 50ms;
 	transition-timing-function: ease-in-out;
