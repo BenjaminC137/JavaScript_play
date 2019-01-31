@@ -73,6 +73,9 @@ function GoScreen(screen){
 		currentBottom = 50;
 		$('.slideButtonV').css('top', '20vh');
 //		calculatedVH = windowHeight / 100;
+
+		var windowHeight = window.outerHeight;
+		var calculatedVH = windowHeight / 100;
 	}
 	if(screen == 'd'){
 		currentBottom = 70;
