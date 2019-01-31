@@ -74,8 +74,8 @@ function GoScreen(screen){
 		$('.slideButtonV').css('top', '20vh');
 //		calculatedVH = windowHeight / 100;
 
-		var windowHeight = window.outerHeight;
-		var calculatedVH = windowHeight / 100;
+//		windowHeight = window.outerHeight;
+//		calculatedVH = windowHeight / 100;
 	}
 	if(screen == 'd'){
 		currentBottom = 70;
@@ -415,7 +415,10 @@ function SlideSquare(id, button){
 	console.log('posY: ' + positionY);
 	positionXWas = (Math.round(positionXWas / calculatedVW)) + 'vw';
 //	console.log(positionXWas);
+	positionYWasIos = Math.round(positionYWas / calculatedVH);
 	positionYWas = (Math.round(positionYWas / calculatedVH)) + 'vh';
+	console.log('posYWasIos: ' + positionYWasIos);
+
 	console.log('posYWas: ' + positionYWas);
 
 	Move(dir);
@@ -448,6 +451,7 @@ function SlideSquare(id, button){
 			}
 		}
 
+
 //		var currentBottomVH = currentBottom + 'vh';
 		var middleVh = (((currentBottom + 10) - 20) / 2) + 20;
 		if(['20vh', currentBottomVH].indexOf(positionY) +1){
@@ -466,8 +470,18 @@ function SlideSquare(id, button){
 
 //		badGuy.style.left = positionX;
 //		badGuy.style.top = positionY;
+		if(breakpoint == 'small'){
+			if(positionYWasIos > 41.5){
+				positionYWas = '50vh';
+			}
+			else{
+				positionYWas = '20vh';
+			}
 
+		}
 		console.log(positionX, positionXWas, positionY, positionYWas);
+
+//		var iOSpositionY =
 
 		if(positionX == positionXWas && positionY == positionYWas){
 			console.log(id + 'no move needed');
