@@ -564,9 +564,11 @@ function Clone(id){
 function ClearHighScore(){
 	if (confirm("Are you sure you want to clear your high score & current score?")) {
 		localStorage.removeItem('savedHighScore');
+		localStorage.removeItem('savedRottenStatus');
 		highScore = 0;
 		$('#highScore').html(highScore);
 			$('#message').prepend("<br><br><span style='color: crimson; font-size: 2em;' class='shadow'>Cleared High Score</span><br><br>");
+		$('.rotten').removeAttr('style');
 		RestartGame('skip');
 	}
 	else {
