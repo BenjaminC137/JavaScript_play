@@ -78,7 +78,7 @@ function GoScreen(screen){
 
 //		windowHeight = window.outerHeight;
 //		calculatedVH = windowHeight / 100;
-		menuTop = '90vh';
+		menuTop = '82vh';
 	}
 	if(screen == 'd'){
 		currentBottom = 70;
