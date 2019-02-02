@@ -77,6 +77,7 @@ function GoScreen(screen){
 
 //		windowHeight = window.outerHeight;
 //		calculatedVH = windowHeight / 100;
+		menuTop = '90vh';
 	}
 	if(screen == 'd'){
 		currentBottom = 70;
@@ -95,6 +96,8 @@ function GoScreen(screen){
 		$("#crossoverBL, #crossoverBR").css('top', '');
 //		currentBottom = 50;
 		$('.slideButtonV').css('top', '');
+		menuTop = '100vh';
+
 	}
 }
 var bananas = [
@@ -136,6 +139,7 @@ var rottenUnlockStatus = false;
 var level = 2;
 var randomState = 1;
 var instructionsHide = true;
+var menuTop = '100vh';
 window.onresize = function(event) {
 	windowWidth = window.innerWidth;
 	windowHeight = window.innerHeight;
@@ -708,7 +712,7 @@ function ChangeBanana(b){
 function Settings(e){
 	if(e == null){
 		if(panel == false){
-			$('.options').css({'bottom': '100vh'});
+			$('.options').css({'bottom': menuTop});
 			panel = true;
 		}
 		else{
@@ -718,7 +722,7 @@ function Settings(e){
 	}
 	if(e == 'remember'){
 		if(panel == true){
-			$('.options').css('bottom', '100vh');
+			$('.options').css('bottom', menuTop);
 			panel = true;
 		}
 		else{
