@@ -10,7 +10,7 @@ $(document).ready(function(){
 	if("savedBanana" in localStorage){
 		texture = localStorage.getItem('savedBanana');
    		console.log('Banana Found: ' + texture);
-		$('#slider').attr("class", 'slide' + texture);
+		$('#slider').attr("class", 'slide ' + texture);
 	}
 	else {
 	   console.log('No Banana Found.');
@@ -59,6 +59,7 @@ $(document).ready(function(){
 //		hitBottom = 7.1;
 //		currentBottom = 70;
 	}
+	ToggleInstructions();
 });
 function GoScreen(screen){
 //	console.log('Screen ' + screen);
@@ -133,6 +134,7 @@ var unRottenState = true;
 var rottenUnlockStatus = false;
 var level = 2;
 var randomState = 1;
+var instructionsHide = true;
 window.onresize = function(event) {
 	windowWidth = window.innerWidth;
 	windowHeight = window.innerHeight;
@@ -693,14 +695,18 @@ function RestartGame(skip){
 	}
 }
 function ChangeBanana(b){
-	texture = b.className.replace('slide-demo', '');
+	texture = b.className.replace('slide-demo ', '');
 	localStorage.setItem('savedBanana', texture);
-	$('#slider').attr("class", 'slide' + texture);
+	$('#slider').attr("class", 'slide ' + texture);
+	$('.slide-demo').removeAttr('style');
+	$('.' + texture).css('border-style', 'solid');
+	$('#slider').css('border-style', 'hidden');
+	console.log
 }
 function Settings(e){
 	if(e == null){
 		if(panel == false){
-			$('.options').css('bottom', '55vh');
+			$('.options').css({'bottom': '100vh'});
 			panel = true;
 		}
 		else{
@@ -710,7 +716,7 @@ function Settings(e){
 	}
 	if(e == 'remember'){
 		if(panel == true){
-			$('.options').css('bottom', '55vh');
+			$('.options').css('bottom', '100vh');
 			panel = true;
 		}
 		else{
@@ -843,4 +849,13 @@ function RottenMessage(){
 }
 function UnRottenMessage(){
 	$('#message').prepend("<span class='shadow' style='color: yellow'>ROTTEN BANANA MODE DEACTIVATED</span><br>");
+}
+function ToggleInstructions(){
+	if(instructionsHide == true){
+		$( '.instructions-container' ).hide();
+	}
+	else{
+		$( '.instructions-container' ).show();
+	}
+	instructionsHide = !instructionsHide;
 }

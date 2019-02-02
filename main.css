@@ -15,6 +15,9 @@
 	transition-duration: 50ms;
 	transition-timing-function: ease-in-out;
 }
+.anchor-light{
+	color:beige;
+}
 .arrow{
 /*	display: inline;*/
 	text-align: center;
@@ -127,8 +130,10 @@ background-size: 13px, 29px, 37px, 53px;
 	font-family: inherit;
 	font-weight: bolder;
 	font-size: 1.5rem;
+	margin: -2px 2px;
 }
 body{
+	margin: 0px;
 	background-color: beige;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -141,11 +146,33 @@ button{
 	font-family: monospace;
 	border-radius: 5px;
 }
+.button-good{
+	margin-top: 5px;
+	background-color: inherit;
+	color: beige;
+	font-size: 2rem;
+}
 .center{
 	display: flex;
 	align-items: center;
 	text-align:right;
 }
+#close{
+	display: inline-block;
+	width:1.2em;
+	height: 1.2em;
+	border-style: solid;
+	margin: 5px;
+	border-radius: 40px;
+	background-color: black;
+	padding: .2rem;
+	float: right;
+}
+/*
+.end{
+	float: right;
+}
+*/
 .crossover-wrapper{
 	text-align: center;
 	font-size: 3em;
@@ -204,26 +231,35 @@ h1{
 	margin: 0px;
 }
 html{
-	font-family: monospace;
+	font-family: Verdana, Geneva, sans-serif;
 	font-size: 12px
 }
 #instructions{
+/*	color: beige;*/
 	text-align: left;
 	font-size: 1.3rem;
 	margin: 0;
 	margin-right: 5px;
 /*	padding-left: 20px;*/
 /*	padding-top: 1vh;*/
+
+}
+.instructions-container{
+	text-align: center;
+	background-color: beige;
+/*	color: beige;*/
+	display: block;
+	height: 100vh;
+	width: 100vw;
+	position: fixed;
+	top: 0vh;
+	left: 0vw;
+	z-index: 101;
 }
 #menu{
-/*
-	position: relative;
-	top: 2em;
-	left: 0vw;
-*/
+	display: block;
+	height: 100vh;
 	width: 100vw;
-/*	min-height: 10vh;*/
-/*	background-color: gainsboro;*/
 	color: beige;
 }
 #message{
@@ -240,12 +276,12 @@ html{
 .options{
 	position: fixed;
 	left: 0vw;
-	bottom: 55vh;
+	bottom: 100vh;
 /*	bottom: 1.1em;*/
 	width: 100vw;
-	height: 5px;
+	height: 0px;
 	font-size: 20px;
-	text-align: right;
+	text-align: center;
 /*	height: 20vw;*/
 /*	mix-blend-mode:lighten;*/
 	transition-duration: 500ms;
@@ -264,12 +300,14 @@ p{
 	filter: invert(1);
 }
 */
+/*
 #play{
 	margin-top: 5px;
 	background-color: inherit;
 	color: beige;
 	font-size: 2rem;
 }
+*/
 #playDiv{
 	text-align: center;
 }
@@ -369,6 +407,10 @@ linear-gradient(80deg, rgba(255,255,255,.3) 50%, transparent 50%),
 linear-gradient(90deg, transparent 50%, rgba(255,255,255,.17) 90%),
 linear-gradient(80deg, transparent 50%, rgba(255,255,255,.4) 10%);
 background-size: 13px, 29px, 37px, 53px;
+}
+#sliderStyles > span{
+	border-style: solid;
+	border-style: hidden;
 }
 .sliderR{
 	right: 0vw;
@@ -650,6 +692,14 @@ repeating-linear-gradient(270deg, transparent, transparent 50px, rgba(0,0,0,.4) 
 repeating-linear-gradient(125deg, transparent, transparent 2px, rgba(0,0,0,.2) 2px, rgba(0,0,0,.2) 3px, transparent 3px, transparent 5px, rgba(0,0,0,.2) 5px);
 }
 .texture-stripes{
+/*	background-color: beige;*/
+background-image: linear-gradient(98deg, rgba(255,255,255,.07) 50%, transparent 50%),
+linear-gradient(90deg, rgba(255,255,255,.13) 50%, transparent 50%),
+linear-gradient(90deg, transparent 50%, rgba(255,255,255,.17) 50%),
+linear-gradient(90deg, transparent 50%, rgba(255,255,255,.19) 50%);
+background-size: 13px, 29px, 37px, 53px;
+}
+.texture-stripes-banana{
 /*	background-color: beige;*/
 background-image: linear-gradient(98deg, rgba(255,255,255,.07) 50%, transparent 50%),
 linear-gradient(90deg, rgba(255,255,255,.13) 50%, transparent 50%),
