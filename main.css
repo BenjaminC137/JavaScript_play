@@ -197,6 +197,7 @@ button{
 	width:1.2em;
 	height: 1.2em;
 	border-style: solid;
+	border-width: thin;
 	margin: 5px;
 	border-radius: 40px;
 	background-color: black;

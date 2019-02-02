@@ -187,11 +187,14 @@ document.onkeydown = function(e){
 		Add(nextBanana);
 	}
 	if(e.key == 'Escape'){
-		Settings();
+		Settings('c');
 		ToggleInstructions('c');
 	}
 	if(e.key == 'i'){
 		ToggleInstructions();
+	}
+	if(e.key == 'm'){
+		Settings();
 	}
 }
 function GetBananaLocation(){
@@ -316,6 +319,9 @@ function Slide(direction){
 function CountBadGuys(){
 	var badGuys = $(".bad-guy");
 	availableBadGuys = bananas.length - badGuys.length;
+	if(availableBadGuys == bananas.length){
+		availableBadGuys = '+';
+	}
 	$('#addButton').text(availableBadGuys);
 }
 function Add(number){
@@ -341,7 +347,7 @@ function Add(number){
 	if(nextBanana > -1){
 		number = nextBanana;
 	}
-	const currentBanana = bananas.find( banana => banana.id === number);
+	var currentBanana = bananas.find( banana => banana.id === number);
 	currentId = currentBanana['id'];
 	currentColor = currentBanana['color'];
 	currentSize = currentBanana['size'];
@@ -585,6 +591,7 @@ function CheckBanana(id){
 			}
 		}
 	}// end of block - if hit bad guy
+	CountBadGuys();
 }
 function Clone(id){
 	//get current badguy
@@ -737,6 +744,10 @@ function Settings(e){
 		}
 		console.log('You have played on this device before.');
 	}
+	if(e == 'c'){
+		$('.options').css('bottom', '0vh');
+		panel = false;
+	}
 	localStorage.setItem('savedMenuStatus', panel);
 }
 function Rotten(){
@@ -866,16 +877,19 @@ function ToggleInstructions(k){
 	console.log(k);
 	if(k == 'c'){
 		console.log('c');
-		$( '.instructions-container' ).hide();
+//		$( '.instructions-container' ).hide();
+			$( '.instructions-container' ).animate({top: '100vh'}, {queue: false, duration: 500, easing: 'easeInOutBack'});
 		instructionsHide = true;
 	}
 	if(k == null){
 		if(instructionsHide == true){
 		console.log('f');
-			$( '.instructions-container' ).show();
-		}
+//			$( '.instructions-container' ).show();
+			$( '.instructions-container' ).animate({top: '0vh'}, {queue: false, duration: 500, easing: 'easeInOutBack'});
+			}
 		else{
-			$( '.instructions-container' ).hide();
+//			$( '.instructions-container' ).hide();
+			$( '.instructions-container' ).animate({top: '100vh'}, {queue: false, duration: 500, easing: 'easeInOutBack'});
 		}
 		instructionsHide = !instructionsHide;
 	}
