@@ -99,11 +99,12 @@ function GoScreen(screen){
 }
 var bananas = [
 	{id: 1, color: 'Turquoise', 	size: 10, 	speed: 2, 	right: 'd', down: 'r', left: 'l', up: 'u'},
-	{id: 2, color: 'deeppink', 		size: 2, 	speed: 5, 	right: 'r', down: 'u', left: 'l', up: 'd'},
+	{id: 2, color: 'red', 		size: 2, 	speed: 5, 	right: 'r', down: 'u', left: 'l', up: 'd'},
 	{id: 3, color: 'orange', 		size: 20, 	speed: 0.5, right: 'l', down: 'r', left: 'd', up: 'u'},
-	{id: 4, color: 'rebeccapurple', size: 6, 	speed: 4, 	right: 'r', down: 'l', left: 'u', up: 'd'},
-	{id: 5, color: 'beige', 		size: 15, 	speed: 0.5, right: 'r', down: 'u', left: 'd', up: 'l'},
-	{id: 6, color: 'crimson', 		size: 25, 	speed: 0.5, right: 'd', down: 'u', left: 'l', up: 'r'}
+	{id: 4, color: 'red',		 size: 6, 	speed: 4, 	right: 'r', down: 'l', left: 'u', up: 'd'},
+	{id: 5, color: 'red', 		size: 15, 	speed: 0.5, right: 'r', down: 'u', left: 'd', up: 'l'},
+	{id: 6, color: 'deeppink', 		size: 25, 	speed: 0.5, right: 'd', down: 'u', left: 'l', up: 'r'},
+	{id: 7, color: 'navy', 		size: 13, 	speed: 0.5, right: 'u', down: 'd', left: 'r', up: 'l'}
 ];
 var highScore = 0;
 var windowWidth = window.innerWidth;
@@ -542,7 +543,7 @@ function CheckBanana(id){
 			var value = Math.round(-(currentBanana['size'] / 2) + maxSize);
 //			console.log('value' + value);
 			var newPoints = (1*difficulty) * value;
-			$('#message').prepend("Peeled <div class='bad-guy-mini' style='background-color: " + currentColor + "'>" + "</div>" + "<span class='shadow' style='color: yellow'> +" + newPoints + "</span><br>");
+			$('#message').prepend("Peeled <div class='bad-guy-mini' style='background-color: " + currentColor + "'></div><span class='shadow' style='color: yellow'> +" + newPoints + "</span><br>");
 			score += newPoints;
 			if(score > highScore){
 				highScore = score;

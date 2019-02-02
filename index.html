@@ -74,7 +74,7 @@
 			<div style="text-align: right; height: 0px"><button class="options-button" onclick="Settings()" style="text-align: right">Menu</button></div>
 			<div id="menu" class="texture-carbon">
 				<div id="sliderStyles">
-					<h2 style="display: inline;">Choose a banana</h2><div id="close" onclick="Settings()" >X</div>
+					<h2 style="display: inline-block;">Choose a banana</h2><div id="close" onclick="Settings()" >X</div>
 					<br>
 					<div id="bananaStyles">
 						<span class="slide-demo" onclick="ChangeBanana(this);"></span>
@@ -95,6 +95,7 @@
 						<br>
 						<a class="anchor-light" href="mailto:benjaminsalasek@icloud.com">benjaminsalasek@icloud.com</a>
 					</p>
+					<span style="font-size: .6rem">*Mobile landscape orientation currently unsupported</span>
 				</div>
 
 					<div id="playDiv" >
@@ -102,28 +103,34 @@
 						<button id="instructions-button" class="button-good" onclick="ToggleInstructions();">Instructions</button>
 					</div>
 				<div id="clearButtons">
-					<button id="restartButton" class="reset" onclick="RestartGame();" >&olarr; Restart Round</button>
-					<button id="clearButton" class="reset" onclick="ClearHighScore();" >Clear High</button>
+					<button id="restartButton" class="reset" onclick="RestartGame();">&olarr; Restart Round</button>
+					<button id="clearButton" class="reset" onclick="ClearHighScore()" >Clear High</button>
 					<button id="restoreButton" class="reset" onclick="Restore();" >&olarr; Restore Game</button>
 				</div>
 			</div>
 		</div>
 			<div class="instructions-container texture-carbon">
-				<h2>Instructions</h2>
+				<h3>Instructions</h3>
 				<div style="margin-bottom: 5px; font-size: 1.5em">
 					<div id="close" onclick="ToggleInstructions()" >
 						X
 					</div>
 				</div>
 				<ol id="instructions">
-					<li>+ adds bad guys.</li>
-					<li>&rarr;&darr;&larr;&uarr; moves your banana.</li>
-					<li>Make <span style="color: Turquoise">turquoise</span>, <span style="color: orange">orange</span> or <span style="color: crimson">crimson</span> land on you</li>
-					<li><span style="color: deeppink;  text-shadow: 1px 1px 1px black;">pink</span>, <span class="shadowLight" style="color: rebeccapurple; font-size: 1.3rem">purple</span> & <span style="color: beige; text-shadow: 1px 1px 1px black;">invisible</span> can't land on you.</li>
-					<li>Acquire more <b>points</b> at higher difficulty level and for peeling smaller bad guys</li>
+					<li><div class="add2" style="">+</div> (or the space bar on your keyboard) adds bad guys.</li>
+					<li>
+					<div class="slideButtonInstructions texture-stripes"><div>&rarr;</div></div>
+					<div class="slideButtonInstructions texture-stripes"><div>&darr;</div></div>
+					<div class="slideButtonInstructions texture-stripes"><div>&larr;</div></div>
+					<div class="slideButtonInstructions texture-stripes"><div>&uarr;</div></div>
+					or (&rarr;&darr;&larr;&uarr; keys on your keyboard) moves your banana.</li>
+					<li>Get the good guys <span class="bad-guy-mini-instructions" style="background-color: turquoise"></span> <span class="bad-guy-mini-instructions" style="background-color: orange"></span> <span class="bad-guy-mini-instructions" style="background-color: deeppink"></span> <span class="bad-guy-mini-instructions" style="background-color: navy"></span> to land on you. Your banana must be overlapping a good guy when the good guy stops moving.</li>
+					<li>Don't let bad guys <span class="bad-guy-mini-instructions" style="background-color: red"></span>  (red) land on you.</li>
 					<li>Reach 100 points to unlock <span style="color:palegreen">ROTTEN BANANA MODE!</span></li>
-					<span style="font-size: .6rem">*Mobile landscape orientation currently unsupported</span>
 				</ol>
+				<ol>
+					<h3>Tips:</h3>
+					<li>Acquire more points at higher difficulty level and for peeling smaller good guys</li>				</ol>
 			</div>
 		<script src="app.js"></script>
 	</body>
