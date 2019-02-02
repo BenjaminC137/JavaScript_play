@@ -300,6 +300,12 @@ function Slide(direction){
 		}
 		hitEdgeH = 'n';
 	}
+	if(direction == 'restart'){
+		hitEdgeH = 'n';
+		hitEdgeW = 'n';
+		heightStep = 20;
+		widthStep = 70;
+	}
 	$('#slider')[0].style.left =  widthStep +'vw';
 	$('#slider')[0].style.top = heightStep + 'vh';
 
@@ -328,7 +334,7 @@ function Add(number){
 	var badGuys = $(".bad-guy");
 	CountBadGuys();
 	if(badGuys.length >= bananas.length){
-		$('#message').prepend("<span class='shadowLight' style='font-size: 1em;'>All bad guys are out!</span><br>");
+		$('#message').prepend("<span class='shadowLight'>All bad guys are out!</span><br>");
 		return null;
 	}
 	if(number == bananas.length + 1){
@@ -430,7 +436,7 @@ function SlideSquare(id, button){
 	positionX = (Math.round(positionX / calculatedVW)) + 'vw';
 //	console.log(positionX);
 	positionY = (Math.round(positionY / calculatedVH)) + 'vh';
-	console.log('posY: ' + positionY);
+//	console.log('posY: ' + positionY);
 	positionXWas = (Math.round(positionXWas / calculatedVW)) + 'vw';
 //	console.log(positionXWas);
 	positionYWasIos = Math.round(positionYWas / calculatedVH);
@@ -551,20 +557,20 @@ function CheckBanana(id){
 			var pointsLeft = Math.round(score / level);
 			var pointsLost = score - pointsLeft;
 			score = pointsLeft;
-			$('#message').prepend("<div class='bad-guy-mini' style='background-color: " + currentColor + "'>" + "</div> slipped" + "<span class='shadowLight'> -" + pointsLost + "</span><br>");
+			$('#message').prepend("<div class='bad-guy-mini' style='background-color: " + currentColor + "'>" + "</div><span class='shadowLight'> slipped -" + pointsLost + "</span><br>");
 			difficulty --;
 		}
 		else{
 			var value = Math.round(-(currentBanana['size'] / 2) + maxSize);
 //			console.log('value' + value);
 			var newPoints = (1*difficulty) * value;
-			$('#message').prepend("Peeled <div class='bad-guy-mini' style='background-color: " + currentColor + "'></div><span class='shadow' style='color: yellow'> +" + newPoints + "</span><br>");
+			$('#message').prepend("<span class='shadowLight' style='color: deeppink'>Peeled </span><div class='bad-guy-mini' style='background-color: " + currentColor + "'></div><span class='shadow' style='color: yellow'> +" + newPoints + "</span><br>");
 			score += newPoints;
 			if(score > highScore){
 				highScore = score;
 				localStorage.setItem('savedHighScore', highScore);
 				$('#highScore').html(highScore);
-				$('#message').prepend("<span class='shadow' style='color: yellow'>New High Score: </span><span class='shadowLight' style='color: deeppink'>" + highScore + "</span><br>");
+				$('#message').prepend("<span class='shadowLight' style='color: deeppink'>New High Score: </span><span class='shadow' style='color: yellow'>" + highScore + "</span><br>");
 			}
 		}
 		CountBadGuys();
@@ -649,32 +655,32 @@ window.addEventListener('resize', function () {
 }, false);
 function Restore(){
 	if (confirm("Are you sure you want to restore your game to factory settings?")) {
+		RestartGame('skip');
 		localStorage.clear();
-
-		score = 0;
-		if(unRottenState == false){
-			Rotten();
-		}
-		$('#score').html(score);
-		difficulty = 1;
-		$('#difficulty').html(difficulty);
-		for(var i = 1; i <= bananas.length; i++){
-			var presence = CheckBadGuy(i);
-			if(presence == 'here'){
-				var badGuyId = 'badGuy' + i;
-				var badGuy = document.getElementById(badGuyId);
-				badGuy.remove();
-			}
-			nextBanana = 1;
-		}
-		$('#slider').removeAttr('style');
-		$('#slider').attr("class", 'slide');
+//		score = 0;
+//		if(unRottenState == false){
+//			Rotten();
+//		}
+//		$('#score').html(score);
+//		difficulty = 1;
+//		$('#difficulty').html(difficulty);
+//		for(var i = 1; i <= bananas.length; i++){
+//			var presence = CheckBadGuy(i);
+//			if(presence == 'here'){
+//				var badGuyId = 'badGuy' + i;
+//				var badGuy = document.getElementById(badGuyId);
+//				badGuy.remove();
+//			}
+//			nextBanana = 1;
+//		}
+//		$('#slider').removeAttr('style');
+//		$('#slider').attr("class", 'slide');
 		highScore = 0;
 		$('#highScore').html(highScore);
 		$('.rotten').removeAttr('style');
-		$('#addButton').html('+');
+//		$('#addButton').html('+');
+		Settings('c');
 		$('#message').html("<br><br><span style='color: crimson; font-size: 1.5em;' class='shadowLight'>Restored Game</span><br><br>");
-		Settings();
 	}
 	else {
 		$('#message').prepend("<br><br><span style='color: yellow; font-size: 1.5em;' class='shadow'>Game Data Preserved</span><br><br>");
@@ -683,11 +689,15 @@ function Restore(){
 function RestartGame(skip){
 
 	function DoIt(){
+		Slide('restart');
 		score = 0;
 		localStorage.removeItem('activeScore');
 		if(unRottenState == false){
 			Rotten();
 		}
+		$('#slider').removeAttr('style');
+		$('#slider').attr("class", 'slide');
+		localStorage.removeItem('savedBanana');
 		$('#score').html(score);
 		difficulty = 1;
 		$('#difficulty').html(difficulty);
@@ -699,6 +709,7 @@ function RestartGame(skip){
 				badGuy.remove();
 			}
 			nextBanana = 1;
+			CountBadGuys();
 		}
 		$('#message').prepend("<br><br><span class='shadowLight' style='color: crimson; font-size: 2em;'>Restarted</span><br><br>");
 		Settings();
@@ -764,7 +775,7 @@ function Settings(e){
 function Rotten(){
 	if(highScore < 100){
 		rottenUnlockStatus == false;
-		$('#message').prepend('Unlock Rotten Banana Mode when you reach 100 points<br>');
+		$('#message').prepend("<span class='shadowLight'>Unlock Rotten Banana Mode when you reach 100 points!</span>< br>");
 		return null;
 	}
 	else{

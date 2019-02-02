@@ -329,6 +329,7 @@ ol > li{
 	z-index: 100;
 }
 #message{
+	line-height: 225%;
 	color: black;
 	height: 37vh;
 	overflow: scroll;
@@ -579,7 +580,7 @@ background-size: 13px, 29px, 37px, 53px;
 		;
 color: red;
 	animation-name: points;
-	animation-duration: 2000ms;
+	animation-duration: 500ms;
 	animation-timing-function: linear;
 }
 .shadowLight{
@@ -593,7 +594,7 @@ color: red;
 		;
 color: red;
 	animation-name: points;
-	animation-duration: 2000ms;
+	animation-duration: 500ms;
 	animation-timing-function: linear;
 }
 #stats{
