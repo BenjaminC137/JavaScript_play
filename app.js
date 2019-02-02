@@ -190,6 +190,9 @@ document.onkeydown = function(e){
 		Settings();
 		ToggleInstructions('c');
 	}
+	if(e.key == 'i'){
+		ToggleInstructions();
+	}
 }
 function GetBananaLocation(){
 	var slider = document.querySelector('#slider');
