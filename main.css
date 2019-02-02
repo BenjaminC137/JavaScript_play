@@ -122,6 +122,9 @@ background-size: 13px, 29px, 37px, 53px;
 	mix-blend-mode:normal;
 /*	isolation:isolate;*/
 }
+#bananaStyles{
+	padding: 1vh;
+}
 .options-button{
 	position: relative;
 	bottom: 1.5em;
@@ -157,6 +160,10 @@ button{
 	align-items: center;
 	text-align:right;
 }
+#clearButtons > button{
+	margin: 3vh 1vw;
+/*	padding: 3vw;*/
+}
 #close{
 	display: inline-block;
 	width:1.2em;
@@ -167,6 +174,10 @@ button{
 	background-color: black;
 	padding: .2rem;
 	float: right;
+}
+.choose{
+	display: inline-block;
+	margin: 3vh;
 }
 /*
 .end{
@@ -245,9 +256,10 @@ html{
 
 }
 .instructions-container{
+	font-size: 20px;
 	text-align: center;
 	background-color: beige;
-/*	color: beige;*/
+	color: beige;
 	display: block;
 	height: 100vh;
 	width: 100vw;
@@ -309,6 +321,7 @@ p{
 }
 */
 #playDiv{
+	margin: 4vh;
 	text-align: center;
 }
 .reset{

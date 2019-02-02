@@ -74,19 +74,21 @@
 			<div style="text-align: right; height: 0px"><button class="options-button" onclick="Settings()" style="text-align: right">Menu</button></div>
 			<div id="menu" class="texture-carbon">
 				<div id="sliderStyles">
-					<h2 style="margin: 0px; display: inline; padding: 0px" >Choose a banana</h2><div id="close" onclick="Settings()" >X</div>
+					<h2 style="display: inline;">Choose a banana</h2><div id="close" onclick="Settings()" >X</div>
 					<br>
-					<span class="slide-demo" onclick="ChangeBanana(this);"></span>
-					<span class="slide-demo texture-pyramid-teal" onclick="ChangeBanana(this);"></span>
-					<span class="slide-demo texture-stripes-banana" onclick="ChangeBanana(this);"></span>
-					<span class="slide-demo texture-fabric" onclick="ChangeBanana(this);"></span>
-					<span class="slide-demo texture-honeycomb" onclick="ChangeBanana(this);"></span>
-					<span class="slide-demo texture-bricks" onclick="ChangeBanana(this);"></span>
-					<span onclick="ChangeBanana(this);" class="slide-demo texture-rainbow"></span>
+					<div id="bananaStyles">
+						<span class="slide-demo" onclick="ChangeBanana(this);"></span>
+						<span class="slide-demo texture-pyramid-teal" onclick="ChangeBanana(this);"></span>
+						<span class="slide-demo texture-stripes-banana" onclick="ChangeBanana(this);"></span>
+						<span class="slide-demo texture-fabric" onclick="ChangeBanana(this);"></span>
+						<span class="slide-demo texture-honeycomb" onclick="ChangeBanana(this);"></span>
+						<span class="slide-demo texture-bricks" onclick="ChangeBanana(this);"></span>
+						<span onclick="ChangeBanana(this);" class="slide-demo texture-rainbow"></span>
+					</div>
 			</div>
 				<div id="thanks">
-					<h3>Beta</h3>
-					<p>
+					<h3 style="margin: .5em">Beta</h3>
+					<p style="font-size: 1.2rem">
 						Thank you for joining the Slider Banana© Beta Program!
 
 						If you encounter any bugs, please email me the issue along with which web browser you used and which device.
@@ -94,14 +96,16 @@
 						<a class="anchor-light" href="mailto:benjaminsalasek@icloud.com">benjaminsalasek@icloud.com</a>
 					</p>
 				</div>
-					<button id="restartButton" class="reset" onclick="RestartGame();" >&olarr; Restart Round</button>
-					<button id="clearButton" class="reset" onclick="ClearHighScore();" >Clear High</button>
-					<button id="restoreButton" class="reset" onclick="Restore();" >&olarr; Restore Game</button>
-					<br>
+
 					<div id="playDiv" >
 						<button id="play" class="button-good" onclick="Settings();">Play</button>
 						<button id="instructions-button" class="button-good" onclick="ToggleInstructions();">Instructions</button>
 					</div>
+				<div id="clearButtons">
+					<button id="restartButton" class="reset" onclick="RestartGame();" >&olarr; Restart Round</button>
+					<button id="clearButton" class="reset" onclick="ClearHighScore();" >Clear High</button>
+					<button id="restoreButton" class="reset" onclick="Restore();" >&olarr; Restore Game</button>
+				</div>
 			</div>
 		</div>
 			<div class="instructions-container texture-carbon">
@@ -121,6 +125,6 @@
 					<span style="font-size: .6rem">*Mobile landscape orientation currently unsupported</span>
 				</ol>
 			</div>
-	<script src="app.js"></script>
+		<script src="app.js"></script>
 	</body>
 </html>
