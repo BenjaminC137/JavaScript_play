@@ -306,12 +306,14 @@ ol > li{
 	top: 0vh;
 	left: 0vw;
 	z-index: 101;
+	overflow: scroll;
 }
 #menu{
 	display: block;
 	height: 100vh;
 	width: 100vw;
 	color: beige;
+	overflow: scroll;
 }
 #message{
 	color: black;
