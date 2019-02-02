@@ -69,7 +69,7 @@
 		<div id="sliderU" class="center slideButtonH sliderU" onclick="Slide('u');"><div class="arrow">&uarr;</div></div>
 <!--		add-->
 		<div id="add" class="center add"onclick="Add(1);"><div id="addButton" class="arrow">+</div></div>
-<!--		banana split, monkey, banana bread, peel, slip, bunch, tree, rotten, banana boat, go bananas, shit is bananas, that's bananas -->
+<!--		banana split, monkey, banana bread, slip, bunch, tree, banana boat, go bananas, this shit is bananas, that's bananas -->
 		<div class="options">
 			<div style="text-align: right; height: 0px"><button class="options-button" onclick="Settings()" style="text-align: right">Menu</button></div>
 			<div id="menu" class="texture-carbon">
@@ -110,12 +110,9 @@
 			</div>
 		</div>
 			<div class="instructions-container texture-carbon">
-				<h3>Instructions</h3>
-				<div style="margin-bottom: 5px; font-size: 1.5em">
-					<div id="close" onclick="ToggleInstructions()" >
+				<h3 style="display: inline-block">Instructions</h3>					<span id="close" onclick="ToggleInstructions()" >
 						X
-					</div>
-				</div>
+					</span>
 				<ol id="instructions">
 					<li><div class="add2" style="">+</div> (or the space bar on your keyboard) adds bad guys.</li>
 					<li>
@@ -126,11 +123,21 @@
 					or (&rarr;&darr;&larr;&uarr; keys on your keyboard) moves your banana.</li>
 					<li>Get the good guys <span class="bad-guy-mini-instructions" style="background-color: turquoise"></span> <span class="bad-guy-mini-instructions" style="background-color: orange"></span> <span class="bad-guy-mini-instructions" style="background-color: deeppink"></span> <span class="bad-guy-mini-instructions" style="background-color: navy"></span> to land on you. Your banana must be overlapping a good guy when the good guy stops moving.</li>
 					<li>Don't let bad guys <span class="bad-guy-mini-instructions" style="background-color: red"></span>  (red) land on you.</li>
-					<li>Reach 100 points to unlock <span style="color:palegreen">ROTTEN BANANA MODE!</span></li>
+					<li>Reach 100 points to unlock <span style="color:palegreen">ROTTEN BANANA MODE!</span> (The button is under the score).</li>
 				</ol>
 				<ol>
 					<h3>Tips:</h3>
-					<li>Acquire more points at higher difficulty level and for peeling smaller good guys</li>				</ol>
+					<li>Acquire more points at higher difficulty levels and for peeling smaller good guys.</li>
+					<li>'Bounce-Back'! When you are against a blue wall, click the arrow pointing in the direction of the wall to go the opposite direction.</li>
+					<li>'Crossover'! When you are next to a corner
+						<span class="crossover" style="font-size: 2em">&#8620;</span>
+						<span class="crossover"  style="font-size: 2em">&#8619;</span>
+						<span class="upside-down crossover"  style="font-size: 2em">&#8620;</span>
+						<span class="upside-down crossover"  style="font-size: 2em">&#8619;</span>
+						This will bump you diagonally. When you are next to one, click the arrow pointing toward it.
+					</li>
+					<li>Try combining a 'Crossover' with a 'Bump'!</li>
+				</ol>
 			</div>
 		<script src="app.js"></script>
 	</body>
