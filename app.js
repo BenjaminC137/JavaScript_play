@@ -667,6 +667,7 @@ function Restore(){
 		$('.rotten').removeAttr('style');
 		$('#addButton').html('+');
 		$('#message').html("<br><br><span style='color: crimson; font-size: 1.5em;' class='shadowLight'>Restored Game</span><br><br>");
+		Settings();
 	}
 	else {
 		$('#message').prepend("<br><br><span style='color: yellow; font-size: 1.5em;' class='shadow'>Game Data Preserved</span><br><br>");
@@ -693,6 +694,7 @@ function RestartGame(skip){
 			nextBanana = 1;
 		}
 		$('#message').prepend("<br><br><span class='shadowLight' style='color: crimson; font-size: 2em;'>Restarted</span><br><br>");
+		Settings();
 	}
 	if(skip == 'skip'){
 	   DoIt();
