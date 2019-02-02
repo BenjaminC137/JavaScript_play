@@ -183,6 +183,7 @@ document.onkeydown = function(e){
 	}
 	if(e.key == 'Escape'){
 		Settings();
+		ToggleInstructions();
 	}
 }
 function GetBananaLocation(){
