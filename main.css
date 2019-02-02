@@ -329,8 +329,9 @@ ol > li{
 .options{
 	position: fixed;
 	left: 0vw;
-	bottom: 100vh;
+/*	bottom: 100vh;*/
 /*	bottom: 1.1em;*/
+	bottom: 90vh;
 	width: 100vw;
 	height: 0px;
 	font-size: 20px;

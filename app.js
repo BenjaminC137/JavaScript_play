@@ -60,6 +60,7 @@ $(document).ready(function(){
 //		currentBottom = 70;
 	}
 	ToggleInstructions('c');
+	Settings('remember');
 });
 function GoScreen(screen){
 //	console.log('Screen ' + screen);
