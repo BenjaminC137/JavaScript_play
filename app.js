@@ -59,7 +59,7 @@ $(document).ready(function(){
 //		hitBottom = 7.1;
 //		currentBottom = 70;
 	}
-	ToggleInstructions();
+	ToggleInstructions('c');
 });
 function GoScreen(screen){
 //	console.log('Screen ' + screen);
@@ -183,7 +183,7 @@ document.onkeydown = function(e){
 	}
 	if(e.key == 'Escape'){
 		Settings();
-		ToggleInstructions();
+		ToggleInstructions('c');
 	}
 }
 function GetBananaLocation(){
@@ -852,12 +852,21 @@ function RottenMessage(){
 function UnRottenMessage(){
 	$('#message').prepend("<span class='shadow' style='color: yellow'>ROTTEN BANANA MODE DEACTIVATED</span><br>");
 }
-function ToggleInstructions(){
-	if(instructionsHide == true){
+function ToggleInstructions(k){
+	console.log(k);
+	if(k == 'c'){
+		console.log('c');
 		$( '.instructions-container' ).hide();
+		instructionsHide = true;
 	}
-	else{
-		$( '.instructions-container' ).show();
+	if(k == null){
+		if(instructionsHide == true){
+		console.log('f');
+			$( '.instructions-container' ).show();
+		}
+		else{
+			$( '.instructions-container' ).hide();
+		}
+		instructionsHide = !instructionsHide;
 	}
-	instructionsHide = !instructionsHide;
 }
