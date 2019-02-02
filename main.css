@@ -154,13 +154,14 @@ background-size: 13px, 29px, 37px, 53px;
 	padding: 1vh;
 }
 .options-button{
-	position: relative;
-	bottom: 1.5em;
+	position: fixed;
+	bottom: .25em;
+	right: 0em;
 	background-color: black;
 	color: beige;
 	font-family: inherit;
 /*	font-weight: bolder;*/
-	font-size: 1em;
+	font-size: 2em;
 	margin: -2px 2px;
 }
 body{
@@ -315,6 +316,17 @@ ol > li{
 	width: 100vw;
 	color: beige;
 	overflow: scroll;
+	text-align: center;
+	position: fixed;
+	left: 0vw;
+	top: 0vh;
+	font-size: 20px;
+/*
+	transition-duration: 500ms;
+	transition-timing-function: ease-in-out;
+*/
+	z-index: 100;
+
 }
 #message{
 	color: black;
@@ -328,20 +340,20 @@ ol > li{
 	border-width: .5vh .5vw;
 }
 .options{
+/*
 	position: fixed;
 	left: 0vw;
-/*	bottom: 100vh;*/
-/*	bottom: 1.1em;*/
-	bottom: 90vh;
-	width: 100vw;
-	height: 0px;
+	top: 0vh;
 	font-size: 20px;
-	text-align: center;
+*/
+/*	text-align: center;*/
 /*	height: 20vw;*/
 /*	mix-blend-mode:lighten;*/
+/*
 	transition-duration: 500ms;
 	transition-timing-function: ease-in-out;
 	z-index: 100;
+*/
 }
 p{
 /*	font-family: fantasy;*/

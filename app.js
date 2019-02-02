@@ -724,28 +724,39 @@ function ChangeBanana(b){
 }
 function Settings(e){
 	if(e == null){
-		if(panel == false){
-			$('.options').css({'bottom': menuTop});
+		if(panel == true){
+			$( '#menu' ).animate({top: '100vh'}, {queue: false, duration: 500, easing: 'easeInOutBack'});
+			panel = false;
+			}
+		else{
+			$( '#menu' ).animate({top: '0vh'}, {queue: false, duration: 500, easing: 'easeInOutBack'});
 			panel = true;
 		}
-		else{
-			$('.options').css('bottom', '0vh');
-			panel = false;
-		}
+//		panel = !panel;
+
+//
+//		if(panel == false){
+//			$('.options').css({'bottom': menuTop});
+//			panel = true;
+//		}
+//		else{
+//			$('.options').css('bottom', '0vh');
+//			panel = false;
+
 	}
 	if(e == 'remember'){
 		if(panel == true){
-			$('.options').css('bottom', menuTop);
+			$( '#menu' ).animate({top: '0vh'}, {queue: false, duration: 500, easing: 'easeInOutBack'});
 			panel = true;
 		}
 		else{
-			$('.options').css('bottom', '0vh');
+			$( '#menu' ).animate({top: '100vh'}, {queue: false, duration: 500, easing: 'easeInOutBack'});
 			panel = false;
 		}
 		console.log('You have played on this device before.');
 	}
 	if(e == 'c'){
-		$('.options').css('bottom', '0vh');
+		$( '#menu' ).animate({top: '100vh'}, {queue: false, duration: 500, easing: 'easeInOutBack'})
 		panel = false;
 	}
 	localStorage.setItem('savedMenuStatus', panel);
