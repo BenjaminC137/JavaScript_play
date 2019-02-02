@@ -325,8 +325,8 @@ ol > li{
 	transition-duration: 500ms;
 	transition-timing-function: ease-in-out;
 */
+	overflow: scroll;
 	z-index: 100;
-
 }
 #message{
 	color: black;
@@ -339,22 +339,20 @@ ol > li{
 	border-color:deeppink;
 	border-width: .5vh .5vw;
 }
-.options{
 /*
+.options{
 	position: fixed;
 	left: 0vw;
 	top: 0vh;
 	font-size: 20px;
-*/
-/*	text-align: center;*/
-/*	height: 20vw;*/
-/*	mix-blend-mode:lighten;*/
-/*
+	text-align: center;
+	height: 20vw;
+	mix-blend-mode:lighten;
 	transition-duration: 500ms;
 	transition-timing-function: ease-in-out;
 	z-index: 100;
-*/
 }
+*/
 p{
 /*	font-family: fantasy;*/
 }
