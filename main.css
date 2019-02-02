@@ -160,7 +160,7 @@ background-size: 13px, 29px, 37px, 53px;
 	color: beige;
 	font-family: inherit;
 	font-weight: bolder;
-	font-size: 1.5rem;
+	font-size: 1em;
 	margin: -2px 2px;
 }
 body{
@@ -278,7 +278,7 @@ h1{
 }
 html{
 	font-family: Verdana, Geneva, sans-serif;
-	font-size: 12px
+	font-size: 10px
 }
 #instructions{
 /*	color: beige;*/
