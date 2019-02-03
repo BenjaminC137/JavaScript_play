@@ -775,7 +775,7 @@ function Settings(e){
 function Rotten(){
 	if(highScore < 100){
 		rottenUnlockStatus == false;
-		$('#message').prepend("<span class='shadowLight'>Unlock Rotten Banana Mode when you reach 100 points!</span>< br>");
+		$('#message').prepend("<span class='shadowLight'>Unlock Rotten Banana Mode when you reach 100 points!</span><br>");
 		return null;
 	}
 	else{
