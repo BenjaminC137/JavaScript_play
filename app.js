@@ -916,3 +916,20 @@ function ToggleInstructions(k){
 		instructionsHide = !instructionsHide;
 	}
 }
+function Yay(y){
+	var currentThing = $('#' + y);
+	console.log($(this));
+	var newTop = currentThing.position();
+	var newHeight = $('#' + y).height() - 30;
+	$(currentThing)
+	.animate({height: newHeight}, {
+      duration: 400,
+		queue: true,
+      complete: function(){
+		newHeight += 30;
+		console.log(newHeight);
+		  	$(currentThing)
+	.animate({height: newHeight}, 300);
+      }
+    });
+}
