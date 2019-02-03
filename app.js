@@ -680,7 +680,7 @@ function Restore(){
 		$('.rotten').removeAttr('style');
 //		$('#addButton').html('+');
 		Settings('c');
-		$('#message').html("<br><br><span style='color: crimson; font-size: 1.5em;' class='shadowLight'>Restored Game</span><br><br>");
+		$('#message').html("<br><span style='color: crimson; font-size: 1.5em;' class='shadowLight'>Restored Game</span><br>");
 	}
 	else {
 		$('#message').prepend("<br><br><span style='color: yellow; font-size: 1.5em;' class='shadow'>Game Data Preserved</span><br><br>");
