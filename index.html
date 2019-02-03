@@ -51,13 +51,13 @@
 			<br>
 			<h3 style="display: inline;">Score:</h3><span id="score" class="status">0</span>
 			<br>
-			<div id="rotten" class="center rotten texture-stripes" onclick="Rotten();"><div id="rottenButton">ROTTEN<br>BANANA</div></div>
+			<div id="rotten" class="center rotten texture-stripes" onclick="Rotten(); Yay(this.id);"><div id="rottenButton">ROTTEN<br>BANANA</div></div>
 		</div>
 		<div id="stats2" >
 			<div id="highScore" class="shadow" style="color: yellow; font-size: 2em">0</div>
 			<h3 style="display: inline;">High Score</h3>
 		</div>
-		<div id="slider" onclick="Yay(this.id);" class="slide"></div>
+		<div id="slider" class="slide"></div>
 <!--		right-->
 		<div id="wide-button-r" class="wide-button" onclick="Slide('r');"></div>
 		<div id="sliderR" onclick="Slide('r');" class="slideButtonV center sliderR"><div class="arrow">&rarr;</div></div>
@@ -69,9 +69,9 @@
 <!--		up-->
 		<div id="sliderU" class="center slideButtonH sliderU" onclick="Slide('u');"><div class="arrow">&uarr;</div></div>
 <!--		add-->
-		<div id="add" class="center add texture-stripes"onclick="Add(1);"><div id="addButton" class="arrow">+</div></div>
+		<div id="add" class="center add texture-stripes"onclick="Add(1); Yay(this.id);"><div id="addButton" class="arrow">+</div></div>
 <!--		banana split, monkey, banana bread, slip, bunch, tree, banana boat, go bananas, this shit is bananas, that's bananas -->
-		<button class="options-button" onclick="Settings()" style="text-align: right">Menu</button>
+		<button class="options-button" onclick="Settings();" style="text-align: right">Menu</button>
 <!--		<div class="options">-->
 		<div id="menu" class="texture-carbon">
 			<div id="sliderStyles">
@@ -81,7 +81,7 @@
 				</div>
 				<br>
 				<div id="bananaStyles">
-					<span class="slide-demo" onclick="ChangeBanana(this);"></span>
+					<span class="slide-demo texture-trip" onclick="ChangeBanana(this);"></span>
 					<span class="slide-demo texture-pyramid-teal" onclick="ChangeBanana(this);"></span>
 					<span class="slide-demo texture-stripes-banana" onclick="ChangeBanana(this);"></span>
 					<span class="slide-demo texture-fabric" onclick="ChangeBanana(this);"></span>

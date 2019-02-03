@@ -369,12 +369,11 @@ function Add(number){
 	newDiv.setAttribute("class", "bad-guy");
 	newDiv.setAttribute("id", "badGuy" + number);
 	newDiv.style.backgroundColor = currentColor;
-//	newDiv.style.transition =  '200ms';
 	newDiv.style.width = currentSize += 'vw';
 	var currentDiv = document.getElementById("slider");
 	document.body.insertBefore(newDiv, currentDiv);
 	var addDiv = document.getElementById("add");
-	var newClick = ("Add(" + (number + 1) + ")");
+	var newClick = ("Add(" + (number + 1) + "); Yay(this.id);");
 	addDiv.setAttribute("onclick", newClick);
 	CountBadGuys();
 }
@@ -918,18 +917,29 @@ function ToggleInstructions(k){
 }
 function Yay(y){
 	var currentThing = $('#' + y);
-	console.log($(this));
-	var newTop = currentThing.position();
-	var newHeight = $('#' + y).height() - 30;
+	var newPosition = currentThing.position();
+	var newTop = newPosition.top - 15;
+	var newLeft = newPosition.left - 15;
+	var newHeight = $(currentThing).height() + 30;
+	var newWidth = $(currentThing).width() + 30;
 	$(currentThing)
-	.animate({height: newHeight}, {
-      duration: 400,
+	.animate({height: newHeight, top: newTop, left: newLeft, width: newWidth}, {
+    	duration: 100,
 		queue: true,
-      complete: function(){
-		newHeight += 30;
-		console.log(newHeight);
-		  	$(currentThing)
-	.animate({height: newHeight}, 300);
+      	complete: function(){
+		newHeight -= 30;
+		newWidth -=30;
+		newTop +=15;
+		newLeft +=15;
+		$(currentThing)
+			.animate({height: newHeight, top: newTop, left: newLeft, width: newWidth},{
+      			duration: 10,
+				queue: true,
+      			complete: function(){
+					$(currentThing)
+					.css({width: '', height: '', top: '', left: ''});
+      }
+    });
       }
     });
 }
