@@ -624,9 +624,10 @@ function ClearHighScore(){
 		localStorage.removeItem('savedRottenStatus');
 		highScore = 0;
 		$('#highScore').html(highScore);
-			$('#message').prepend("<br><br><span style='color: crimson; font-size: 2em;' class='shadow'>Cleared High Score</span><br><br>");
+//			$('#message').prepend("<br><br><span style='color: crimson; font-size: 2em;' class='shadow'>Cleared High Score</span><br><br>");
 		$('.rotten').removeAttr('style');
 		RestartGame('skip');
+			$('#message').prepend("<br><span style='color: deepskyblue; font-size: 2em;' class='shadowLight'>Cleared High Score</span><br>");
 	}
 	else {
 		$('#message').prepend("<br><br><span style='color: yellow; font-size: 1.5em;' class='shadow'>High Score Preserved</span><br><br>");
@@ -699,7 +700,7 @@ function RestartGame(skip){
 			nextBanana = 1;
 			CountBadGuys();
 		}
-		$('#message').html("<br><br><span class='shadowLight' style='color: crimson; font-size: 2em;'>Restarted</span><br><br>");
+		$('#message').html("<br><br><span class='shadowLight' style='color: deepskyblue; font-size: 2em;'>Restarted</span><br><br>");
 		Settings();
 	}
 	if(skip == 'skip'){

@@ -592,8 +592,7 @@ color: red;
 		1px 1px 0px whitesmoke,
 		-1px -1px 1px powderblue,
 		2px -1px 0px yellow;
-		;
-color: red;
+	color: deeppink;
 	animation-name: points;
 	animation-duration: 500ms;
 	animation-timing-function: linear;
