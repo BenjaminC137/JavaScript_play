@@ -436,6 +436,7 @@ p{
 	z-index: 0;
 }
 .slide-demo{
+	position:sticky;
 	display: inline-block;
 	width: 10vw;
 	height: 10vh;
@@ -708,6 +709,17 @@ linear-gradient(150deg,#fb1 24%,#B71 0,#B71 26%,rgba(240,166,17,0) 0,rgba(240,16
 linear-gradient(30deg,#fb1 24%,#B71 0,#B71 26%,rgba(240,166,17,0) 0,rgba(240,166,17,0) 74%,#B71 0,#B71 76%,#fb1 0)0 0,
 linear-gradient(90deg,#B71 2%,#fb1 0,#fb1 98%,#B71 0%)0 0 #fb1;
 background-size: 40px 60px;
+}
+.texture-shippo{
+	background-color: deeppink;
+	background-image: radial-gradient(closest-side, transparent 98%, rgba(0,0,0,.3) 99%),
+		radial-gradient(closest-side, transparent 98%, rgba(0,0,0,.3) 99%);
+	background-size:40px 40px;
+	background-position:0 0, 20px 20px;
+	/*
+	background-size:80px 80px;
+	background-position:0 0, 40px 40px;
+*/
 }
 .wide-button{
 	position: fixed;

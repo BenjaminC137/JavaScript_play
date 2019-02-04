@@ -431,7 +431,7 @@ function SlideSquare(id, button){
 	var positionXWas = Number((badGuyLeft).replace("px", ""));
 	var positionY = Number((badGuyTop).replace("px", ""));
 	var positionYWas = Number((badGuyTop).replace("px", ""));
-	console.log('windowHeight: ' + windowHeight);	console.log('calculatedVH: ' + calculatedVH);
+//	console.log('windowHeight: ' + windowHeight);	console.log('calculatedVH: ' + calculatedVH);
 	positionX = (Math.round(positionX / calculatedVW)) + 'vw';
 //	console.log(positionX);
 	positionY = (Math.round(positionY / calculatedVH)) + 'vh';
@@ -440,10 +440,8 @@ function SlideSquare(id, button){
 //	console.log(positionXWas);
 	positionYWasIos = Math.round(positionYWas / calculatedVH);
 	positionYWas = (Math.round(positionYWas / calculatedVH)) + 'vh';
-	console.log('posYWasIos: ' + positionYWasIos);
-
-	console.log('posYWas: ' + positionYWas);
-
+//	console.log('posYWasIos: ' + positionYWasIos);
+//	console.log('posYWas: ' + positionYWas);
 	Move(dir);
 	function Move(directionBadGuy){
 		var currentBottomVH = currentBottom + 'vh';
@@ -460,7 +458,6 @@ function SlideSquare(id, button){
 		if(directionBadGuy == 'u'){
 			positionY = '20vh';
 		}
-
 //		ensure they go to the nearest corner:
 		if(['20vw', '70vw'].indexOf(positionX) +1){
 //			console.log('position X == 20vw or 70vw');
@@ -473,9 +470,6 @@ function SlideSquare(id, button){
 				positionX = '70vw';
 			}
 		}
-
-
-//		var currentBottomVH = currentBottom + 'vh';
 		var middleVh = (((currentBottom + 10) - 20) / 2) + 20;
 		if(['20vh', currentBottomVH].indexOf(positionY) +1){
 //			console.log('position Y == 20vh or bottom');
@@ -488,9 +482,6 @@ function SlideSquare(id, button){
 				positionY = currentBottomVH;
 			}
 		}
-
-
-
 //		badGuy.style.left = positionX;
 //		badGuy.style.top = positionY;
 		if(breakpoint == 'small'){
@@ -500,14 +491,11 @@ function SlideSquare(id, button){
 			else{
 				positionYWas = '20vh';
 			}
-
 		}
-		console.log(positionX, positionXWas, positionY, positionYWas);
-
+//		console.log(positionX, positionXWas, positionY, positionYWas);
 //		var iOSpositionY =
-
 		if(positionX == positionXWas && positionY == positionYWas){
-			console.log(id + 'no move needed');
+//			console.log(id + 'no move needed');
 			return null;
 		}
 		else{
@@ -938,8 +926,38 @@ function Yay(y){
       			complete: function(){
 					$(currentThing)
 					.css({width: '', height: '', top: '', left: ''});
-      }
+      			}
+    		});
+      	}
     });
-      }
+}
+function YayNotFixed(y){
+	var currentThing = $(y);
+//	var newPosition = currentThing.position();
+//	var newTop = newPosition.top - 15;
+//	var newLeft = newPosition.left - 15;
+//	var newHeight = $(currentThing).height() + 30;
+//	var newWidth = $(currentThing).width() + 30;
+	var currentBackgroundColor = $(currentThing).css('backgroundColor');
+	console.log(currentBackgroundColor);
+	$(currentThing)
+	.animate({backgroundColor: 'black', mixBlendMode: 'multiply'}, {
+    	duration: 300,
+		queue: true,
+      	complete: function(){
+//		newHeight -= 30;
+//		newWidth -=30;
+//		newTop +=15;
+//		newLeft +=15;
+		$(currentThing)
+			.animate({backgroundColor: currentBackgroundColor},{
+      			duration: 300,
+				queue: true,
+      			complete: function(){
+					$(currentThing)
+					.css({width: '', height: '', backgroundColor: ''});
+      			}
+    		});
+      	}
     });
 }
