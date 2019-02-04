@@ -185,6 +185,7 @@ document.onkeydown = function(e){
 	}
 	if(e.key == ' '){
 		Add(nextBanana);
+		Yay('add')
 	}
 	if(e.key == 'Escape'){
 		Settings('c');
@@ -698,7 +699,7 @@ function RestartGame(skip){
 			nextBanana = 1;
 			CountBadGuys();
 		}
-		$('#message').prepend("<br><br><span class='shadowLight' style='color: crimson; font-size: 2em;'>Restarted</span><br><br>");
+		$('#message').html("<br><br><span class='shadowLight' style='color: crimson; font-size: 2em;'>Restarted</span><br><br>");
 		Settings();
 	}
 	if(skip == 'skip'){
