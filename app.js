@@ -907,10 +907,13 @@ function ToggleInstructions(k){
 function Yay(y){
 	var currentThing = $('#' + y);
 	var newPosition = currentThing.position();
+	var currentPosition = currentThing.position();
 	var newTop = newPosition.top - 15;
 	var newLeft = newPosition.left - 15;
 	var newHeight = $(currentThing).height() + 30;
+	var currentHeight = $(currentThing).height();
 	var newWidth = $(currentThing).width() + 30;
+	var currentWidth = $(currentThing).width();
 	$(currentThing)
 	.animate({height: newHeight, top: newTop, left: newLeft, width: newWidth}, {
     	duration: 100,
@@ -921,12 +924,12 @@ function Yay(y){
 		newTop +=15;
 		newLeft +=15;
 		$(currentThing)
-			.animate({height: newHeight, top: newTop, left: newLeft, width: newWidth},{
+			.animate({height: currentHeight, top: currentPosition.top, left: currentPosition.left, width: currentWidth},{
       			duration: 10,
 				queue: true,
       			complete: function(){
 					$(currentThing)
-					.css({width: '', height: '', top: '', left: ''});
+					.css({width: '', height: '', top: currentPosition.top, left: currentPosition.left});
       			}
     		});
       	}
