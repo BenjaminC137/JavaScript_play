@@ -929,7 +929,7 @@ function Yay(y){
 				queue: true,
       			complete: function(){
 					$(currentThing)
-					.css({width: '', height: '', top: currentPosition.top, left: currentPosition.left});
+					.css({width: '', height: '', top: '', left: ''});
       			}
     		});
       	}

@@ -145,7 +145,7 @@ linear-gradient(90deg, transparent 50%, rgba(255,255,255,.17) 50%),
 linear-gradient(90deg, transparent 50%, rgba(255,255,255,.19) 50%);
 background-size: 13px, 29px, 37px, 53px;
 }
-#badGuy5{
+.badGuy5{
 	z-index: 25;
 	mix-blend-mode:normal;
 /*	isolation:isolate;*/
