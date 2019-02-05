@@ -42,28 +42,15 @@ $(document).ready(function(){
 		console.log("no activeScore found.")
 	}
 	if(breakpoint == 'small'){
-//		hitBottom = 6.1;
 		GoScreen('m');
-//		$('#sliderD')[0].style.top = '70vh';
-//		$('.wide-button, .wide-button-l').css("top", "20vh");
-//		$('.zone-center')[0].style.height = '59vh';
-//		$('.data')[0].style.top = '30vh';
-//		$('#message')[0].style.height = '17vh';
-//		$('#instructions')[0].style.fontSize = '1rem';
-//		$("#crossoverBL, #crossoverBR").css('top', '60vh');
-//		currentBottom = 50;
-//		$('.slideButtonV').css('top', '20vh');
 	}
 	else{
 		GoScreen('d');
-//		hitBottom = 7.1;
-//		currentBottom = 70;
 	}
 	ToggleInstructions('c');
 	Settings('remember');
 });
 function GoScreen(screen){
-//	console.log('Screen ' + screen);
 	if(screen == 'm'){
 		$('.sliderD')[0].style.top = '70vh';
 		$('.wide-button, .wide-button-l').css("top", "20vh");
@@ -1024,13 +1011,14 @@ function YayMoveButtons(y){
 		if(y == 'sliderD'){
 			var currentPosition = currentThing.position();
 			var currentTop = currentPosition.top;
-			var newTop = (Math.round(currentPosition.top / calculatedVH) - 10 + 'vh');
+//			var newTop = (Math.round(currentPosition.top / calculatedVH) - 10 + 'vh');
+			var newTop = (currentBottom + 10 + 'vh');
 			$(currentThing).animate({height: newHeight, top: newTop}, {
 				duration: 50,
 				queue: true,
 				complete: function(){
 //					newHeight -= tenVH;
-					$(currentThing).animate({height: currentHeight, top: currentTop},{
+					$(currentThing).animate({height: currentHeight, top: currentBottom +20 + 'vh'},{
 						duration: 50,
 						queue: true,
 						complete: function()
