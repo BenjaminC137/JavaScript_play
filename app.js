@@ -886,16 +886,14 @@ function UnRottenMessage(){
 	$('#message').prepend("<span class='shadow' style='color: yellow'>ROTTEN BANANA MODE DEACTIVATED</span><br>");
 }
 function ToggleInstructions(k){
-	console.log(k);
+//	console.log(k);
 	if(k == 'c'){
-		console.log('c');
-//		$( '.instructions-container' ).hide();
 			$( '.instructions-container' ).animate({top: '100vh'}, {queue: false, duration: 500, easing: 'easeInOutBack'});
 		instructionsHide = true;
 	}
 	if(k == null){
 		if(instructionsHide == true){
-		console.log('f');
+//		console.log('f');
 //			$( '.instructions-container' ).show();
 			$( '.instructions-container' ).animate({top: '0vh'}, {queue: false, duration: 500, easing: 'easeInOutBack'});
 			}
@@ -969,33 +967,62 @@ function YayNotFixed(y){
 }
 function YayMoveButtons(y){
 	var currentThing = $('#' + y);
-//	var newPosition = currentThing.position();
-	var currentPosition = currentThing.position();
-//	var newTop = newPosition.top - 15;
-//	var newLeft = newPosition.left - 15;
-//	var newHeight = $(currentThing).height() + 30;
-//	var currentHeight = $(currentThing).height();
-	var tenVW = calculatedVW * 10;
-	var currentWidth = $(currentThing).width();
-	var newWidth = currentWidth + tenVW;
-	$(currentThing)
-	.animate({width: newWidth}, {
-    	duration: 50,
-		queue: true,
-      	complete: function(){
-//		newHeight -= 30;
-		newWidth -= tenVW;
-//		newTop +=15;
-//		newLeft +=15;
+	if((y == 'sliderR') || (y == 'sliderL')){
+		var tenVW = calculatedVW * 10;
+		var currentWidth = $(currentThing).width();
+		var newWidth = currentWidth + tenVW;
 		$(currentThing)
-			.animate({width: currentWidth},{
-      			duration: 50,
+		.animate({width: newWidth}, {
+			duration: 50,
+			queue: true,
+			complete: function(){
+			newWidth -= tenVW;
+			$(currentThing)
+				.animate({width: currentWidth},{
+					duration: 50,
+					queue: true,
+					complete: function(){
+						$(currentThing)
+						.css({width: ''});
+					}
+				});
+			}
+		});
+	}
+	if((y == 'sliderD') || (y == 'sliderU')){
+		var tenVH = calculatedVH * 10;
+		var currentHeight = $(currentThing).height();
+		var newHeight = currentHeight + tenVH;
+		if(y == 'sliderU'){
+			$(currentThing).animate({height: newHeight}, {
+				duration: 50,
 				queue: true,
-      			complete: function(){
-					$(currentThing)
-					.css({width: ''});
-      			}
-    		});
-      	}
-    });
+				complete: function(){
+//					newHeight -= tenVH;
+					$(currentThing).animate({height: currentHeight},{
+						duration: 50,
+						queue: true,
+						complete: function(){
+						$(currentThing).css({height: ''});}});
+				}
+			});
+		}
+		if(y == 'sliderD'){
+			var currentPosition = currentThing.position();
+			var currentTop = currentPosition.top;
+			var newTop = (Math.round(currentPosition.top / calculatedVH) - 10 + 'vh');
+			$(currentThing).animate({height: newHeight, top: newTop}, {
+				duration: 50,
+				queue: true,
+				complete: function(){
+//					newHeight -= tenVH;
+					$(currentThing).animate({height: currentHeight, top: currentTop},{
+						duration: 50,
+						queue: true,
+						complete: function(){
+							$(currentThing).css({height: ''});}});
+				}
+			});
+		}
+	}
 }
