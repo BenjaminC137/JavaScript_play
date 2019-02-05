@@ -158,29 +158,37 @@ document.onkeydown = function(e){
 	if(unRottenState == true){
 		if(e.key == 'ArrowRight'){
 			Slide('r');
+			YayMoveButtons('sliderR');
 		}
 		if(e.key == 'ArrowDown'){
 			Slide('d');
+			YayMoveButtons('sliderD');
 		}
 		if(e.key == 'ArrowLeft'){
 			Slide('l');
+			YayMoveButtons('sliderL');
 		}
 		if(e.key == 'ArrowUp'){
 			Slide('u');
+			YayMoveButtons('sliderU');
 		}
 	}
 	else{
 		if(e.key == 'ArrowRight'){
 			Slide('u');
+			YayMoveButtons('sliderU');
 		}
 		if(e.key == 'ArrowDown'){
 			Slide('r');
+			YayMoveButtons('sliderR');
 		}
 		if(e.key == 'ArrowLeft'){
 			Slide('d');
+			YayMoveButtons('sliderD');
 		}
 		if(e.key == 'ArrowUp'){
 			Slide('l');
+			YayMoveButtons('sliderL');
 		}
 	}
 	if(e.key == ' '){
@@ -905,7 +913,7 @@ function ToggleInstructions(k){
 	}
 }
 function Yay(y){
-	var currentThing = $('#' + y);
+	var currentThing = $('.' + y);
 	var newPosition = currentThing.position();
 	var currentPosition = currentThing.position();
 	var newTop = newPosition.top - 15;
@@ -966,7 +974,13 @@ function YayNotFixed(y){
     });
 }
 function YayMoveButtons(y){
-	var currentThing = $('#' + y);
+	var currentThing = $('.' + y);
+	if(y == 'sliderRWide'){
+		var currentThing = $('sliderRWide');
+	}
+	if(y == 'sliderRWide'){
+		var currentThing = $('sliderRWide');
+	}
 	if((y == 'sliderR') || (y == 'sliderL')){
 		var tenVW = calculatedVW * 10;
 		var currentWidth = $(currentThing).width();

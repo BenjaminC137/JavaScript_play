@@ -517,6 +517,9 @@ background-size: 13px, 29px, 37px, 53px;
 	transition-timing-function: ease-in-out;
 */
 }
+.sliderRWide{
+
+}
 .sliderD{
 	bottom: 0vh;
 /*
@@ -530,6 +533,9 @@ background-size: 13px, 29px, 37px, 53px;
 	transition-duration: 1000ms;
 	transition-timing-function: ease-in-out;
 */
+}
+.sliderLWide{
+	color: red;
 }
 .sliderU{
 	top: 0vh;
