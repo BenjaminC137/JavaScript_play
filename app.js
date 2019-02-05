@@ -770,8 +770,8 @@ function Rotten(){
 	if(breakpoint != 'small'){
 		if(unRottenState == true){
 			$('.slideButtonV, .slideButtonH').animate({backgroundColor: "#8B0000", color: 'yellow'}, 1000 );
-			$('#wide-button-r').attr("onclick","Slide('u')");
-			$('#wide-button-l').attr("onclick","Slide('d')");
+			$('#wide-button-r').attr("onclick","Slide('u'); YayMoveButtons('sliderU');");
+			$('#wide-button-l').attr("onclick","Slide('d'); YayMoveButtons('sliderD')");
 			$( '.slideButtonH' ).switchClass( 'slideButtonH', 'slideButtonV',{duration: 1000, easing: "easeInOutQuad" , queue: true} );
 			$( '.slideButtonV' ).switchClass( 'slideButtonV', 'slideButtonH', {duration: 1000, easing: "easeInOutQuad" , queue: true});
 			$( '#sliderR' ).switchClass( 'sliderR', 'sliderD', {duration: 1000, easing: "easeInOutQuad" , queue: true});
@@ -800,8 +800,8 @@ function Rotten(){
     			});
 
 
-			$('#wide-button-r').attr("onclick","Slide('r')");
-			$('#wide-button-l').attr("onclick","Slide('l')");
+			$('#wide-button-r').attr("onclick","Slide('r');YayMoveButtons('sliderR');");
+			$('#wide-button-l').attr("onclick","Slide('l'); YayMoveButtons('sliderL');");
 
 //			GoScreen('d'); //I need to get this to be fired off after the unrotten Message.
 
@@ -810,13 +810,11 @@ function Rotten(){
 //	for MOBILE----------------------------------------------
 else{
 
-
-
 	if(unRottenState == true){
 		$('.slideButtonV, .slideButtonH').animate({backgroundColor: "#8B0000", color: 'yellow'}, 1000 );
 
-		$('#wide-button-r').attr("onclick","Slide('u')");
-		$('#wide-button-l').attr("onclick","Slide('d')");
+		$('#wide-button-r').attr("onclick","Slide('u'); YayMoveButtons('sliderU');");
+		$('#wide-button-l').attr("onclick","Slide('d'); YayMoveButtons('sliderD');");
 
 
 		$( '#sliderD' ).switchClass( 'sliderD', 'sliderL', {duration: 500, easing: "easeInOutQuad", complete: RottenMessage, queue: true});
@@ -851,8 +849,8 @@ else{
 
 
 
-		$('#wide-button-r').attr("onclick","Slide('r')");
-		$('#wide-button-l').attr("onclick","Slide('l')");
+		$('#wide-button-r').attr("onclick","Slide('r'); YayMoveButtons('sliderR');");
+		$('#wide-button-l').attr("onclick","Slide('l'); YayMoveButtons('sliderL');");
 
 
 
@@ -961,13 +959,16 @@ function YayNotFixed(y){
     });
 }
 function YayMoveButtons(y){
+//	if(y == 'sliderRWide'){
+////		var currentThing = $('.sliderR');
+//		y = 'sliderR';
+//	}
+//	else if(y == 'sliderLWide'){
+////		var currentThing = $('.sliderL');
+//		y = 'sliderL';
+//	}
 	var currentThing = $('.' + y);
-	if(y == 'sliderRWide'){
-		var currentThing = $('sliderRWide');
-	}
-	if(y == 'sliderRWide'){
-		var currentThing = $('sliderRWide');
-	}
+	console.log(y);
 	if((y == 'sliderR') || (y == 'sliderL')){
 		var tenVW = calculatedVW * 10;
 		var currentWidth = $(currentThing).width();
@@ -990,7 +991,7 @@ function YayMoveButtons(y){
 			}
 		});
 	}
-	if((y == 'sliderD') || (y == 'sliderU')){
+	else if((y == 'sliderD') || (y == 'sliderU')){
 		var tenVH = calculatedVH * 10;
 		var currentHeight = $(currentThing).height();
 		var newHeight = currentHeight + tenVH;
@@ -1027,5 +1028,8 @@ function YayMoveButtons(y){
 				}
 			});
 		}
+	}
+	else{
+		console.log('received invalid input');
 	}
 }
