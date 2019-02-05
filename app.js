@@ -567,7 +567,8 @@ function CheckBanana(id){
 		badGuyCloneId += id;
 		var badGuyClone = document.getElementById(badGuyCloneId);
 		setTimeout(function(){
-		badGuyClone.remove();
+			badGuyClone.remove();
+			Yay('add');
 		}, 400);
 		setTimeout (function(){
 		badGuyClone.style.top = ('0vh');
@@ -961,6 +962,38 @@ function YayNotFixed(y){
       			complete: function(){
 					$(currentThing)
 					.css({width: '', height: '', backgroundColor: ''});
+      			}
+    		});
+      	}
+    });
+}
+function YayMoveButtons(y){
+	var currentThing = $('#' + y);
+//	var newPosition = currentThing.position();
+	var currentPosition = currentThing.position();
+//	var newTop = newPosition.top - 15;
+//	var newLeft = newPosition.left - 15;
+//	var newHeight = $(currentThing).height() + 30;
+//	var currentHeight = $(currentThing).height();
+	var tenVW = calculatedVW * 10;
+	var currentWidth = $(currentThing).width();
+	var newWidth = currentWidth + tenVW;
+	$(currentThing)
+	.animate({width: newWidth}, {
+    	duration: 50,
+		queue: true,
+      	complete: function(){
+//		newHeight -= 30;
+		newWidth -= tenVW;
+//		newTop +=15;
+//		newLeft +=15;
+		$(currentThing)
+			.animate({width: currentWidth},{
+      			duration: 50,
+				queue: true,
+      			complete: function(){
+					$(currentThing)
+					.css({width: ''});
       			}
     		});
       	}
