@@ -1033,8 +1033,9 @@ function YayMoveButtons(y){
 					$(currentThing).animate({height: currentHeight, top: currentTop},{
 						duration: 50,
 						queue: true,
-						complete: function(){
-							$(currentThing).css({height: ''});}});
+						complete: function()
+						{$(currentThing).css({height: ''});}
+					});
 				}
 			});
 		}
