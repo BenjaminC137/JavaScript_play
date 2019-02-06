@@ -738,8 +738,17 @@ function Rotten(){
 		localStorage.setItem('savedRottenStatus', true );
 	}
 	//	for DESKTOP----------------------------------------------
-	if(breakpoint != 'small'){
+	if(breakpoint != 'small'){ // DESKTOP
 		if(unRottenState == true){
+
+
+
+			//backup
+			$('.slideButtonV').css('top', '');
+
+
+
+
 			$('.slideButtonV, .slideButtonH').animate({backgroundColor: "#8B0000", color: 'yellow'}, 1000 );
 			$('#wide-button-r').attr("onclick","Slide('u'); YayMoveButtons('sliderU');");
 			$('#wide-button-l').attr("onclick","Slide('d'); YayMoveButtons('sliderD')");
@@ -749,6 +758,9 @@ function Rotten(){
 			$( '#sliderL' ).switchClass( 'sliderL', 'sliderU', {duration: 1000, easing: "easeInOutQuad" , queue: true});
 			$( '#sliderU' ).switchClass( 'sliderU', 'sliderR', {duration: 1000, easing: "easeInOutQuad" , queue: true});
 			$( '#sliderD' ).switchClass( 'sliderD', 'sliderL', {duration: 1000, easing: "easeInOutQuad", complete: RottenMessage, queue: true});
+
+
+
 		}
 		else{
 			$('.slideButtonV, .slideButtonH').animate({backgroundColor: "#98FB98", color: 'black'}, 300 );
