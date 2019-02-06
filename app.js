@@ -1,19 +1,19 @@
 $(document).ready(function(){
 	if("savedHighScore" in localStorage){
 		highScore = localStorage.getItem('savedHighScore');
-   		console.log('High Score Found: ' + highScore);
 		$('#highScore').html(highScore);
+		welcomeMessage += ('High Score Found: ' + highScore + ' ');
 	}
 	else {
-	   console.log('No High Score Found.');
+		welcomeMessage += ('No High Score Found. ');
 	}
 	if("savedBanana" in localStorage){
 		texture = localStorage.getItem('savedBanana');
-   		console.log('Banana Found: ' + texture);
 		$('#slider').attr("class", 'slide ' + texture);
+		welcomeMessage += ('Banana Found: ' + texture + ' ');
 	}
 	else {
-	   console.log('No Banana Found.');
+		welcomeMessage += ('No Banana Found. ');
 	}
 	if("savedRottenStatus" in localStorage){
 		rottenUnlockStatus = localStorage.getItem('savedRottenStatus');
@@ -21,25 +21,23 @@ $(document).ready(function(){
 		if(rottenUnlockStatus == true){
 			$('.rotten').css({'color': 'yellow', 'background-color': 'brown'});
 		}
-   		console.log('Rotten Status loaded.');
+		welcomeMessage += ('Rotten Status loaded. ');
 	}
 	else {
-	   console.log('You have not achieved Rotten Status.');
-		console.log(rottenUnlockStatus);
+		welcomeMessage += ('You have not achieved Rotten Status yet. ')
 	}
 	if("savedMenuStatus" in localStorage){
 		panel = localStorage.getItem('savedMenuStatus');
 		panel = (panel == 'true');
-		Settings('remember');
 	}
 	if("activeScore" in localStorage){
 		score = localStorage.getItem('activeScore');
 		score = parseInt(score, 10);
-   		console.log('Session Found! Score: ' + score);
+		welcomeMessage += ('Session Found! Score: ' + score + ' ');
 		$('#score').html(score);
 	}
 	else{
-		console.log("no activeScore found.")
+		welcomeMessage += ('No activeScore found. ');
 	}
 	if(breakpoint == 'small'){
 		GoScreen('m');
@@ -49,6 +47,7 @@ $(document).ready(function(){
 	}
 	ToggleInstructions('c');
 	Settings('remember');
+	console.log(welcomeMessage);
 });
 function GoScreen(screen){
 	if(screen == 'm'){
@@ -109,7 +108,7 @@ var banana;
 var currentColor;
 var currentSize;
 var currentSpeed;
-var currentId;
+//var currentId;
 var directionBadGuy = 'r';
 var done;
 var difficulty = 1;
@@ -127,6 +126,7 @@ var level = 2;
 var randomState = 1;
 var instructionsHide = true;
 var menuTop = '100vh';
+var welcomeMessage = 'Welcome: ';
 window.onresize = function(event) {
 	windowWidth = window.innerWidth;
 	windowHeight = window.innerHeight;
@@ -349,7 +349,7 @@ function Add(number){
 		number = nextBanana;
 	}
 	var currentBanana = bananas.find( banana => banana.id === number);
-	currentId = currentBanana['id'];
+//	currentId = number;
 	currentColor = currentBanana['color'];
 	currentSize = currentBanana['size'];
 	currentSpeed = currentBanana['speed'];
@@ -500,8 +500,12 @@ function CheckBadGuy(id){
 }
 function CheckBanana(id){
 	CountBadGuys();
-	const currentBanana = bananas.find(banana => banana.id === id);
-	currentId = currentBanana['id'];
+	var badGuyExistance = CheckBadGuy(id);
+	if(badGuyExistance == 'fart'){
+		return null;
+	}
+	var currentBanana = bananas.find(banana => banana.id === id);
+//	currentId = id;
 	currentColor = currentBanana['color'];
 	currentSize = currentBanana['size'];
 	var badGuyId = 'badGuy';
@@ -563,21 +567,18 @@ function CheckBanana(id){
 	CountBadGuys();
 }
 function Clone(id){
-	//get current badguy
 	const currentBanana = bananas.find( banana => banana.id === id);
-	currentId = id;
+//	currentId = id;
 	currentColor = currentBanana['color'];
 	currentSize = currentBanana['size'];
 	currentSpeed = currentBanana['speed'];
 	var badGuyId = 'badGuy';
 	badGuyId += id;
-	//get badguy location
 	var badGuy = document.getElementById(badGuyId);
 	var badGuyLeft = window.getComputedStyle(badGuy).left;
 	var badGuyTop = window.getComputedStyle(badGuy).top;
 	var positionX = Number(badGuyLeft.replace("px", ""));
 	var positionY = Number(badGuyTop.replace("px", ""));
-	//remove current badguy to remove event listners
 	badGuy.remove();
 // create clone
 	var newDiv = document.createElement("div");
@@ -729,7 +730,7 @@ function Settings(e){
 			$( '#menu' ).animate({top: '100vh'}, {queue: false, duration: 500, easing: 'easeInOutBack'});
 			panel = false;
 		}
-		console.log('You have played on this device before.');
+//		console.log('You have played on this device before.');
 	}
 	if(e == 'c'){
 		$( '#menu' ).animate({top: '100vh'}, {queue: false, duration: 500, easing: 'easeInOutBack'})
@@ -779,22 +780,16 @@ function Rotten(){
 	}
 //	for MOBILE----------------------------------------------
 else{
-	if(unRottenState == true){
+	if(unRottenState == true){ // if it wasn't rotten, but we're going rotten now:
 		$('.slideButtonV, .slideButtonH').animate({backgroundColor: "#8B0000", color: 'yellow'}, 1000 );
-
 		$('#wide-button-r').attr("onclick","Slide('u'); YayMoveButtons('sliderU');");
 		$('#wide-button-l').attr("onclick","Slide('d'); YayMoveButtons('sliderD');");
-
-
 		$( '#sliderD' ).switchClass( 'sliderD', 'sliderL', {duration: 500, easing: "easeInOutQuad", complete: RottenMessage, queue: true});
-
 		$( '.slideButtonH').switchClass( 'slideButtonH', 'slideButtonV',{duration: 1000, easing: "easeInOutQuad" , queue: true} ).animate({top: '20vh'}, 500);
 		$( '.slideButtonV' ).switchClass( 'slideButtonV', 'slideButtonH', {duration: 1000, easing: "easeInOutQuad" , queue: true});
 		$( '#sliderR' ).switchClass( 'sliderR', 'sliderD', {duration: 1000, easing: "easeInOutQuad" , queue: true}).animate({top: '70vh'}, 500);
-
 		$( '#sliderL' ).switchClass( 'sliderL', 'sliderU', {duration: 1000, easing: "easeInOutQuad" , queue: true}).animate({top: '0vh'}, 500);
 		$( '#sliderU' ).switchClass( 'sliderU', 'sliderR', {duration: 1000, easing: "easeInOutQuad" , queue: true});
-
 	}
 	else{ // mobile - leaving rotten mode
 		$('.slideButtonV, .slideButtonH').animate({backgroundColor: "#98FB98", color: 'black'}, 300 );
@@ -906,7 +901,7 @@ function YayNotFixed(y){
 }
 function YayMoveButtons(y){
 	var currentThing = $('.' + y);
-	console.log(y);
+//	console.log(y);
 	if((y == 'sliderR') || (y == 'sliderL')){
 		var tenVW = calculatedVW * 10;
 		var currentWidth = $(currentThing).width();
