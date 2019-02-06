@@ -578,6 +578,7 @@ function CheckBanana(id){
 				localStorage.setItem('savedRottenStatus', true);
 				$('#message').prepend("<br><br><span style='color: mediumseagreen; font-size: 2em;' class='shadowLight'>Unlocked ROTTEN BANANA MODE!</span><br><br>");
 				$('.rotten').css({'color': 'yellow', 'background-color': 'brown'});
+				RottenBanana();
 			}
 		}
 	}// end of block - if hit bad guy
@@ -680,8 +681,9 @@ function RestartGame(skip){
 		if(unRottenState == false){
 			Rotten();
 		}
-		$('#slider').removeAttr('style');
-		$('#slider').attr("class", 'slide');
+//		$('#slider').removeAttr('style');
+		var classes = 'slide ' + texture;
+		$('#slider').attr("class", classes);
 		localStorage.removeItem('savedBanana');
 		$('#score').html(score);
 		difficulty = 1;
@@ -1033,3 +1035,6 @@ function YayMoveButtons(y){
 		console.log('received invalid input');
 	}
 }
+function RottenBanana(){
+	console.log('bananas!');
+};
