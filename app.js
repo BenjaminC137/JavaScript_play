@@ -115,7 +115,6 @@ var done;
 var difficulty = 1;
 var nextBanana = -1;
 var maxSize = 1;
-//var hitBottom;
 var currentBottom = 70;
 var hitEdgeW = 'n';
 var hitEdgeH = 'n';
@@ -375,7 +374,6 @@ function Add(number){
 }
 function SlideSquare(id, button){
 	randomState ++;
-//	console.log(randomState);
 	if(randomState > 180){
 		const currentBanana = bananas.find( banana => banana.id === 5);
 		currentBanana.right = 'u';
@@ -422,22 +420,15 @@ function SlideSquare(id, button){
 	var badGuy = document.getElementById(badGuyId);
 	var badGuyLeft = window.getComputedStyle(badGuy).left;
 	var badGuyTop = window.getComputedStyle(badGuy).top;
-//	console.log(badGuyLeft, badGuyTop);
 	var positionX = Number((badGuyLeft).replace("px", ""));
 	var positionXWas = Number((badGuyLeft).replace("px", ""));
 	var positionY = Number((badGuyTop).replace("px", ""));
 	var positionYWas = Number((badGuyTop).replace("px", ""));
-//	console.log('windowHeight: ' + windowHeight);	console.log('calculatedVH: ' + calculatedVH);
 	positionX = (Math.round(positionX / calculatedVW)) + 'vw';
-//	console.log(positionX);
 	positionY = (Math.round(positionY / calculatedVH)) + 'vh';
-//	console.log('posY: ' + positionY);
 	positionXWas = (Math.round(positionXWas / calculatedVW)) + 'vw';
-//	console.log(positionXWas);
 	positionYWasIos = Math.round(positionYWas / calculatedVH);
 	positionYWas = (Math.round(positionYWas / calculatedVH)) + 'vh';
-//	console.log('posYWasIos: ' + positionYWasIos);
-//	console.log('posYWas: ' + positionYWas);
 	Move(dir);
 	function Move(directionBadGuy){
 		var currentBottomVH = currentBottom + 'vh';
@@ -456,7 +447,6 @@ function SlideSquare(id, button){
 		}
 //		ensure they go to the nearest corner:
 		if(['20vw', '70vw'].indexOf(positionX) +1){
-//			console.log('position X == 20vw or 70vw');
 		}
 		else{
 			if (Number(positionX.replace("vw", "")) < 50){
@@ -468,7 +458,6 @@ function SlideSquare(id, button){
 		}
 		var middleVh = (((currentBottom + 10) - 20) / 2) + 20;
 		if(['20vh', currentBottomVH].indexOf(positionY) +1){
-//			console.log('position Y == 20vh or bottom');
 		}
 		else{
 			if (Number(positionY.replace("vh", "")) < middleVh ){
@@ -478,8 +467,6 @@ function SlideSquare(id, button){
 				positionY = currentBottomVH;
 			}
 		}
-//		badGuy.style.left = positionX;
-//		badGuy.style.top = positionY;
 		if(breakpoint == 'small'){
 			if(positionYWasIos > 41.5){
 				positionYWas = '50vh';
@@ -488,28 +475,21 @@ function SlideSquare(id, button){
 				positionYWas = '20vh';
 			}
 		}
-//		console.log(positionX, positionXWas, positionY, positionYWas);
-//		var iOSpositionY =
 		if(positionX == positionXWas && positionY == positionYWas){
-//			console.log(id + 'no move needed');
 			return null;
 		}
 		else{
 			$('#' + badGuyId).animate({left: positionX, top: positionY}, {queue: false, duration: 1000, easing: 'easeOutBack', complete: CheckB});
-//			badGuy.addEventListener("transitionend", CheckB, false);
 			function CheckB(event) {
 			CheckBanana(id);
-//			badGuy.removeEventListener("transitionend", CheckB, 				false);
 			}
 		}
 	}
 }
 function CheckBadGuy(id){
-//	console.log('checkedbadguy');
 	var badGuyId = 'badGuy';
 	badGuyId += id;
 	var badGuy = document.getElementById(badGuyId);
-
 	try{
 		var badGuyLeft = window.getComputedStyle(badGuy).left;
 		return 'here';
@@ -519,7 +499,6 @@ function CheckBadGuy(id){
 	}
 }
 function CheckBanana(id){
-//	console.log('checkedbanana');
 	CountBadGuys();
 	const currentBanana = bananas.find(banana => banana.id === id);
 	currentId = currentBanana['id'];
@@ -545,7 +524,6 @@ function CheckBanana(id){
 		}
 		else{
 			var value = Math.round(-(currentBanana['size'] / 2) + maxSize);
-//			console.log('value' + value);
 			var newPoints = (1*difficulty) * value;
 			$('#message').prepend("<span class='shadowLight' style='color: deeppink'>Peeled </span><div class='bad-guy-mini' style='background-color: " + currentColor + "'></div><span class='shadow' style='color: yellow'> +" + newPoints + "</span><br>");
 			score += newPoints;
@@ -637,7 +615,7 @@ var getBreakpoint = function () {
 breakpoint = getBreakpoint();
 window.addEventListener('resize', function () {
 	breakpoint = getBreakpoint();
-	console.log('breakpoint ' + breakpoint);
+	console.log('breakpoint: ' + breakpoint);
 }, false);
 function Restore(){
 	if (confirm("Are you sure you want to restore your game to factory settings?")) {
@@ -718,7 +696,7 @@ function ChangeBanana(b){
 	$('.slide-demo').removeAttr('style');
 	$('.' + texture).css('border-style', 'solid');
 	$('#slider').css('border-style', 'hidden');
-	console.log
+//	console.log
 }
 function Settings(e){
 	if(e == null){
@@ -788,30 +766,19 @@ function Rotten(){
 			$( '#sliderU' ).switchClass( 'sliderR', 'sliderU', {duration: 500, easing: "easeInOutQuad" , queue: true});
 			$( '.slideButtonH' ).switchClass( 'slideButtonH', 'slideButtonV',{duration: 500, easing: "easeInOutQuad" , queue: true} );
 			$( '.slideButtonV' ).switchClass( 'slideButtonV', 'slideButtonH', {duration: 500, easing: "easeInOutQuad" , queue: true});
-
-
-
-//			$( '#sliderD' ).switchClass( 'sliderL', 'sliderD', {duration: 500, easing: "easeInOutQuad", complete: UnRottenMessage, queue: true});
-
 			$( '#sliderD' )
 				.switchClass( 'sliderL', 'sliderD', {duration: 500, easing: "easeInOutQuad", complete: UnRottenMessage, queue: true})
 				.queue(function() {
       				GoScreen('d');
-					console.log('queueue-desktop');
 					$( this ).dequeue();
     			});
-
-
 			$('#wide-button-r').attr("onclick","Slide('r');YayMoveButtons('sliderR');");
 			$('#wide-button-l').attr("onclick","Slide('l'); YayMoveButtons('sliderL');");
-
 //			GoScreen('d'); //I need to get this to be fired off after the unrotten Message.
-
 		}
 	}
 //	for MOBILE----------------------------------------------
 else{
-
 	if(unRottenState == true){
 		$('.slideButtonV, .slideButtonH').animate({backgroundColor: "#8B0000", color: 'yellow'}, 1000 );
 
@@ -838,38 +805,25 @@ else{
 
 		$( '.slideButtonH' ).switchClass( 'slideButtonH', 'slideButtonV',{duration: 500, easing: "easeInOutQuad" , queue: true} );
 		$( '.slideButtonV' ).switchClass( 'slideButtonV', 'slideButtonH', {duration: 500, easing: "easeInOutQuad" , queue: true});
-
-//		$( '#sliderD' ).switchClass( 'sliderL', 'sliderD', {duration: 500, easing: "easeInOutQuad", complete: UnRottenMessage, queue: true}).animate({top: '70vh'}, 500);
 		$( '#sliderD' )
 			.switchClass( 'sliderL', 'sliderD', {duration: 500, easing: "easeInOutQuad", complete: UnRottenMessage, queue: true})
 			.animate({top: '70vh'}, 500)
 			.queue(function() {
       			GoScreen('m');
-				console.log('queueue-mobile');
 				$( this ).dequeue();
     		});
-
-
-
 		$('#wide-button-r').attr("onclick","Slide('r'); YayMoveButtons('sliderR');");
 		$('#wide-button-l').attr("onclick","Slide('l'); YayMoveButtons('sliderL');");
-
-
-
 //		GoScreen('m'); //I need to get this to be fired off after the unrotten Message.
-
 }//	END of - for mobile-------------------------------------
-
 	}
 	if(unRottenState == true){
 		difficulty += 10;
 		level ++;
-		console.log(level);
 	}
 	else{
 		difficulty -= 10;
 		level --;
-		console.log(level);
 	}
 	unRottenState = !unRottenState;
 	$('#difficulty').text(difficulty);
@@ -881,19 +835,15 @@ function UnRottenMessage(){
 	$('#message').prepend("<span class='shadow' style='color: yellow'>ROTTEN BANANA MODE DEACTIVATED</span><br>");
 }
 function ToggleInstructions(k){
-//	console.log(k);
 	if(k == 'c'){
 			$( '.instructions-container' ).animate({top: '100vh'}, {queue: false, duration: 500, easing: 'easeInOutBack'});
 		instructionsHide = true;
 	}
 	if(k == null){
 		if(instructionsHide == true){
-//		console.log('f');
-//			$( '.instructions-container' ).show();
 			$( '.instructions-container' ).animate({top: '0vh'}, {queue: false, duration: 500, easing: 'easeInOutBack'});
 			}
 		else{
-//			$( '.instructions-container' ).hide();
 			$( '.instructions-container' ).animate({top: '100vh'}, {queue: false, duration: 500, easing: 'easeInOutBack'});
 		}
 		instructionsHide = !instructionsHide;
@@ -932,13 +882,7 @@ function Yay(y){
 }
 function YayNotFixed(y){
 	var currentThing = $(y);
-//	var newPosition = currentThing.position();
-//	var newTop = newPosition.top - 15;
-//	var newLeft = newPosition.left - 15;
-//	var newHeight = $(currentThing).height() + 30;
-//	var newWidth = $(currentThing).width() + 30;
 	var currentBackgroundColor = $(currentThing).css('backgroundColor');
-	console.log(currentBackgroundColor);
 	$(currentThing)
 	.animate({backgroundColor: 'black', mixBlendMode: 'multiply'}, {
     	duration: 300,
@@ -961,14 +905,6 @@ function YayNotFixed(y){
     });
 }
 function YayMoveButtons(y){
-//	if(y == 'sliderRWide'){
-////		var currentThing = $('.sliderR');
-//		y = 'sliderR';
-//	}
-//	else if(y == 'sliderLWide'){
-////		var currentThing = $('.sliderL');
-//		y = 'sliderL';
-//	}
 	var currentThing = $('.' + y);
 	console.log(y);
 	if((y == 'sliderR') || (y == 'sliderL')){
@@ -1036,5 +972,5 @@ function YayMoveButtons(y){
 	}
 }
 function RottenBanana(){
-	console.log('bananas!');
+
 };
