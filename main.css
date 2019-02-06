@@ -388,6 +388,9 @@ p{
 /*	border-radius: 5px;*/
 }
 .rotten{
+	position: relative;
+	top: 0vh;
+	left: 0vw;
 	text-align: center;
 	padding: 1vh 1vw;;
 	margin-top: 5px;
@@ -411,13 +414,6 @@ p{
 	animation-timing-function: linear;
 }
 #rottenButton{
-/*
-	animation-name: rotate;
-	animation-direction: normal;
-	animation-duration: 20s;
-	animation-iteration-count: infinite;
-	animation-timing-function: linear;
-*/
 }
 .slide{
 	position: fixed;

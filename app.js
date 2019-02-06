@@ -118,7 +118,7 @@ var currentBottom = 70;
 var hitEdgeW = 'n';
 var hitEdgeH = 'n';
 var panel = true;
-var texture;
+var texture = 'texture-shippo';
 var availableBadGuys;
 var unRottenState = true;
 var rottenUnlockStatus = false;
@@ -127,6 +127,8 @@ var randomState = 1;
 var instructionsHide = true;
 var menuTop = '100vh';
 var welcomeMessage = 'Welcome: ';
+var rottenButtonStatus = false;
+var rottenButtonInterval = false;
 window.onresize = function(event) {
 	windowWidth = window.innerWidth;
 	windowHeight = window.innerHeight;
@@ -326,6 +328,7 @@ function CountBadGuys(){
 	$('#addButton').text(availableBadGuys);
 }
 function Add(number){
+//	rottenButtonInterval = setInterval(RottenBanana, 2000);
 	var badGuys = $(".bad-guy");
 	CountBadGuys();
 	if(badGuys.length >= bananas.length){
@@ -558,9 +561,10 @@ function CheckBanana(id){
 			if(highScore > 100){
 				rottenUnlockStatus = true;
 				localStorage.setItem('savedRottenStatus', true);
-				$('#message').prepend("<br><br><span style='color: mediumseagreen; font-size: 2em;' class='shadowLight'>Unlocked ROTTEN BANANA MODE!</span><br><br>");
+				$('#message').prepend("<br><span style='color: mediumseagreen; font-size: 2em;' class='shadowLight'>Unlocked ROTTEN BANANA MODE!</span><br>");
 				$('.rotten').css({'color': 'yellow', 'background-color': 'brown'});
-				RottenBanana();
+//				RottenBanana();
+//				rottenButtonInterval = setInterval(RottenBanana, 4000);
 			}
 		}
 	}// end of block - if hit bad guy
@@ -599,11 +603,11 @@ function ClearHighScore(){
 		localStorage.removeItem('savedHighScore');
 		localStorage.removeItem('savedRottenStatus');
 		highScore = 0;
+		rottenUnlockStatus = false;
 		$('#highScore').html(highScore);
-//			$('#message').prepend("<br><br><span style='color: crimson; font-size: 2em;' class='shadow'>Cleared High Score</span><br><br>");
 		$('.rotten').removeAttr('style');
 		RestartGame('skip');
-			$('#message').prepend("<br><span style='color: deepskyblue; font-size: 2em;' class='shadowLight'>Cleared High Score</span><br>");
+			$('#message').prepend("<span style='color: deepskyblue; font-size: 2em;' class='shadowLight'>Cleared High Score</span>");
 	}
 	else {
 		$('#message').prepend("<br><br><span style='color: yellow; font-size: 1.5em;' class='shadow'>High Score Preserved</span><br><br>");
@@ -622,30 +626,13 @@ function Restore(){
 	if (confirm("Are you sure you want to restore your game to factory settings?")) {
 		RestartGame('skip');
 		localStorage.clear();
-//		score = 0;
-//		if(unRottenState == false){
-//			Rotten();
-//		}
-//		$('#score').html(score);
-//		difficulty = 1;
-//		$('#difficulty').html(difficulty);
-//		for(var i = 1; i <= bananas.length; i++){
-//			var presence = CheckBadGuy(i);
-//			if(presence == 'here'){
-//				var badGuyId = 'badGuy' + i;
-//				var badGuy = document.getElementById(badGuyId);
-//				badGuy.remove();
-//			}
-//			nextBanana = 1;
-//		}
-//		$('#slider').removeAttr('style');
-//		$('#slider').attr("class", 'slide');
 		highScore = 0;
+		rottenUnlockStatus = false
 		$('#highScore').html(highScore);
 		$('.rotten').removeAttr('style');
-//		$('#addButton').html('+');
 		Settings('c');
-		$('#message').html("<br><span style='color: crimson; font-size: 1.5em;' class='shadowLight'>Restored Game</span><br>");
+		document.location.reload(true);
+		$('#message').html("<span style='color: crimson; font-size: 1.5em;' class='shadowLight'>Restored Game</span><br>");
 	}
 	else {
 		$('#message').prepend("<br><br><span style='color: yellow; font-size: 1.5em;' class='shadow'>Game Data Preserved</span><br><br>");
@@ -660,10 +647,9 @@ function RestartGame(skip){
 		if(unRottenState == false){
 			Rotten();
 		}
-//		$('#slider').removeAttr('style');
 		var classes = 'slide ' + texture;
 		$('#slider').attr("class", classes);
-		localStorage.removeItem('savedBanana');
+//		localStorage.removeItem('savedBanana');
 		$('#score').html(score);
 		difficulty = 1;
 		$('#difficulty').html(difficulty);
@@ -679,6 +665,7 @@ function RestartGame(skip){
 		}
 		$('#message').html("<br><br><span class='shadowLight' style='color: deepskyblue; font-size: 2em;'>Restarted</span><br><br>");
 		Settings();
+		document.location.reload(true);
 	}
 	if(skip == 'skip'){
 	   DoIt();
@@ -687,7 +674,7 @@ function RestartGame(skip){
 		DoIt();
 	}
 	else{
-		$('#message').prepend("<br><br><span style='color: yellow; font-size: 1.5em;' class='shadow'>Restart Canceled</span><br><br>");
+		$('#message').prepend("<br><span style='color: yellow; font-size: 1.5em;' class='shadow'>Restart Canceled</span><br>");
 	}
 }
 function ChangeBanana(b){
@@ -739,6 +726,9 @@ function Settings(e){
 	localStorage.setItem('savedMenuStatus', panel);
 }
 function Rotten(){
+//	if(rottenButtonStatus == false){
+//		RottenBanana('stop');
+//	}
 	if(highScore < 100){
 		rottenUnlockStatus == false;
 		$('#message').prepend("<span class='shadowLight'>Unlock Rotten Banana Mode when you reach 100 points!</span><br>");
@@ -966,6 +956,18 @@ function YayMoveButtons(y){
 		console.log('received invalid input');
 	}
 }
-function RottenBanana(){
-
-};
+function RottenBanana(e){
+	if(e == null){
+		if(rottenButtonStatus == false){
+			$( '#rotten' )
+				.animate({left: '10vw', top: '10vh'}, 600)
+				.animate({left: '0vw', top: '0vh'}, 300);
+	//		rottenButtonStatus == true;
+		}
+	}
+	if ( e == 'stop'){
+		clearInterval(rottenButtonInterval);
+		rottenButtonStatus == false;
+	}
+	rottenButtonStatus != rottenButtonStatus;
+}
