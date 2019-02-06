@@ -741,13 +741,8 @@ function Rotten(){
 	if(breakpoint != 'small'){ // DESKTOP
 		if(unRottenState == true){
 
-
-
 			//backup
-			$('.slideButtonV').css('top', '');
-
-
-
+			$('#sliderD').css('top', '');
 
 			$('.slideButtonV, .slideButtonH').animate({backgroundColor: "#8B0000", color: 'yellow'}, 1000 );
 			$('#wide-button-r').attr("onclick","Slide('u'); YayMoveButtons('sliderU');");
