@@ -493,8 +493,8 @@ function Rotten(){
 			$('#sliderD').css('top', '');
 
 			$('.slideButtonV, .slideButtonH').animate({backgroundColor: "#8B0000", color: 'yellow'}, 1000 );
-			$('#wide-button-r').attr("onclick","Slide('u'); YayMoveButtons('sliderU');");
-			$('#wide-button-l').attr("onclick","Slide('d'); YayMoveButtons('sliderD')");
+			$('#wide-button-r').attr("onclick","YayMoveButtons('sliderU'); Slide('u');");
+			$('#wide-button-l').attr("onclick","YayMoveButtons('sliderD'); Slide('d');");
 			$( '.slideButtonH' ).switchClass( 'slideButtonH', 'slideButtonV',{duration: 1000, easing: "easeInOutQuad" , queue: true} );
 			$( '.slideButtonV' ).switchClass( 'slideButtonV', 'slideButtonH', {duration: 1000, easing: "easeInOutQuad" , queue: true});
 			$( '#sliderR' ).switchClass( 'sliderR', 'sliderD', {duration: 1000, easing: "easeInOutQuad" , queue: true});
@@ -518,8 +518,8 @@ function Rotten(){
       				GoScreen('d');
 					$( this ).dequeue();
     			});
-			$('#wide-button-r').attr("onclick","Slide('r');YayMoveButtons('sliderR');");
-			$('#wide-button-l').attr("onclick","Slide('l'); YayMoveButtons('sliderL');");
+			$('#wide-button-r').attr("onclick","YayMoveButtons('sliderR'); Slide('r');");
+			$('#wide-button-l').attr("onclick","YayMoveButtons('sliderL'); Slide('l');");
 //			GoScreen('d'); //I need to get this to be fired off after the unrotten Message.
 		}
 	}
@@ -527,8 +527,8 @@ function Rotten(){
 else{
 	if(unRottenState == true){ // if it wasn't rotten, but we're going rotten now:
 		$('.slideButtonV, .slideButtonH').animate({backgroundColor: "#8B0000", color: 'yellow'}, 1000 );
-		$('#wide-button-r').attr("onclick","Slide('u'); YayMoveButtons('sliderU');");
-		$('#wide-button-l').attr("onclick","Slide('d'); YayMoveButtons('sliderD');");
+		$('#wide-button-r').attr("onclick","YayMoveButtons('sliderU'); Slide('u');");
+		$('#wide-button-l').attr("onclick","YayMoveButtons('sliderD'); Slide('d');");
 		$( '#sliderD' ).switchClass( 'sliderD', 'sliderL', {duration: 500, easing: "easeInOutQuad", complete: RottenMessage, queue: true});
 		$( '.slideButtonH').switchClass( 'slideButtonH', 'slideButtonV',{duration: 1000, easing: "easeInOutQuad" , queue: true} ).animate({top: '20vh'}, 500);
 		$( '.slideButtonV' ).switchClass( 'slideButtonV', 'slideButtonH', {duration: 1000, easing: "easeInOutQuad" , queue: true});
@@ -552,8 +552,8 @@ else{
       			GoScreen('m');
 				$( this ).dequeue();
     		});
-		$('#wide-button-r').attr("onclick","Slide('r'); YayMoveButtons('sliderR');");
-		$('#wide-button-l').attr("onclick","Slide('l'); YayMoveButtons('sliderL');");
+		$('#wide-button-r').attr("onclick","YayMoveButtons('sliderR'); Slide('r');");
+		$('#wide-button-l').attr("onclick","YayMoveButtons('sliderL'); Slide('l');");
 //		GoScreen('m'); //I need to get this to be fired off after the unrotten Message.
 }//	END of - for mobile-------------------------------------
 	}
