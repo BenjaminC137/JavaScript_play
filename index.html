@@ -93,8 +93,13 @@
 				</div>
 			</div>
 			<div id="playDiv" >
-				<h2 style="display: inline-block;">2. </h2>
+				<h2 style="display: inline;">2.&nbsp; </h2>
 				<button id="instructions-button" class="button-good" onclick="ToggleInstructions();">Instructions</button>
+			</div>
+			<div id="clearButtons">
+				<button id="restartButton" class="reset" onclick="RestartGame();">&olarr; Restart Round</button>
+				<button id="clearButton" class="reset" onclick="ClearHighScore()" >Clear High</button>
+				<button id="restoreButton" class="reset" onclick="Restore();" >&olarr; Restore Game</button>
 			</div>
 			<div id="thanks">
 				<h3 style="margin: .5em">Beta</h3>
@@ -110,11 +115,6 @@
 					<p style="font-size: .6rem">
 						*Mobile landscape orientation currently unsupported
 					</p>
-			</div>
-			<div id="clearButtons">
-				<button id="restartButton" class="reset" onclick="RestartGame();">&olarr; Restart Round</button>
-				<button id="clearButton" class="reset" onclick="ClearHighScore()" >Clear High</button>
-				<button id="restoreButton" class="reset" onclick="Restore();" >&olarr; Restore Game</button>
 			</div>
 			<br>
 			<br>
@@ -157,7 +157,7 @@
 					<li>Try combining a <span style="color: deepskyblue; font-weight: bold" >Crossover</span> with a <span style="color: deepskyblue; font-weight: bold" >Bounce-Back</span>!</li>
 				</ol>
 			<div id="playDiv" >
-				<button id="play" class="button-good" onclick="Settings('c');">Play</button>
+				<button id="play" class="button-good" onclick="Settings('c');ShowX();">Play</button>
 			</div>
 				<br>
 				<br>

@@ -52,6 +52,10 @@ $(document).ready(function(){
 			$('.close').show();
 		}
 	}
+	else{
+		$('.close').hide();
+		completedInstructions == false;
+	}
 	ToggleInstructions('c');
 	Settings('remember');
 	console.log(welcomeMessage);
@@ -636,6 +640,7 @@ function Restore(){
 		highScore = 0;
 		rottenUnlockStatus = false;
 		completedInstructions = false;
+		$('.close').hide();
 		$('#highScore').html(highScore);
 		$('.rotten').removeAttr('style');
 		Settings('c');
@@ -731,10 +736,6 @@ function Settings(e){
 		$( '#menu' ).animate({top: '100vh'}, {queue: false, duration: 500, easing: 'easeInOutBack'})
 		ToggleInstructions('c');
 		panel = false;
-		console.log(completedInstructions);
-		if(completedInstructions == false){
-			ShowX();
-		}
 	}
 	localStorage.setItem('savedMenuStatus', panel);
 }
@@ -992,7 +993,9 @@ function RottenBanana(e){
 	rottenButtonStatus != rottenButtonStatus;
 }
 function ShowX(){
-	completedInstructions = true;
-	localStorage.setItem('instructions', true);
+	if(completedInstructions == false){
+		localStorage.setItem('instructions', true);
+	}
 	$('.close').show();
+	completedInstructions = true;
 }
