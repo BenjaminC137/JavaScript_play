@@ -190,7 +190,7 @@ button{
 	text-align:right;
 }
 #clearButtons > button{
-	margin: 3vh 1vw;
+	margin: 3vh .25vw;
 /*	padding: 3vw;*/
 }
 .close{
