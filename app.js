@@ -60,44 +60,7 @@ $(document).ready(function(){
 	Settings('remember');
 	console.log(welcomeMessage);
 });
-function GoScreen(screen){
-	if(screen == 'm'){
-		$('.sliderD')[0].style.top = '70vh';
-		$('.wide-button, .wide-button-l').css("top", "20vh");
-		$('.zone-center')[0].style.height = '59vh';
-//		$('.data')[0].style.top = '30vh';
-		$('#message')[0].style.height = '17vh';
-		$('#instructions')[0].style.fontSize = '1rem';
-		$("#crossoverBL, #crossoverBR").css('top', '60vh');
-		currentBottom = 50;
-		$('.slideButtonV').css('top', '20vh');
-//		calculatedVH = windowHeight / 100;
 
-//		windowHeight = window.outerHeight;
-//		calculatedVH = windowHeight / 100;
-		menuTop = '82vh';
-	}
-	if(screen == 'd'){
-		currentBottom = 70;
-		$('.sliderD').css("top", "");
-
-		$('.wide-button, .wide-button-l').css("top", "");
-		$('.zone-center').css('height', '');
-//		$('.data')[0].style.top = '30vh';
-//		$('.data').css('top', '');
-
-//		$('#message')[0].style.height = '17vh';
-		$('#message').css('height', '');
-
-//		$('#instructions')[0].style.fontSize = '1rem';
-		$('#instructions').css('fontSize', '');
-		$("#crossoverBL, #crossoverBR").css('top', '');
-//		currentBottom = 50;
-		$('.slideButtonV').css('top', '');
-		menuTop = '100vh';
-
-	}
-}
 var bananas = [
 	{id: 1, color: 'Turquoise', 	size: 10, 	speed: 2, 	right: 'd', down: 'r', left: 'l', up: 'u'},
 	{id: 2, color: 'red', 		size: 2, 	speed: 5, 	right: 'r', down: 'u', left: 'l', up: 'd'},
@@ -107,39 +70,41 @@ var bananas = [
 	{id: 6, color: 'deeppink', 		size: 25, 	speed: 0.5, right: 'd', down: 'u', left: 'l', up: 'r'},
 	{id: 7, color: 'navy', 		size: 13, 	speed: 0.5, right: 'u', down: 'd', left: 'r', up: 'l'}
 ];
-var highScore = 0;
-var windowWidth = window.innerWidth;
 var windowHeight = window.innerHeight;
-var calculatedVW = windowWidth / 100;
+var windowWidth = window.innerWidth;
 var calculatedVH = windowHeight / 100;
+var calculatedVW = windowWidth / 100;
 var heightStep = 20;
 var widthStep = 70;
-var score = 0;
+
+var availableBadGuys;
 var banana;
+var completedInstructions = false;
+var currentBottom = 70;
 var currentColor;
 var currentSize;
 var currentSpeed;
 var directionBadGuy = 'r';
-var done;
 var difficulty = 1;
-var nextBanana = -1;
-var maxSize = 1;
-var currentBottom = 70;
-var hitEdgeW = 'n';
+var done;
+var highScore = 0;
 var hitEdgeH = 'n';
-var panel = true;
-var texture = 'texture-shippo';
-var availableBadGuys;
-var unRottenState = true;
-var rottenUnlockStatus = false;
-var level = 2;
-var randomState = 1;
+var hitEdgeW = 'n';
 var instructionsHide = true;
+var level = 2;
+var maxSize = 1;
 var menuTop = '100vh';
-var welcomeMessage = 'Welcome: ';
-var rottenButtonStatus = false;
+var nextBanana = -1;
+var panel = true;
+var randomState = 1;
 var rottenButtonInterval = false;
-var completedInstructions = false;
+var rottenButtonStatus = false;
+var rottenUnlockStatus = false;
+var score = 0;
+var texture = 'texture-shippo';
+var unRottenState = true;
+var welcomeMessage = 'Welcome: ';
+
 window.onresize = function(event) {
 	windowWidth = window.innerWidth;
 	windowHeight = window.innerHeight;
@@ -738,6 +703,44 @@ function Settings(e){
 		panel = false;
 	}
 	localStorage.setItem('savedMenuStatus', panel);
+}
+function GoScreen(screen){
+	if(screen == 'm'){
+		$('.sliderD')[0].style.top = '70vh';
+		$('.wide-button, .wide-button-l').css("top", "20vh");
+		$('.zone-center')[0].style.height = '59vh';
+//		$('.data')[0].style.top = '30vh';
+		$('#message')[0].style.height = '17vh';
+		$('#instructions')[0].style.fontSize = '1rem';
+		$("#crossoverBL, #crossoverBR").css('top', '60vh');
+		currentBottom = 50;
+		$('.slideButtonV').css('top', '20vh');
+//		calculatedVH = windowHeight / 100;
+
+//		windowHeight = window.outerHeight;
+//		calculatedVH = windowHeight / 100;
+		menuTop = '82vh';
+	}
+	if(screen == 'd'){
+		currentBottom = 70;
+		$('.sliderD').css("top", "");
+
+		$('.wide-button, .wide-button-l').css("top", "");
+		$('.zone-center').css('height', '');
+//		$('.data')[0].style.top = '30vh';
+//		$('.data').css('top', '');
+
+//		$('#message')[0].style.height = '17vh';
+		$('#message').css('height', '');
+
+//		$('#instructions')[0].style.fontSize = '1rem';
+		$('#instructions').css('fontSize', '');
+		$("#crossoverBL, #crossoverBR").css('top', '');
+//		currentBottom = 50;
+		$('.slideButtonV').css('top', '');
+		menuTop = '100vh';
+
+	}
 }
 function Rotten(){
 //	if(rottenButtonStatus == false){
