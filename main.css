@@ -384,7 +384,7 @@ p{
 	font-size: .6em;
 	background-color: inherit;
 	border-color: beige;
-	border-width: thin;
+	border-width: 1px;
 /*	border-radius: 5px;*/
 }
 .rotten{
