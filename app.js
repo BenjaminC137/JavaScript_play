@@ -45,6 +45,13 @@ $(document).ready(function(){
 	else{
 		GoScreen('d');
 	}
+	if("instructions" in localStorage){
+		completedInstructions = localStorage.getItem('instructions');
+		completedInstructions = (completedInstructions == 'true');
+		if(completedInstructions == true){
+			$('.close').show();
+		}
+	}
 	ToggleInstructions('c');
 	Settings('remember');
 	console.log(welcomeMessage);
@@ -99,8 +106,8 @@ var bananas = [
 var highScore = 0;
 var windowWidth = window.innerWidth;
 var windowHeight = window.innerHeight;
-	var calculatedVW = windowWidth / 100;
-	var calculatedVH = windowHeight / 100;
+var calculatedVW = windowWidth / 100;
+var calculatedVH = windowHeight / 100;
 var heightStep = 20;
 var widthStep = 70;
 var score = 0;
@@ -108,7 +115,6 @@ var banana;
 var currentColor;
 var currentSize;
 var currentSpeed;
-//var currentId;
 var directionBadGuy = 'r';
 var done;
 var difficulty = 1;
@@ -129,6 +135,7 @@ var menuTop = '100vh';
 var welcomeMessage = 'Welcome: ';
 var rottenButtonStatus = false;
 var rottenButtonInterval = false;
+var completedInstructions = false;
 window.onresize = function(event) {
 	windowWidth = window.innerWidth;
 	windowHeight = window.innerHeight;
@@ -627,7 +634,8 @@ function Restore(){
 		RestartGame('skip');
 		localStorage.clear();
 		highScore = 0;
-		rottenUnlockStatus = false
+		rottenUnlockStatus = false;
+		completedInstructions = false;
 		$('#highScore').html(highScore);
 		$('.rotten').removeAttr('style');
 		Settings('c');
@@ -721,7 +729,12 @@ function Settings(e){
 	}
 	if(e == 'c'){
 		$( '#menu' ).animate({top: '100vh'}, {queue: false, duration: 500, easing: 'easeInOutBack'})
+		ToggleInstructions('c');
 		panel = false;
+		console.log(completedInstructions);
+		if(completedInstructions == false){
+			ShowX();
+		}
 	}
 	localStorage.setItem('savedMenuStatus', panel);
 }
@@ -977,4 +990,9 @@ function RottenBanana(e){
 		rottenButtonStatus == false;
 	}
 	rottenButtonStatus != rottenButtonStatus;
+}
+function ShowX(){
+	completedInstructions = true;
+	localStorage.setItem('instructions', true);
+	$('.close').show();
 }

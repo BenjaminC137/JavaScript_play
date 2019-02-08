@@ -76,8 +76,7 @@
 <!--		<div class="options">-->
 		<div id="menu" class="texture-carbon">
 			<div id="sliderStyles">
-				<h2 style="display: inline-block;">Choose a banana</h2>
-				<div id="close" onclick="Settings('c')" >
+				<h2 style="display: inline-block;">1. Choose a banana</h2>		<div class="close" onclick="Settings('c')" >
 					X
 				</div>
 				<br>
@@ -92,6 +91,10 @@
 					<span onclick="ChangeBanana(this); YayNotFixed(this);" class="slide-demo texture-rainbow">
 					</span>
 				</div>
+			</div>
+			<div id="playDiv" >
+				<h2 style="display: inline-block;">2. </h2>
+				<button id="instructions-button" class="button-good" onclick="ToggleInstructions();">Instructions</button>
 			</div>
 			<div id="thanks">
 				<h3 style="margin: .5em">Beta</h3>
@@ -108,10 +111,6 @@
 						*Mobile landscape orientation currently unsupported
 					</p>
 			</div>
-			<div id="playDiv" >
-				<button id="play" class="button-good" onclick="Settings('c');">Play</button>
-				<button id="instructions-button" class="button-good" onclick="ToggleInstructions();">Instructions</button>
-			</div>
 			<div id="clearButtons">
 				<button id="restartButton" class="reset" onclick="RestartGame();">&olarr; Restart Round</button>
 				<button id="clearButton" class="reset" onclick="ClearHighScore()" >Clear High</button>
@@ -123,12 +122,13 @@
 			<br>
 			<br>
 			<br>
-
+			<br>
+			Nothin down here!
 		</div>
-
 <!--		</div>-->
 			<div class="instructions-container texture-carbon">
-				<h3 style="display: inline-block">Instructions</h3>					<span id="close" onclick="ToggleInstructions('c')">
+				<h3 style="display: inline-block">Instructions</h3>
+				<span class="close" onclick="ToggleInstructions('c')">
 					X
 				</span>
 				<ol id="instructions">
@@ -156,6 +156,11 @@
 					</li>
 					<li>Try combining a <span style="color: deepskyblue; font-weight: bold" >Crossover</span> with a <span style="color: deepskyblue; font-weight: bold" >Bounce-Back</span>!</li>
 				</ol>
+			<div id="playDiv" >
+				<button id="play" class="button-good" onclick="Settings('c');">Play</button>
+			</div>
+				<br>
+				<br>
 				<br>
 				<br>
 				<br>
