@@ -1029,7 +1029,7 @@ function YayNotFixed(y){
 	var currentThing = $(y);
 	var currentBackgroundColor = $(currentThing).css('backgroundColor');
 	$(currentThing)
-	.animate({backgroundColor: 'black', mixBlendMode: 'multiply'}, {
+	.animate({backgroundColor: 'white', paddingBottom: '3vh'}, {
     	duration: 300,
 		queue: true,
       	complete: function(){
@@ -1038,12 +1038,12 @@ function YayNotFixed(y){
 //		newTop +=15;
 //		newLeft +=15;
 		$(currentThing)
-			.animate({backgroundColor: currentBackgroundColor},{
+			.animate({backgroundColor: currentBackgroundColor, paddingBottom: '0px'},{
       			duration: 300,
 				queue: true,
       			complete: function(){
 					$(currentThing)
-					.css({width: '', height: '', backgroundColor: ''});
+					.css({width: '', height: '', backgroundColor: '', paddingBottom: ''});
       			}
     		});
       	}
