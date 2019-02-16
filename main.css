@@ -255,6 +255,12 @@ transform: scale(1, -1);
 	width: 10vw;
 	color: deepskyblue;
 }
+.crossover-instructions{
+	font-size: 2em;
+	color: deepskyblue;
+	display: inline-block;
+	color: deepskyblue;
+}
 .upside-down{
 -moz-transform: scale(1, -1);
 -webkit-transform: scale(1, -1);
